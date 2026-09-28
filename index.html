@@ -1,18 +1,296 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<title>Tamagotchi</title>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>Goobies Menu</title>
+
+		<!-- Bootstrap Styles -->
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
-		<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- Custom Menu Stylesheet -->
+		<link rel="stylesheet" href="menu-styles.css" />
+		<!--  JavaScript (bs and custom) -->
+		  <!-- Using defer to load JavaScript after HTML is parsed -->
+		<script src="bootstrap/js/bootstrap.bundle.min.js" defer></script>
+		<script src="index-scripts.js" defer></script>
+
+		<!-- Favicon (when created) -->
+		<link rel="icon" href="favicon.ico" />
+
 	</head>
+
 	<body>
-		<div class="bg-primary text-white">Tamagotchi game</div>
-		<div class="bg-warning text-white">
-			<a href="hub.html">
-				Click here to go to the main hub!
-			</a>
+		<!-- TITLE HEADER -->
+		<div class="row">
+			<div class="col text-center">
+				<img src="index-images/Goobies_Logo_text.gif" alt="Goobies" id="game-title" class="img-fluid">
+			</div>
 		</div>
+
+		<!---------------------->
+		<!-- MUSIC AND SOUNDS -->
+		<!---------------------->
+
+		<!-- Audio sources located in 'audio' folder!!!! -->
+
+		<!-- Background music (autoplays on page load) -->
+		<audio id="menuMusic" loop autoplay>
+			<source src="index-audio/goobie-themesong.mp3" type="audio/mpeg">
+		</audio>
+
+		<!-- Sound Effects -->
+
+		<audio id="hoverSound" preload="auto">
+			<source src="index-audio/button-hover.wav" type="audio/wav">
+		</audio>
+
+		<audio id="clickSound" preload="auto">
+			<source src="index-audio/button-click.wav" type="audio/wav">
+		</audio>
+
+		<!-- Secret Feature Sound (on title click)-->
+		<audio id="titleNameSound" preload="auto">
+			<source src="index-audio/party-horn.wav" type="audio/wav">
+		</audio>
+
+		<!----------------------------->
+		<!------BUTTONS & MODAL-------->
+		<!----------------------------->
+
+		<!-- Using the Bootstrap provided modal example for simple pop-ups -->
+		<!--https://getbootstrap.com/docs/5.3/components/modal/-->
+
+		<!-- SAVE MODAL -->
+		<div class="modal" id="saveModal">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<h5 class="modal-title">Select Save</h5>
+
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal">
+						</button>
+					</div>
+
+					<div class="modal-body">
+
+						<!-- Save slot Placeholders -->
+
+						<!-- Select save slot placeholder -->
+						<button type="button" class="btn save-slot save-slot-1 menu-button w-100 mb-3">
+							<p>Save Slot 1 (placeholder)</p>
+						</button>
+
+						<!-- Select save slot placeholder -->
+						<button type="button" class="btn save-slot save-slot-2 menu-button w-100 mb-3">
+							<p>Save Slot 2 (placeholder)</p>
+						</button>
+
+						<!-- Select save slot placeholder -->
+						<button type="button" class="btn save-slot save-slot-3 menu-button w-100">
+							<p>Save Slot 3 (placeholder)</p>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- NEW GAME MODAL -->
+		<div class="modal" id="newGameModal">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<h5 class="modal-title">New Game</h5>
+
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal">
+						</button>
+					</div>
+
+					<div class="modal-body">
+
+						<!-- Save slot placeholder -->
+						<button type="button" class="btn save-slot initialize-save-slot menu-button w-100">
+							<p>Save Slot Creation (placeholder)</p>
+						</button>
+
+						<!-- Temporary link until new game pages are developed -->
+						<a href="hub.html" class="btn btn-to-home">
+							To Home (temporary)
+						</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- CONTINUE GAME -->
+		<div class="row justify-content-center my-3">
+			<div class="col-3">
+				<button
+					type="button"
+					class="btn btn-continue menu-button text-lg w-100"
+					data-bs-toggle="modal"
+					data-bs-target="#saveModal">
+					Continue Game
+				</button>
+			</div>
+		</div>
+
+		<!-- NEW GAME -->
+		<div class="row justify-content-center my-3">
+			<div class="col-3">
+				<button
+					type="button"
+					class="btn btn-new-game menu-button text-lg w-100"
+					data-bs-toggle="modal"
+					data-bs-target="#newGameModal">
+					New Game
+				</button>
+			</div>
+		</div>
+
+		<!-- SETTINGS BUTTON -->
+		<!-- data-bs-toggle="modal" & data-bs-target="#settingsModal" trigger modal -->
+		<button 
+			type="button" 
+			class="btn btn-settings menu-button btn-lg position-fixed bottom-0 end-0 m-5"
+			data-bs-toggle="modal"
+			data-bs-target="#settingsModal">
+			Settings
+		</button>
+
+		<!-- CREDITS BUTTON -->
+		<button
+    		type="button"
+    		class="btn btn-credits menu-button btn-lg position-fixed bottom-0 start-0 m-5"
+    		data-bs-toggle="modal"
+    		data-bs-target="#creditsModal">
+    		Credits
+		</button>
+
+		<!-- SETTINGS MODAL -->
+		<div class="modal" id="settingsModal">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Settings</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+
+					<div class="modal-body">
+
+						<!-------------------->
+						<!-- Music Controls -->
+						<!-------------------->
+
+						<div class="mb-4"> <!-- Margin fix for mute button (works good so far)-->
+							
+							<!-- Music volume -->
+							<label for="volumeSlider" class="form-label">
+								Music Volume:&nbsp;<span id="volumeValue">75%</span>
+							</label>
+
+							<input
+								type="range"
+								class="form-range"
+								id="volumeSlider"
+								min="0"
+								max="100"
+								value="75">
+
+							<!-- Mute Music -->
+							<button
+								type="button"
+								class="btn btn-dark"
+								id="muteMusicButton">
+								Mute Music
+							</button>
+
+						</div>
+
+						<!---------------------------->
+						<!-- Sound Effects Controls -->
+						<!---------------------------->
+
+						<div>
+
+							<!-- Sound effects volume -->
+							<label for="soundSlider" class="form-label">
+								Sound Effects Volume:&nbsp;<span id="soundValue">75%</span>
+							</label>
+
+							<input
+								type="range"
+								class="form-range"
+								id="soundSlider"
+								min="0"
+								max="100"
+								value="75">
+
+							<!-- Mute Sound Effects -->
+							<button
+								type="button"
+								class="btn btn-dark"
+								id="muteSoundButton">
+								Mute Sound Effects
+							</button>
+
+						</div>
+
+					</div>
+				</div> <!-- modal-content -->
+			</div> <!-- modal-dialog -->
+		</div> <!-- #settingsModal -->	
+	
+		<!-- CREDITS MODAL -->
+		<!-- Using scrollable dialog for extended content -->
+		<div class="modal" id="creditsModal">
+			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title text-center">Credits</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+
+					<div class="modal-body">
+
+						<div class="text-center">
+
+							<!-- Development Team -->
+							<h4>Development Team</h4>
+							<p>
+								Annette<br>
+								Elena<br>
+								Joseph<br>
+								Katalina<br>
+								Quinton<br>
+								Spencer<br>
+							</p>
+						</div>
+
+						<!-- Art & Assets -->
+						<h4 class="text-center">Art & Assets</h4>
+
+								<div class="text-center">
+									<div class="text-nowrap">Menu Background - KrycerKris / DeviantArt</div>
+									<div class="text-nowrap">Sound Effects - Freesound / freesound.org</div>
+									<div class="text-nowrap">Music - Spencer Elayer</div>
+									<div class="text-nowrap">Fonts - Pixelify Sans</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
 	</body>
 </html>

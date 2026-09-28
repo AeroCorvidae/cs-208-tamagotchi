@@ -1,0 +1,241 @@
+/*--------------------------*/
+/* Goobies Main Menu Styles */
+/*--------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+
+body {
+    background-image: url("index-images/hills-background.gif");
+    
+    /* Do not repeat the image */
+    background-repeat: no-repeat;
+
+    /* Center the image */
+    background-position: center;
+
+    /* Make image cover the entire screen */
+    background-size: cover;
+
+    /* Make body at least as tall as the screen */
+    min-height: 100vh;
+
+    /* Use pixelated rendering for the background image */
+    image-rendering: pixelated;
+}
+
+
+/*--------------------------*/
+/*    Main Menu Buttons     */
+/*--------------------------*/
+
+/* Main Menu Buttons Shared Styles */
+.btn-continue, .btn-new-game {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-weight: bold;
+
+    /* Set the font size and padding for the main menu buttons */
+    font-size: 2rem;
+    padding: 15px 30px;
+}
+
+.btn-continue {
+    background-color: #ff5c8a;
+    color: white;
+    border-color: black;
+    border-width: 4px;
+    border-style: solid;
+}
+
+/* Temporary Doorway to home */
+.btn-new-game {
+    background-color: #ffd43b;
+    color: white;
+    border-color: black;
+    border-width: 4px;
+    border-style: solid;
+}
+
+.btn-settings {
+    background-color: #4da6ff;
+    color: white;
+    border-color: black;
+    border-width: 4px;
+    border-style: solid;
+    font-weight: bold;
+}
+
+.btn-credits {
+    background-color: #FF922B;
+    color: white;
+    border-color: black;
+    border-width: 4px;
+    border-style: solid;
+    font-weight: bold;
+}
+
+/* Continue Game Button Hover */
+.btn-continue:hover {
+    background-color: #ff5c8a81;
+    color: black;
+    border-color: black;
+}
+
+/* New Game Button Hover */
+.btn-new-game:hover {
+    background-color: #ffcd4db9;
+    color: black;
+    border-color: black;
+}
+
+/* Settings Button Hover */
+.btn-settings:hover {
+    background-color: #4da6ffa6;
+    color: black;
+    border-color: black;
+}
+
+/* Credits Button Hover */
+.btn-credits:hover {
+    background-color: #ff922b9f;
+    color: black;
+    border-color: black;
+}
+
+/*--------------------------*/
+/*     Modal Base Styles    */
+/*--------------------------*/
+
+/* Shared styles for all modals */
+.modal-content {
+    font-family: 'Pixelify Sans', sans-serif;
+    border: 4px solid black;
+    font-size: 1.3rem;
+}
+
+/* Shared styles for all modal titles */
+.modal-title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/*--------------------------*/
+/*   Modal Settings Styles  */
+/*--------------------------*/
+
+#settingsModal .modal-content {
+    background-color: #d6ebff;
+}
+
+/* Volume percentage number (to not look wonky) */
+/* monospace uses a font where each character takes up the same amount of space */
+#volumeValue {
+    font-family: monospace;
+    font-weight: bold;
+}
+#soundValue { 
+    font-family: monospace;
+    font-weight: bold;
+}
+
+/*--------------------------*/
+/*   Modal Credits Styles   */
+/*--------------------------*/
+
+#creditsModal .modal-content {
+    background-color: #ffe1c4;
+}
+
+#creditsModal .modal-header {
+    background-color: #FF922B;
+    border-bottom: 4px solid black;
+}
+
+/*--------------------------*/
+/*     Modal Save Styles    */
+/*--------------------------*/
+
+#saveModal .modal-content {
+    background-color: #ffd6e2;
+}
+
+#saveModal .modal-header {
+    background-color: #FF5C8A;
+    border-bottom: 4px solid black;
+}
+
+/*--------------------------*/
+/*   Modal New Game Styles  */
+/*--------------------------*/
+
+#newGameModal .modal-content {
+    background-color: #e6ffe6;
+}
+
+#newGameModal .modal-header {
+    background-color: #ffcd4db9;
+    border-bottom: 4px solid black;
+}
+
+/*--------------------------*/
+/*  Save Slot Button Styles */
+/*--------------------------*/
+
+/* Shared styles for all save slot buttons */
+.save-slot {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    border-color: black;
+    border-width: 4px;
+    border-style: solid;
+}
+
+/* Save Slot 1 */
+.save-slot-1 {
+    background-color: #be4bdbb9; 
+}
+
+/* Save Slot 2 */
+.save-slot-2 {
+    background-color: #4DA6FF;
+}
+
+/* Save Slot 3 */
+.save-slot-3 {
+    background-color: #FF922B;
+}
+
+/* Initialize Save Slot Button */
+.initialize-save-slot {
+    background-color: #51cf66;
+    color: black;
+    border-color: black;
+}
+
+/* Save Slot 1 Hover */
+.save-slot-1:hover {
+    background-color: #be4bdb80;
+    color: black;
+    border-color: black;
+}
+
+/* Save Slot 2 Hover */
+.save-slot-2:hover {
+    background-color: #80c1ff;
+    color: black;
+    border-color: black;
+}
+
+/* Save Slot 3 Hover */
+.save-slot-3:hover {
+    background-color: #ffb366;
+    color: black;
+    border-color: black;
+}
+
+/* Initialize Save Slot Hover */
+.initialize-save-slot:hover {
+    background-color: #51cf66b0;
+    color: black;
+    border-color: black;
+}
