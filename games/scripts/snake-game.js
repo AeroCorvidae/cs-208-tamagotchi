@@ -11,8 +11,10 @@ window.onload = () => {
 }
 
 let body = document.getElementById("main");
-const gridSize = 50;
-const width = Math.floor(body.clientHeight / gridSize);
+const gridSize = body.clientHeight < 500 ? 25 : 50; // Make tiles smaller on mobile
+const width = body.clientHeight > body.clientWidth ? 
+Math.floor(body.clientWidth / gridSize) : 
+Math.floor(body.clientHeight / gridSize);
 body.style.width = (width + 1) * gridSize + "px";
 const height = Math.floor(body.clientHeight / gridSize);
 
@@ -86,6 +88,8 @@ function createSnakeDiv(x, y, id) {
     setPosition(cell, x, y);
     cell.id = id;
     cell.classList.add("snake");
+    cell.style.width = gridSize + "px";
+    cell.style.height = gridSize + "px";
 
     body.appendChild(cell);
 
@@ -95,6 +99,8 @@ function createAppleDiv(x, y) {
     let cell = document.createElement("div");
     cell.id = "apple";
     cell.classList.add("apple");
+    cell.style.width = gridSize + "px";
+    cell.style.height = gridSize + "px";
 
     body.appendChild(cell);
 }
@@ -111,9 +117,35 @@ function eatApple() {
     newSquare.div = createSnakeDiv(apple.x, apple.y, snake.positions.length);
     snake.positions.unshift(newSquare);
 
-    apple.x = Math.floor(Math.random() * width);
-    apple.y = Math.floor(Math.random() * height);
+    let validSpaces = findValidSpaces();
+    let space = validSpaces[Math.floor(Math.random() * validSpaces.length)];
+
+    apple.x = Math.floor(space.x);
+    apple.y = Math.floor(space.y);
     setObjPosition(apple);
+}
+function findValidSpaces() {
+    // As much as I hate nested loops, this is the best way I could think to do this.
+    // This shouldn't scale too poorly with larger grids or snakes because the vast 
+    // majority of players will have less than 30x30 (900) total tiles in the grid
+    // meaning with a full grid and a maximally long snake, this will only run around 1800 times
+    // which computers can do just fine
+    let validSpaces = [];
+    for(let x = 0; x < width; x++) {
+        for(let y = 0; y < height; y++) {
+            let isValid = true;
+            for(let position of snake.positions) {
+                if(position.x == x && position.y == y) {
+                    isValid = false;
+                    break;
+                }
+            }
+            if(isValid) {
+                validSpaces.push({x: x, y: y});
+            }
+        }
+    }
+    return validSpaces;
 }
 
 function keypress(e) {

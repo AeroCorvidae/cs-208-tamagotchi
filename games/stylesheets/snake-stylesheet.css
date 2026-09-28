@@ -1,3 +1,6 @@
+body, #main {
+    overflow: hidden;
+}
 .apple {
     position: absolute;
     background-color: red;
