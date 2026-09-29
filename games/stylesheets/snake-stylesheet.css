@@ -16,3 +16,18 @@ body, #main {
 #main {
     max-width: 100%;
 }
+#keys {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    text-align: center;
+}
+.key {
+    margin-bottom: 2px;
+    opacity: 0.5;
+    display: inline-block;
+    align-content: center;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+}

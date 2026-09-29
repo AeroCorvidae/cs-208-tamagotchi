@@ -22,9 +22,9 @@ const height = Math.floor(body.clientHeight / gridSize);
 
 let snake = {
     positions: [
-        { x: 6, y: Math.floor(height / 2), id: 0 },
-        { x: 5, y: Math.floor(height / 2), id: 1 },
-        { x: 4, y: Math.floor(height / 2), id: 2 }
+        { x: width > 10 ? 6 : 3, y: Math.floor(height / 2), id: 0 },
+        { x: width > 10 ? 5 : 2, y: Math.floor(height / 2), id: 1 },
+        { x: width > 10 ? 4 : 1, y: Math.floor(height / 2), id: 2 }
     ],
     velocity: {
         y: 0,
@@ -149,17 +149,41 @@ function findValidSpaces() {
 }
 
 function keypress(e) {
-    if (e.key == "a" && snake.direction != "right") {
-        snake.velocity = { x: -1, y: 0, direction: "left" };
+    if (e.key.toLowerCase() == "a" || e.key == "ArrowLeft") {
+        setSnakeVelocity("left");
     }
-    if (e.key == "s" && snake.direction != "up") {
-        snake.velocity = { x: 0, y: 1, direction: "down" };
+    if (e.key.toLowerCase() == "s" || e.key == "ArrowDown") {
+        setSnakeVelocity("down");
     }
-    if (e.key == "d" && snake.direction != "left") {
-        snake.velocity = { x: 1, y: 0, direction: "right" };
+    if (e.key.toLowerCase() == "d" || e.key == "ArrowRight") {
+        setSnakeVelocity("right");
     }
-    if (e.key == "w" && snake.direction != "down") {
-        snake.velocity = { x: 0, y: -1, direction: "up" };
+    if (e.key.toLowerCase() == "w" || e.key == "ArrowUp") {
+        setSnakeVelocity("up");
+    }
+}
+
+function setSnakeVelocity(dir) {
+    switch (dir) {
+        case "left":
+            if(snake.direction != "right") {
+                snake.velocity = { x: -1, y: 0, direction: "left" };
+            }
+            break;
+        case "down":
+            if(snake.direction != "up") {
+                snake.velocity = { x: 0, y: 1, direction: "down" };
+            }
+        break;
+        case "right":
+            if(snake.direction != "left") {
+                snake.velocity = { x: 1, y: 0, direction: "right" };
+            }
+        break;
+        case "up":
+            if(snake.direction != "down") {
+                snake.velocity = { x: 0, y: -1, direction: "up" };
+            }
     }
 }
 
