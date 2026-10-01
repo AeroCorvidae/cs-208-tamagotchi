@@ -1,23 +1,51 @@
+let game;
 window.onload = () => {
+    // Create an HTML element for each part of the snake
     for (position of snake.positions) {
-        position.div = createSnakeDiv(position.x, position.y, position.id);
+        position.asset = [assets.right, assets.right];
+        position.div = createSnakeDiv(position.x, position.y, position.id, position.asset);
     }
+    // Initialize snake head
     snake.head = snake.positions[0];
+    snake.head.asset[1] = assets.head;
+    updateImage(snake.head);
+
+    // Create an HTML element for the apple
     createAppleDiv();
     apple.div = document.getElementById("apple");
     setPosition(apple.div, apple.x, apple.y);
+
+    start();
+}
+function start() {
+    // Add key press event & start game
     document.addEventListener("keydown", keypress);
-    setInterval(gameloop, 1000 / 10); // 10FPS
+    document.addEventListener("keyup", keyReleased);
+    game = setInterval(gameloop, 1000 / 10); // 10FPS
+}
+
+let assets = {
+    left: 0,
+    down: 1,
+    right: 2,
+    up: 3,
+    head: 4,
+
+    size: 64 // Asset size in pixels
 }
 
 let body = document.getElementById("main");
 const gridSize = body.clientHeight < 500 ? 25 : 50; // Make tiles smaller on mobile
+
+// Update width to be a square
 const width = body.clientHeight > body.clientWidth ? 
 Math.floor(body.clientWidth / gridSize) : 
 Math.floor(body.clientHeight / gridSize);
+
 body.style.width = (width + 1) * gridSize + "px";
 const height = Math.floor(body.clientHeight / gridSize);
 
+const keys = [];
 
 
 let snake = {
@@ -28,25 +56,34 @@ let snake = {
     ],
     velocity: {
         y: 0,
-        x: 1
+        x: 1,
+        direction: assets.right
     },
-    head: { x: 4, y: Math.floor(height / 2), id: 2 },
-    direction: "right",
-
+    head: { x: 4, y: Math.floor(height / 2), id: 2},
+    direction: "right"
 }
 let apple = { x: width > 15 ? width - 10 : width - 3, y: Math.floor(height / 2) };
 
 function gameloop() {
+    handleKeyPress();
     moveSnake();
-
 }
 
 function moveSnake() {
+    // change snake direction if key was pressed this frame
+    snake.direction = snake.velocity.direction;
+
     // Update snake head based on current head
     let currentSquare = snake.head;
     snake.head = snake.positions[snake.positions.length - 1];
+    // Update assets
+    snake.head.asset[0] = snake.direction;
+    snake.head.asset[1] = assets.head;
+    currentSquare.asset[1] = snake.direction;
+    updateImage(snake.head);
+    updateImage(currentSquare);
 
-    // Update head position
+    // Update head x
     snake.head.x = currentSquare.x + snake.velocity.x;
     if (snake.head.x > width) {
         snake.head.x = 0;
@@ -54,6 +91,7 @@ function moveSnake() {
         snake.head.x = width;
     }
 
+    // Update head y
     snake.head.y = currentSquare.y + snake.velocity.y;
     if (snake.head.y > height) {
         snake.head.y = 0;
@@ -61,30 +99,33 @@ function moveSnake() {
         snake.head.y = height;
     }
 
+    // Eat apple if the snake head would end up on the apple this frame
+    // This is an easy way to ensure when the snake grows, it will not grow into itself
     if (snake.head.x == apple.x && snake.head.y == apple.y) {
-        // Eat apple if the snake head would end up on the apple this frame
-        // This is an easy way to ensure when the snake grows, it will not grow into itself
-
         eatApple();
     } else {
         // Move snake forward if it has not eaten an apple this frame
-
+    
         snake.positions.splice(snake.positions.length - 1);
         snake.positions.unshift(snake.head);
-
+    
         setObjPosition(snake.head);
-
+    
         for (position of snake.positions) {
+            // Kill snake if it is touching itself
             if (position.x == snake.head.x && position.y == snake.head.y && position != snake.head) {
-                //console.log(position.id, snake.head.id, snake.positions);
                 resetGame();
             }
         }
     }
-    snake.direction = snake.velocity.direction;
 }
-function createSnakeDiv(x, y, id) {
+function createSnakeDiv(x, y, id, asset) {
     let cell = document.createElement("div");
+
+    let scale = gridSize / assets.size
+    cell.style.backgroundSize = scale * 320 + "px " + scale * 256 + "px";
+    cell.style.backgroundPosition = "0 0";
+
     setPosition(cell, x, y);
     cell.id = id;
     cell.classList.add("snake");
@@ -94,6 +135,12 @@ function createSnakeDiv(x, y, id) {
     body.appendChild(cell);
 
     return cell;
+}
+function updateImage(position) {
+    let scale = gridSize / assets.size;
+    let sx = position.asset[1] * assets.size;
+    let sy = position.asset[0] * assets.size;
+    position.div.style.backgroundPosition = `${-sx * scale}px ${-sy * scale}px`
 }
 function createAppleDiv(x, y) {
     let cell = document.createElement("div");
@@ -113,6 +160,7 @@ function setObjPosition(obj) {
 }
 function eatApple() {
     let newSquare = { x: apple.x, y: apple.y, id: snake.positions.length };
+    newSquare.asset = [assets.head, snake.direction];
 
     newSquare.div = createSnakeDiv(apple.x, apple.y, snake.positions.length);
     snake.positions.unshift(newSquare);
@@ -148,45 +196,50 @@ function findValidSpaces() {
     return validSpaces;
 }
 
-function keypress(e) {
-    if (e.key.toLowerCase() == "a" || e.key == "ArrowLeft") {
+function handleKeyPress() {
+    if (keys["a"] || keys["arrowleft"]) {
         setSnakeVelocity("left");
-    }
-    if (e.key.toLowerCase() == "s" || e.key == "ArrowDown") {
-        setSnakeVelocity("down");
-    }
-    if (e.key.toLowerCase() == "d" || e.key == "ArrowRight") {
+    } else if (keys["d"] || keys["arrowright"]) {
         setSnakeVelocity("right");
     }
-    if (e.key.toLowerCase() == "w" || e.key == "ArrowUp") {
+    if (keys["s"] || keys["arrowdown"]) {
+        setSnakeVelocity("down");
+    } else if (keys["w"] || keys["arrowup"]) {
         setSnakeVelocity("up");
     }
+}
+function keypress(e) {
+    keys[e.key.toLowerCase()] = true;
+}
+function keyReleased(e) {
+    keys[e.key.toLowerCase()] = false;
 }
 
 function setSnakeVelocity(dir) {
     switch (dir) {
         case "left":
-            if(snake.direction != "right") {
-                snake.velocity = { x: -1, y: 0, direction: "left" };
+            if(snake.direction != assets.right) {
+                snake.velocity = { x: -1, y: 0, direction: assets.left };
             }
             break;
         case "down":
-            if(snake.direction != "up") {
-                snake.velocity = { x: 0, y: 1, direction: "down" };
+            if(snake.direction != assets.down) {
+                snake.velocity = { x: 0, y: 1, direction: assets.up };
             }
         break;
         case "right":
-            if(snake.direction != "left") {
-                snake.velocity = { x: 1, y: 0, direction: "right" };
+            if(snake.direction != assets.left) {
+                snake.velocity = { x: 1, y: 0, direction: assets.right };
             }
         break;
         case "up":
-            if(snake.direction != "down") {
-                snake.velocity = { x: 0, y: -1, direction: "up" };
+            if(snake.direction != assets.up) {
+                snake.velocity = { x: 0, y: -1, direction: assets.down };
             }
     }
 }
 
 function resetGame() {
+    window.clearInterval(game);
     location.reload();
 }
