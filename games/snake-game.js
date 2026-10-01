@@ -76,11 +76,7 @@ function moveSnake() {
     // Update snake head based on current head
     let currentSquare = snake.head;
     snake.head = snake.positions[snake.positions.length - 1];
-    // Update assets
-    snake.head.asset[0] = snake.direction;
-    snake.head.asset[1] = assets.head;
     currentSquare.asset[1] = snake.direction;
-    updateImage(snake.head);
     updateImage(currentSquare);
 
     // Update head x
@@ -117,6 +113,11 @@ function moveSnake() {
                 resetGame();
             }
         }
+
+        // Update assets
+        snake.head.asset[0] = snake.direction;
+        snake.head.asset[1] = assets.head;
+        updateImage(snake.head);
     }
 }
 function createSnakeDiv(x, y, id, asset) {
@@ -160,7 +161,7 @@ function setObjPosition(obj) {
 }
 function eatApple() {
     let newSquare = { x: apple.x, y: apple.y, id: snake.positions.length };
-    newSquare.asset = [assets.head, snake.direction];
+    newSquare.asset = [snake.direction, assets.head];
 
     newSquare.div = createSnakeDiv(apple.x, apple.y, snake.positions.length);
     snake.positions.unshift(newSquare);
@@ -171,6 +172,9 @@ function eatApple() {
     apple.x = Math.floor(space.x);
     apple.y = Math.floor(space.y);
     setObjPosition(apple);
+
+    snake.head = newSquare;
+    updateImage(newSquare);
 }
 function findValidSpaces() {
     // As much as I hate nested loops, this is the best way I could think to do this.
