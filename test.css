@@ -7,7 +7,7 @@ Top and Left change position of sprite.
     position: fixed;
     width: 64px;
     height: 64px;
-    top: 500px;
+    top: 65%;
     left: 45%;
     scale: 3 3;
     image-rendering: crisp-edges;
