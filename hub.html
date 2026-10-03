@@ -5,7 +5,10 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+		<link href="test.css" rel="stylesheet" />
 		<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="Goobert.js" defer></script>
+		<script src="test.js" defer></script>
 	</head>
 	<body>
 		<div class="bg-primary text-white">This is where the gooberts go</div>
@@ -26,6 +29,32 @@
 				Click here to leave the game
 			</a>
             
+		</div>
+		<div class="container-fluid" id="main">
+			<div class="row bg-primary text-white">
+				<div class="col-lg-8 col-12">
+					<div>
+						<img id="goobert-legs" src="assets/goobert-parts/Transparent-BG.png"/>
+						<img id="goobert-body" src="assets/goobert-parts/Transparent-BG.png"/>
+						<img id="goobert-mouth" src="assets/goobert-parts/Transparent-BG.png"/>
+						<img id="goobert-eyes" src="assets/goobert-parts/Transparent-BG.png"/>
+					</div>
+				</div>
+			</div>
+			<div class="row bg-info text-dark">
+				<div class="col-2 text-center" onclick="changeBodyType()">Body</div>
+				<div class="col-2 text-center" onclick="changeBodyColor()">Body Color</div>
+				<div class="col-2 text-center" onclick="changeLegType()">Legs</div>
+				<div class="col-2 text-center" onclick="changeLegColor()">Leg Color</div>
+				<div class="col-2 text-center" onclick="changeEyes()">Eyes</div>
+				<div class="col-2 text-center" onclick="changeMouth()">Mouth</div>
+				<div class="text-center" onclick="randomizeFeatures()">Randomize!</div>
+			</div>
+			<div class="row bg-dark">
+				<div class="col-12 text-center">
+					<img src="assets/backgrounds/Tester-bg.png"/>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

@@ -26,3 +26,9 @@ class goobert {
 const david = new goobert('david');
 
 console.log(david);
+
+
+
+
+
+
