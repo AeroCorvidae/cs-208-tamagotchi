@@ -5,14 +5,24 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="bedroom.css">
 		<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="Goobert.js" defer></script>
 	</head>
 	<body>
-		<div class="bg-primary text-white">Bedroom</div>
-		<div class="bg-warning text-white">
-			<a href="hub.html">
-				Click here to go to the main hub!
-			</a>
+		<div class="bg-warning text-primary fs-1 text-center fw-bolder">Bedroom</div>
+		<div class="row align-center">
+			<div class="col-2">
+				<a class="" href="hub.html">
+					<img class="pt-5 img-fluid max-width: 500% height: auto" src="index-images/sleepdoor.png">
+				</a>
+			</div>
+			<div class="col-8"></div>
+			<div class="col-2 btn">
+				<button onclick="david.sleep()">
+					<img class="img-fluid" src="index-images/Bed_temp.png" alt="" title="Click Here to sleep!">
+				</button>
+			</div>
 		</div>
 	</body>
 </html>
