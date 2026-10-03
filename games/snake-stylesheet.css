@@ -3,7 +3,9 @@ body, #main {
 }
 .apple {
     position: absolute;
-    background-color: red;
+    background-image: url("assets/apple.png");
+    background-size: 400px 480px;
+    /* background-color: red; */
     width: 50px;
     height: 50px;
 }
@@ -14,7 +16,6 @@ body, #main {
     height: 64px;
 
     background-image: url("assets/snake.png");
-    background-size: 250px 200px; /* scaled by 50/64 */
 }
 #main {
     max-width: 100%;

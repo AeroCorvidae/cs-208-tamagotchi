@@ -4,6 +4,7 @@ window.onload = () => {
     for (position of snake.positions) {
         position.asset = [assets.right, assets.right];
         position.div = createSnakeDiv(position.x, position.y, position.id, position.asset);
+        updateImage(position);
     }
     // Initialize snake head
     snake.head = snake.positions[0];
@@ -24,7 +25,7 @@ function start() {
     game = setInterval(gameloop, 1000 / 10); // 10FPS
 }
 
-let assets = {
+const assets = {
     left: 0,
     down: 1,
     right: 2,
@@ -35,7 +36,7 @@ let assets = {
 }
 
 let body = document.getElementById("main");
-const gridSize = body.clientHeight < 500 ? 25 : 50; // Make tiles smaller on mobile
+const gridSize = body.clientHeight < 500 ? 32 : 64; // Make tiles smaller on mobile
 
 // Update width to be a square
 const width = body.clientHeight > body.clientWidth ? 
@@ -62,7 +63,7 @@ let snake = {
     head: { x: 4, y: Math.floor(height / 2), id: 2},
     direction: "right"
 }
-let apple = { x: width > 15 ? width - 10 : width - 3, y: Math.floor(height / 2) };
+let apple = { x: width > 15 ? width - 8 : width - 3, y: Math.floor(height / 2) };
 
 function gameloop() {
     handleKeyPress();
@@ -124,7 +125,9 @@ function createSnakeDiv(x, y, id, asset) {
     let cell = document.createElement("div");
 
     let scale = gridSize / assets.size
-    cell.style.backgroundSize = scale * 320 + "px " + scale * 256 + "px";
+    cell.style.backgroundSize = 
+        scale * assets.size * 5 + "px " + 
+        scale * assets.size * 4 + "px";
     cell.style.backgroundPosition = "0 0";
 
     setPosition(cell, x, y);
@@ -141,7 +144,7 @@ function updateImage(position) {
     let scale = gridSize / assets.size;
     let sx = position.asset[1] * assets.size;
     let sy = position.asset[0] * assets.size;
-    position.div.style.backgroundPosition = `${-sx * scale}px ${-sy * scale}px`
+    position.div.style.backgroundPosition = `${(-sx * scale)}px ${(-sy * scale)}px`
 }
 function createAppleDiv(x, y) {
     let cell = document.createElement("div");
@@ -150,9 +153,15 @@ function createAppleDiv(x, y) {
     cell.style.width = gridSize + "px";
     cell.style.height = gridSize + "px";
 
+    cell.style.backgroundSize = 
+        gridSize + "px " + 
+        gridSize + "px";
+    cell.style.backgroundPosition = "0 0";
+
     body.appendChild(cell);
 }
 function setPosition(div, x, y) {
+    
     div.style.left = body.offsetLeft + x * gridSize + "px";
     div.style.top = body.offsetTop + y * gridSize + "px";
 }
@@ -247,5 +256,5 @@ function setSnakeVelocity(dir) {
 
 function resetGame() {
     window.clearInterval(game);
-    location.reload();
+    window.location.href = "/game-room.html";
 }
