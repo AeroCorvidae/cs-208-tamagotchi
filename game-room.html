@@ -17,9 +17,67 @@
 			</a>
 		</div>
 		<div class="bg-success">
-			<a href="snake-game.html">
+			<a href="snake-game.html" class="text-warning h3">
 				Click here to play snake!
 			</a>
+		</div>
+
+
+		<!--Stolen from index.html-->
+		<!-- This is a button + Modal for the snake game -->
+		<div class="row justify-content-center my-3">
+			<div class="col-3">
+				<button
+					type="button"
+					class="btn bg-secondary text-white text-lg w-100"
+					data-bs-toggle="modal"
+					data-bs-target="#snakeModal">
+					<h1>Play Snake</h1>
+				</button>
+			</div>
+		</div>
+
+		<div class="modal" id="snakeModal">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<h5 class="modal-title">Difficulty</h5>
+
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal">
+						</button>
+					</div>
+
+					<div class="modal-body">
+
+						<!-- Save slot Placeholders -->
+
+						<button 
+							type="button" class="btn menu-button w-100 mb-3" 
+							onclick="window.location.href = '/snake-game.html?width=10&height=10'"
+						>
+							<p>10x10</p>
+						</button>
+
+						<button 
+							type="button" class="btn menu-button w-100 mb-3"
+							onclick="window.location.href = '/snake-game.html?width=17&height=17'"
+						>
+							<p>17x17</p>
+						</button>
+
+						<button 
+							type="button" class="btn menu-button w-100"
+							onclick="window.location.href = '/snake-game.html?width=25&height=25'"
+						>
+							<p>25x25</p>
+						</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

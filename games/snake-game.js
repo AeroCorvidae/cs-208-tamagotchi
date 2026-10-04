@@ -34,17 +34,34 @@ const assets = {
 
     size: 64 // Asset size in pixels
 }
+const windowSize = new URLSearchParams(window.location.search);
 
-let body = document.getElementById("main");
-const gridSize = body.clientHeight < 500 ? 32 : 64; // Make tiles smaller on mobile
+const body = document.getElementById("main");
 
-// Update width to be a square
-const width = body.clientHeight > body.clientWidth ? 
-Math.floor(body.clientWidth / gridSize) : 
-Math.floor(body.clientHeight / gridSize);
+// Update game size
+const width = parseInt(windowSize.get("width")) - 1;
+const height = parseInt(windowSize.get("height")) - 1;
 
-body.style.width = (width + 1) * gridSize + "px";
-const height = Math.floor(body.clientHeight / gridSize);
+// Update grid size to a power of 2, since it helps render images better
+function getGridSize() {
+    const desired = Math.floor(
+        Math.min(
+            window.innerWidth / width,
+            window.innerHeight / height
+        )
+    );
+
+    if (desired >= 128) return 128;
+    if (desired >= 64) return 64;
+    if (desired >= 32) return 32;
+    return 16;
+}
+
+const gridSize = getGridSize();
+
+
+body.style.width = (width+1) * gridSize + "px";
+body.style.height = (height+1) * gridSize + "px";
 
 const keys = [];
 
@@ -144,7 +161,9 @@ function updateImage(position) {
     let scale = gridSize / assets.size;
     let sx = position.asset[1] * assets.size;
     let sy = position.asset[0] * assets.size;
-    position.div.style.backgroundPosition = `${(-sx * scale)}px ${(-sy * scale)}px`
+
+    position.div.style.backgroundPosition = 
+        `${(-sx * scale)}px ${(-sy * scale)}px`;
 }
 function createAppleDiv(x, y) {
     let cell = document.createElement("div");
