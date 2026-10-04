@@ -39,8 +39,8 @@ const windowSize = new URLSearchParams(window.location.search);
 const body = document.getElementById("main");
 
 // Update game size
-const width = parseInt(windowSize.get("width")) - 1;
-const height = parseInt(windowSize.get("height")) - 1;
+const width = parseInt(windowSize.get("width")) - 1 || 15;
+const height = parseInt(windowSize.get("height")) - 1 || 15;
 
 // Update grid size to a power of 2, since it helps render images better
 function getGridSize() {
