@@ -24,71 +24,35 @@ const randomizeFeatures = () => {
 }
 
 const changeBodyType = function() {
-    console.log("I changed the body type.")
-    
-    if (bodyType == 6) {
-        bodyType = 0;
-        console.log("Body type reset to zero.")
-    } else {
-        bodyType += 1;
-    }
+    bodyType = (bodyType == 6) ? 0 : bodyType + 1;
     setBodyType(bodyType);
 }
 
 const changeBodyColor = function() {
-    console.log("I changed the body color.")
-    if (bodyColor == 6) {
-        bodyColor = 0;
-        console.log("Body color reset to zero.")
-    } else {
-        bodyColor += 1;
-    }
+    bodyColor = (bodyColor == 6) ? 0 : bodyColor + 1;
     setBodyColor(bodyColor)
 }
 
 const changeLegType = function() {
-    console.log("I changed the leg type.")
-    if (legType == 6) {
-        legType = 0;
-        console.log("Leg type reset to zero.")
-    } else {
-        legType += 1;
-    }
+    legType = (legType == 6) ? 0 : legType + 1;
     setLegsType(legType);
 }
 
 const changeLegColor = function() {
-    console.log("I changed the leg color.")
-    if (legColor == 6) {
-        legColor = 0;
-        console.log("Leg color reset to zero.")
-    } else {
-        legColor += 1;
-    }
+    legColor = (legColor == 6) ? 0 : legColor + 1;
     setLegsColor(legColor);
 }
 
 const changeEyes = function() {
-    console.log("I changed the eyes.")
-    if (eyeType == 6) {
-        eyeType = 0;
-        console.log("Eye type reset to zero.")
-    } else {
-        eyeType += 1;
-    }
+    eyeType = (eyeType == 6) ? 0 : eyeType + 1;
     setEyes(eyeType);
 }
 
 const changeMouth = function() {
-    console.log("I changed the mouth.")
-    if (mouthType == 6) {
-        mouthType = 0;
-        console.log("Mouth type reset to zero.")
-    } else {
-        mouthType += 1;
-    }
+    mouthType = (mouthType == 6) ? 0 : mouthType + 1;
     setMouth(mouthType);
 }
+
 /* The following functions set the features of the test goobert. */
 const setBodyType = (assetIndex) => {
     const element = document.getElementById('goobert-body');
