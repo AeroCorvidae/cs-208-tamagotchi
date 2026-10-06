@@ -1,0 +1,52 @@
+html, body {
+    background-color: #067c04;
+}
+body {
+    place-items: center;
+    min-height: 100vh;
+}
+body, #main {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.pipeGroup {
+    position: absolute;
+}
+.pipe {
+    /* background-image: url("assets/apple.png"); */
+    background-size: 400px 480px;
+    background-color: red;
+    width: 80px;
+}
+.water {
+    background-color: rgba(0,0,255,0.5);
+    margin-left: auto;
+    margin-right: auto;
+}
+.bird {
+    position: absolute;
+    background-color: green; 
+    width: 64em;
+    height: 64em;
+
+    /* background-image: url("assets/snake.png"); */
+}
+#main {
+    max-width: 100%;
+}
+#keys {
+    position: absolute;
+    bottom: 30px;
+    text-align: center;
+}
+.key {
+    margin-bottom: 2px;
+    opacity: 0.5;
+    display: inline-block;
+    align-content: center;
+    text-align: center;
+    width: 3em;
+    height: 8em;
+}
