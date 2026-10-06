@@ -1,47 +1,11 @@
-let game;
 window.onload = () => {
     bird.div = createBirdDiv();
     bird.eyes = createEyeDiv();
     bird.div.appendChild(bird.eyes);
 
-
-    start();
+    setBodySize();
+    start(30);
 }
-function start() {
-    // Add key press event & start game
-    document.addEventListener("keydown", keypress);
-    game = setInterval(gameloop, 1000 / 30); // 30FPS
-}
-
-
-const body = document.getElementById("main");
-
-const width = 15;
-const height = 15;
-
-// Update grid size to a power of 2, since it helps render images better
-function getGridSize() {
-    const desired = Math.floor(
-        Math.min(
-            window.innerWidth / width,
-            window.innerHeight / height
-        )
-    );
-
-    if (desired >= 128) return 128;
-    if (desired >= 64) return 64;
-    if (desired >= 32) return 32;
-    return 16;
-}
-
-const gridSize = getGridSize();
-
-
-body.style.width = (width+1) * gridSize + "px";
-body.style.height = (height+1) * gridSize + "px";
-
-const keys = [];
-
 
 let bird = {
     x: gridSize * 3,
@@ -74,6 +38,7 @@ class Pipe {
 }
 
 function gameloop() {
+    handleKeyPress();
     moveBird();
     if(countdown <= 0) {
         pipes.push(new Pipe());
@@ -102,7 +67,7 @@ function moveBird() {
 
     checkPipeIntersection();
 
-    if(bird.y > (height+1) * gridSize) resetGame();
+    if(bird.y > (height+1) * gridSize || bird.y + gridSize < -gridSize / 2) resetGame();
 
 }
 function checkPipeIntersection() {
@@ -158,7 +123,6 @@ function checkPipeIntersection() {
         }
     }
 }
-
 function createBirdDiv() {
     let cell = document.createElement("div");
 
@@ -258,7 +222,6 @@ function createWaterDiv(pipe) {
 
     return cell;
 }
-
 function renderPipe(pipe) {
     pipe.div.style.left = pipe.x + "px";
 }
@@ -268,14 +231,10 @@ function setPosition(div, x, y) {
     div.style.top = y + "px";
 }
 
-
-function keypress(e) {
-    if(
-        e.key.toLowerCase() == "w" || 
-        e.key.toLowerCase() == " " || 
-        e.key.toLowerCase() == "arrowup"
-    ) {
-        jump()
+function handleKeyPress() {
+    if(keys["w"] || keys[" "] || keys["arrowup"]) {
+        jump();
+        keys["w"] = keys[" "] = keys["arrowup"] = false;
     }
 }
 function jump() {
