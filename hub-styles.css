@@ -1,0 +1,119 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#goobert-legs,
+#goobert-body,
+#goobert-mouth,
+#goobert-eyes {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    left: 50%;
+    top: auto;
+    scale: 3;
+    image-rendering: crisp-edges;
+}
+
+.goobert-container {
+    position: absolute;
+    width: 20%;
+    aspect-ratio: 1;
+    left: 65%;
+    bottom: 15%;
+    transform: translateX(-50%);
+}
+
+.goobert-container img {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    scale: 3;
+    image-rendering: crisp-edges;
+}
+
+.background {
+    background-image: url("hub-images/gooberts_forest_background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    width: 100%;
+    height: 100vh;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.tree-container {
+    position: absolute;
+    width: 500px;
+    height: 600px;
+
+    left: 50%;
+    bottom: 50px;
+
+    transform: translateX(-50%);
+}
+
+.pixelated-tree {
+    position: absolute;
+    width: 500px;
+    height: auto;
+    bottom: 0;
+    image-rendering: pixelated;
+}
+
+#tree-body-area {
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    top: 35%;
+    left: 15%;
+}
+
+#tree-legs-area {
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    top: 35%;
+    left: 65%;
+}
+
+#tree-mouth-area {
+    width: 20%;
+    height: 20%;
+    position: absolute;
+    top: 65%;
+    left: 20%;
+}
+
+#tree-eyes-area {
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    top: 20%;
+    left: 40%;
+}
+
+#tree-body-color {
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    top: 35%;
+    left: 40%;
+}
+
+#tree-legs-color {
+    width: 20%;
+    height: 20%;
+    position: absolute;
+    top: 65%;
+    left: 60%;
+}
