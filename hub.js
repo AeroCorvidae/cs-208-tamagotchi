@@ -1,5 +1,7 @@
 "use strict";
 
+// Removes Gooberts automatically created by Goobert.js
+// Hub starts with one custom Goobert
 const oldGooberts = ["david0", "emily1", "grubert2"];
 
 oldGooberts.forEach(function(goobertId) {
@@ -45,3 +47,27 @@ let legAreaColor = document.getElementById("tree-legs-color");
 legAreaColor.onclick = function() {
     changeLegColor();
 }
+
+// GO TO BEDROOM
+let sleepDoor = document.getElementById("sleep-door");
+sleepDoor.onclick = function() {
+    window.location.href = "bedroom.html";
+};
+
+// GO TO GAME ROOM
+let gameDoor = document.getElementById("game-door");
+gameDoor.onclick = function() {
+    window.location.href = "game-room.html";
+};
+
+// GO TO SHOP
+let shopDoor = document.getElementById("shop-door");
+shopDoor.onclick = function() {
+    window.location.href = "shop.html";
+};
+
+// LEAVE GAME
+let leaveDoor = document.getElementById("leave-door");
+leaveDoor.onclick = function() {
+    window.location.href = "index.html";
+};

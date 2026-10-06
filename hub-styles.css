@@ -1,3 +1,5 @@
+/* ==== PAGE SETUP =====*/
+/* Forest Background fills entire browser */
 html, body {
     margin: 0;
     padding: 0;
@@ -5,6 +7,8 @@ html, body {
     height: 100%;
 }
 
+/* ==== GOOBERT POSITIONING ==== */
+/* Size and appearance of Gooberts body parts*/
 #goobert-legs,
 #goobert-body,
 #goobert-mouth,
@@ -18,6 +22,7 @@ html, body {
     image-rendering: crisp-edges;
 }
 
+/* Positions Goobert relative to tree */
 .goobert-container {
     position: absolute;
     width: 20%;
@@ -27,6 +32,7 @@ html, body {
     transform: translateX(-50%);
 }
 
+/* Layers Goobert's body parts */
 .goobert-container img {
     position: absolute;
     width: 64px;
@@ -38,44 +44,51 @@ html, body {
     image-rendering: crisp-edges;
 }
 
+/* ====BACKGROUND POSITIONING ====*/
 .background {
     background-image: url("hub-images/gooberts_forest_background.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
     width: 100%;
     height: 100vh;
-
     position: relative;
     overflow: hidden;
 }
 
+/* ==== TREE POSITIONING ==== */
+/* Container to keep tree centered on page */
 .tree-container {
     position: absolute;
-    width: 500px;
-    height: 600px;
-
+    width: 600px;
+    height: 700px;
     left: 50%;
     bottom: 50px;
-
     transform: translateX(-50%);
+    z-index: 2;
 }
 
+/* Displays tree as pixelated */
 .pixelated-tree {
     position: absolute;
-    width: 500px;
+    width: 600px;
     height: auto;
     bottom: 0;
     image-rendering: pixelated;
 }
 
+/* ==== CUSTOM TREE AREA ==== */
+/* 
+ * Invisible clickable areas placed over different parts of the tree.
+ * Clickable areas use percentages so they are aligned with tree if size changes.
+ */
 #tree-body-area {
     position: absolute;
     width: 20%;
     height: 20%;
     top: 35%;
     left: 15%;
+    cursor: pointer;
 }
 
 #tree-legs-area {
@@ -84,6 +97,7 @@ html, body {
     height: 20%;
     top: 35%;
     left: 65%;
+    cursor: pointer;
 }
 
 #tree-mouth-area {
@@ -92,6 +106,7 @@ html, body {
     position: absolute;
     top: 65%;
     left: 20%;
+    cursor: pointer;
 }
 
 #tree-eyes-area {
@@ -100,6 +115,7 @@ html, body {
     height: 20%;
     top: 20%;
     left: 40%;
+    cursor: pointer;
 }
 
 #tree-body-color {
@@ -108,6 +124,7 @@ html, body {
     height: 20%;
     top: 35%;
     left: 40%;
+    cursor: pointer;
 }
 
 #tree-legs-color {
@@ -116,4 +133,59 @@ html, body {
     position: absolute;
     top: 65%;
     left: 60%;
+    cursor: pointer;
+}
+
+/* ==== CUSTOMIZED CLICKABLE DOORS ====*/
+/* SLEEP DOOR POSITIONING */
+.sleep-door-container {
+    position: absolute;
+    left: 10%;
+    bottom: 15%;
+    z-index: 1;
+}
+
+#sleep-door {
+    width: 130px;
+    height: auto;
+    cursor: pointer;
+}
+
+/* GAME DOOR POSITIONING */
+.game-door-container {
+    position: absolute;
+    right: 5%;
+    bottom: 15%;
+}
+
+#game-door {
+    width: 130px;
+    height: auto;
+    cursor: pointer;
+}
+
+/* SHOP DOOR POSITIONING */
+.shop-door-container {
+    position: absolute;
+    left: 22%;
+    bottom: 30%;
+}
+
+#shop-door {
+    width: 130px;
+    height: auto;
+    cursor: pointer;
+}
+
+/* LEAVE DOOR POSITIONING */
+.leave-door-container {
+    position: absolute;
+    right: 20%;
+    bottom: 30%;
+}
+
+#leave-door {
+    width: 130px;
+    height: auto;
+    cursor: pointer;
 }
