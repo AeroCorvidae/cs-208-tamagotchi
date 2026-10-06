@@ -284,7 +284,6 @@ function jump() {
     }
 }
 function resetGame() {
-    setPosition(bird.div, bird.x, bird.y);
     window.clearInterval(game);
     
     // Pause for a quarter second to let the player know they died
