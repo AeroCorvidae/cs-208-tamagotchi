@@ -17,21 +17,27 @@ body, #main {
 .pipe {
     /* background-image: url("assets/apple.png"); */
     background-size: 400px 480px;
-    background-color: red;
-    width: 80px;
+    background-color: green;
 }
 .water {
     background-color: rgba(0,0,255,0.5);
+    z-index: 1;
     margin-left: auto;
     margin-right: auto;
 }
 .bird {
     position: absolute;
-    background-color: green; 
+    /* background-color: green;  */
     width: 64em;
     height: 64em;
 
-    /* background-image: url("assets/snake.png"); */
+    background-image: url("assets/bird.png");
+}
+.eyes {
+    position: relative;
+    left: 0.8em;
+
+    background-image: url("assets/eyes.png");
 }
 #main {
     max-width: 100%;

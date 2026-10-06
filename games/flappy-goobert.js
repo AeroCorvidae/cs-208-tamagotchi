@@ -1,6 +1,8 @@
 let game;
 window.onload = () => {
     bird.div = createBirdDiv();
+    bird.eyes = createEyeDiv();
+    bird.div.appendChild(bird.eyes);
 
 
     start();
@@ -88,6 +90,9 @@ function gameloop() {
     }
 
     setPosition(bird.div, bird.x, bird.y);
+    bird.eyes.style.top = 
+        Math.max(Math.min((bird.velocity) * (gridSize / 64), gridSize * 0.5), -(gridSize * 0.5)) 
+        + "px";
     countdown--;
 }
 
@@ -95,20 +100,65 @@ function moveBird() {
     bird.y += bird.velocity * gridSize / 64;
     bird.velocity = Math.min(bird.velocity + bird.fallSpeed, bird.maxFall);
 
-    for(let pipe of pipes) {
-        if(
-            (bird.x < pipe.x + pipe.width * gridSize && bird.x + gridSize > pipe.x) &&
-            (bird.y + gridSize > pipe.firstPipeHeight + pipe.gapSize ||
-            bird.y < pipe.firstPipeHeight)
-        ) {
-            // Intersecting with a pipe
-            resetGame();
-        }
-    }
+    checkPipeIntersection();
 
     if(bird.y > (height+1) * gridSize) resetGame();
 
 }
+function checkPipeIntersection() {
+    function checkCircleBoxIntersection(circle, box) { 
+        // This function was generated in part through use of Google Gemini
+        // I could have written it myself but I am tired
+        const closestX = Math.max(box.x, Math.min(circle.x, box.x + box.width));
+        const closestY = Math.max(box.y, Math.min(circle.y, box.y + box.height));
+
+        const distanceX = circle.x - closestX;
+        const distanceY = circle.y - closestY;
+
+        const distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
+
+        return distanceSquared <= (circle.radius * circle.radius);
+    }
+
+    let circle = {
+        x: bird.x + gridSize / 2,
+        y: bird.y + gridSize / 2,
+        radius: gridSize / 2 * 0.95 // Shrunk down a bit to feel more fair
+    }
+
+
+    for(let pipe of pipes) {
+        if(
+            (bird.x < pipe.x + pipe.width * gridSize && bird.x + gridSize > pipe.x)
+            // Bird has met a pipe (either inside the water or inside the pipe)
+        ) {
+            let topPipe = {
+                x: pipe.x,
+                y: 0,
+                width: pipe.width * gridSize,
+                height: pipe.firstPipeHeight
+            }
+            let bottomPipe = {
+                x: pipe.x,
+                y: pipe.firstPipeHeight + pipe.gapSize,
+                width: pipe.width * gridSize,
+                height: Infinity
+            }
+
+            if(
+                checkCircleBoxIntersection(circle, topPipe) ||
+                checkCircleBoxIntersection(circle, bottomPipe)
+            ) {
+                // Intersecting with a pipe
+                resetGame();
+            } else {
+                // Intersecting with water
+                david.cleanliness += 0.04; // Wash goobert
+            }
+        }
+    }
+}
+
 function createBirdDiv() {
     let cell = document.createElement("div");
 
@@ -127,6 +177,24 @@ function createBirdDiv() {
 
     return cell;
 }
+function createEyeDiv() {
+    let cell = document.createElement("div");
+
+    cell.style.backgroundSize = 
+        gridSize + "px " + 
+        gridSize + "px";
+    cell.style.backgroundPosition = "0 0";
+
+    cell.classList.add("eyes");
+    cell.style.left = gridSize * 0.4 + "px";
+    cell.style.width = gridSize + "px";
+    cell.style.height = gridSize + "px";
+
+    body.appendChild(cell);
+
+    return cell;
+}
+
 
 
 function createPipeDivs(pipe) {
