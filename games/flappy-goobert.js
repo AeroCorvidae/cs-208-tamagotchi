@@ -242,11 +242,3 @@ function jump() {
         bird.velocity = -bird.jumpPower
     }
 }
-function resetGame() {
-    window.clearInterval(game);
-    
-    // Pause for a quarter second to let the player know they died
-    // Then send the player back to the game room
-    setTimeout(() => window.location.href = "./game-room.html", 250); 
-    
-}
