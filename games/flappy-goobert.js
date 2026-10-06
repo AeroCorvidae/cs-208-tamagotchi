@@ -286,6 +286,9 @@ function jump() {
 function resetGame() {
     setPosition(bird.div, bird.x, bird.y);
     window.clearInterval(game);
-    alert("You died!");
-    // window.location.href = "./game-room.html";
+    
+    // Pause for a quarter second to let the player know they died
+    // Then send the player back to the game room
+    setTimeout(() => window.location.href = "./game-room.html", 250); 
+    
 }
