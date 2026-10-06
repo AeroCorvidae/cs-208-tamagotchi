@@ -275,5 +275,5 @@ function setSnakeVelocity(dir) {
 
 function resetGame() {
     window.clearInterval(game);
-    window.location.href = "game-room.html";
+    window.location.href = "./game-room.html";
 }
