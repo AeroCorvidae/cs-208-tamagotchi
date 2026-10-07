@@ -13,6 +13,10 @@
 
 		<!-- BOOTSTRAP JS -->
 		<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+		<!-- SHOP JAVASCRIPT -->
+		<script src="shop.js"></script>
+
 	</head>
 
 	<body>
@@ -54,9 +58,26 @@
 		 </div>
 		<!-- SHOP COUNTER -->
 		 <div class="counter">
-			<button class="buy-button" onclick="openShop">BUY!</button>
+			<!-- BUY BUTTON -->
+			<button class="buy-button" onClick="openShop()">BUY!</button>
 		 </div>
 
+		<!-- ACCESSORIES POPUP -->
+		<div class="accessories-popup" id="accessoriesPopup">
+
+			<!-- POPUP TITLE -->
+			<h2>ACCESSORIES</h2>
+
+			<!-- ACCESSORIES WILL GO HERE -->
+			<div class="accessories">
+				<p>Accessories will go here!</p>
+			</div>
+
+			<!-- CLOSE BUTTON -->
+			<button class="close-button" onclick="closeShop()">
+				CLOSE
+			</button>
+		</div>
 		<!-- MAIN HUB LINK -->
 		<div class="bg-warning text-white">
 			<a href="hub.html">
