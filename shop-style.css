@@ -4,7 +4,7 @@ body {
     min-height: 100vh;
 	position: relative;
 
-    background-image: url(nature_background_image.jpg);
+    background-image: url(shop-images/nature_background_image.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -113,7 +113,7 @@ body {
 	background-color: transparent;
 	border: 6px solid #8b4513;
 
-    background-image: url(nature_background_image.jpg);
+    background-image: url(shop-images/nature_background_image.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
