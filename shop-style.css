@@ -4,7 +4,7 @@ body {
     min-height: 100vh;
 	position: relative;
 
-    background-image: url(nature_background_image.jpg);
+    background-image: url(shop-images/nature_background_image.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -113,7 +113,7 @@ body {
 	background-color: transparent;
 	border: 6px solid #8b4513;
 
-    background-image: url(nature_background_image.jpg);
+    background-image: url(shop-images/nature_background_image.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -136,6 +136,45 @@ body {
 	width: 5px;
 	height: 100%;
 	background-color: #8b4513;
+}
+/* ACCESSORIES POPUP */
+.accessories-popup {
+	display: none;
+
+	/* CENTERS POPUP ON SCREEN */
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	/* POPUP SIZE */
+	width: 500px;
+	height: 400px;
+
+	/* POPUP DESIGN */
+	background-color: #fff1d0;
+	border: 6px solid #8b3152;
+
+	text-align: center;
+	padding: 20px;
+
+	/* KEEPS POPUP IN FRONT */
+	z-index: 10;
+}
+/* CLOSE BUTTON */
+.close-button {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+
+	background-color: #ff5c8a;
+	color: white;
+
+	font-weight: bold;
+
+	border: 3px solid #8b3152;
+	padding: 8px 20px;
 }
 .bg-warning {
     position: absolute;
