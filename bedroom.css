@@ -1,10 +1,13 @@
-Header{
-    background-image: url(index-images/SleepyBackground.png);
+body {
+    background-image: url(bedroom-images/GoobertFloor.webp);
 }
-#floor {
-    background-image: url(index-images/GoobertFloor.webp);
+#wall{
+    background-image: url(bedroom-images/SleepyBackground.png);  
 }
 img {
     image-rendering: pixelated;
     color-interpolation-filters: sRGB;
+}
+html {
+    overflow-x: hidden;
 }
