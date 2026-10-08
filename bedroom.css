@@ -1,12 +1,13 @@
 body {
-    background-image: url(bedroom-images/SleepyBackground.png);
-}
-#floor-wrapper {
     background-image: url(bedroom-images/GoobertFloor.webp);
-    min-height: 100dvh;
-    
+}
+#wall{
+    background-image: url(bedroom-images/SleepyBackground.png);  
 }
 img {
     image-rendering: pixelated;
     color-interpolation-filters: sRGB;
+}
+html {
+    overflow-x: hidden;
 }

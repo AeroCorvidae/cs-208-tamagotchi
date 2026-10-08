@@ -11,18 +11,30 @@
 		<script src="Goobert.js" defer></script>
 	</head>
 	<body>
-		<header>
+		<!-- <header>
 			<div class="bg-warning text-primary fs-1 text-center fw-bolder">Bedroom</div>
-		</header>
-		<div id="wall" class="">
+		</header> -->
+		<div id="wall">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2">
+					<button onclick="alert('You found my secret easter egg!')" class="btn">
+						<img class="img-fluid" src="bedroom-images/BedroomLogo.webp" alt="BedRoom">
+					</button>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-5"></div>
-				<div id="exit" class="col-2 ml-2">
+				<div id="exit" class="col-2">
 					<a class="ml-2" href="hub.html">
-						<img class="img-fluid p-3" src="bedroom-images/exitDoor.webp">
+						<img class="img-fluid" src="bedroom-images/exitDoor.webp">
 					</a>
 				</div>
 				<div class="col-5"></div>
+			</div>
+			<div class="bg-warning">
+				<br>
 			</div>
 		</div>
 		<div id="floor-wrapper">
@@ -32,11 +44,20 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-12">
-					<br>
+				<div class="col-2"></div>
+				<div class="col-2 btn">
+					<button onclick="david.sleep()" class="btn">
+						<img class="img-fluid" src="bedroom-images/GoobBedWeb.png" alt="" title="Click Here to sleep!">
+					</button>
+				</div>
+				<div class="col-4"></div>
+				<div class="col-2 btn">
+					<button onclick="david.sleep()" class="btn">
+						<img class="img-fluid" src="bedroom-images/GoobBedWeb.png" alt="" title="Click Here to sleep!">
+					</button>
 				</div>
 			</div>
-			<div class="row fixed-bottom">
+			<div class="row">
 				<div class="col-2 btn">
 					<button onclick="david.sleep()" class="btn">
 						<img class="img-fluid" src="bedroom-images/GoobBedWeb.png" alt="" title="Click Here to sleep!">
