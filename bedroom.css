@@ -1,8 +1,10 @@
-Header{
-    background-image: url(index-images/SleepyBackground.png);
+body {
+    background-image: url(bedroom-images/SleepyBackground.png);
 }
-#floor {
-    background-image: url(index-images/GoobertFloor.webp);
+#floor-wrapper {
+    background-image: url(bedroom-images/GoobertFloor.webp);
+    min-height: 100dvh;
+    
 }
 img {
     image-rendering: pixelated;
