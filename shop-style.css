@@ -1,0 +1,193 @@
+/* WHOLE PAGE */
+body {
+    margin: 0;
+    min-height: 100vh;
+	position: relative;
+
+    background-image: url(shop-images/nature_background_image.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* GOOBIE SHOP TITLE */
+.shop-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 90px;
+    letter-spacing: 15px;
+    font-weight: bold;
+    color: rgb(132, 8, 132);
+    text-shadow:
+        3px 3px 0 cornsilk,
+        6px 6px 0 rgb(104, 0, 104);
+    margin-top: 30px;
+}
+
+/* SHOP AWNING */
+.awning {
+    width: 100%;
+    height: 155px;
+    margin: 0 auto;
+    border: 4px solid rgb(132, 8, 132);
+	background: repeating-linear-gradient(
+		90deg,
+		#ff5c8a 0px,
+		#ff5c8a 60px,
+		#ffd34e 60px,
+		#ffd34e 120px
+	);
+}
+
+/* SHELVES */
+.left-shelf {
+    position: absolute;
+
+    left: 8%;
+    top: 28%;
+
+    width: 300px;
+    height: 450px;
+
+    background-color: burlywood;
+    border: 5px solid brown;
+}
+.shelf-row {
+	height: 33.33%;
+
+	border-bottom: 5px solid black;
+}
+.right-shelf {
+    position: absolute;
+
+    right: 8%;
+    top: 28%;
+
+    width: 300px;
+    height: 450px;
+
+    background-color: burlywood;
+    border: 5px solid brown;
+}
+.shelf-row {
+	height: 33.33%;
+
+	border-bottom: 5px solid brown;
+}
+
+/* SHOP COUNTER */
+.counter {
+    width: 550px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    right: 70%;
+    top: 85%;
+    transform: translate(-50%, -50%);
+    background-color: burlywood;
+    border: 5px solid brown;
+}
+
+/* SHOP WALL */
+.shop-wall {
+	position: absolute;
+	top: 155px;
+	width: 85%;
+	height: calc(100vh - 155px);
+
+	left: 50%;
+    transform: translateX(-50%);
+	background-color: cornsilk;
+    border: 5px solid #8b4513;
+}
+
+/* SHOP WINDOW */
+.shop-window {
+	position: absolute;
+
+	top: 60px;
+	left: 50%;
+	transform: translateX(-50%);
+
+	width: 400px;
+	height: 300px;
+	background-color: transparent;
+	border: 6px solid #8b4513;
+
+    background-image: url(shop-images/nature_background_image.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* HORIZONTAL WINDOW LINE */
+.window-horizontal {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	height: 5px;
+	background-color: #8b4513;
+}
+/* VERTICAL WINDOW LINE */
+.window-vertical {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 5px;
+	height: 100%;
+	background-color: #8b4513;
+}
+/* ACCESSORIES POPUP */
+.accessories-popup {
+	display: none;
+
+	/* CENTERS POPUP ON SCREEN */
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	/* POPUP SIZE */
+	width: 500px;
+	height: 400px;
+
+	/* POPUP DESIGN */
+	background-color: #fff1d0;
+	border: 6px solid #8b3152;
+
+	text-align: center;
+	padding: 20px;
+
+	/* KEEPS POPUP IN FRONT */
+	z-index: 10;
+}
+/* CLOSE BUTTON */
+.close-button {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+
+	background-color: #ff5c8a;
+	color: white;
+
+	font-weight: bold;
+
+	border: 3px solid #8b3152;
+	padding: 8px 20px;
+}
+.bg-warning {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    background-color: #ffd34e;
+}
+
+.bg-warning a {
+	color: #ff5c8a;
+	font-size: 20px;
+	font-weight: bold;
+	text-decoration: none;
+}

@@ -6,6 +6,7 @@ body {
     min-height: 100vh;
 }
 body, #main {
+    position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;

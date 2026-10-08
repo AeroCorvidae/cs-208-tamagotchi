@@ -49,11 +49,6 @@
 			<source src="index-audio/button-click.wav" type="audio/wav">
 		</audio>
 
-		<!-- Secret Feature Sound (on title click)-->
-		<audio id="titleNameSound" preload="auto">
-			<source src="index-audio/party-horn.wav" type="audio/wav">
-		</audio>
-
 		<!----------------------------->
 		<!------BUTTONS & MODAL-------->
 		<!----------------------------->
@@ -130,10 +125,11 @@
 				</div>
 			</div>
 		</div>
-
+	
 		<!-- CONTINUE GAME -->
 		<div class="row justify-content-center my-3">
-			<div class="col-3">
+			<!-- col-10 (default/phones) col-md-6 (medium screens & larger) col-lg-3 (large screens & larger)-->
+			<div class="col-10 col-md-6 col-lg-3">
 				<button
 					type="button"
 					class="btn btn-continue menu-button text-lg w-100"
@@ -146,7 +142,8 @@
 
 		<!-- NEW GAME -->
 		<div class="row justify-content-center my-3">
-			<div class="col-3">
+			<!-- col-10 (default/phones) col-md-6 (medium screens & larger) col-lg-3 (large screens & larger)-->
+			<div class="col-10 col-md-6 col-lg-3">
 				<button
 					type="button"
 					class="btn btn-new-game menu-button text-lg w-100"
@@ -182,7 +179,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title">Settings</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+						<button type="button" class="btn-close menu-button" data-bs-dismiss="modal"></button>
 					</div>
 
 					<div class="modal-body">
@@ -257,7 +254,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title text-center">Credits</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+						<button type="button" class="btn-close menu-button" data-bs-dismiss="modal"></button>
 					</div>
 
 					<div class="modal-body">

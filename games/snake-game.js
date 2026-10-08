@@ -1,5 +1,6 @@
-let game;
-window.onload = () => {
+window.onload = () => {    
+    snakeDivs.id = "snakeDivs";
+    body.appendChild(snakeDivs);
     // Create an HTML element for each part of the snake
     for (position of snake.positions) {
         position.asset = [assets.right, assets.right];
@@ -16,13 +17,7 @@ window.onload = () => {
     apple.div = document.getElementById("apple");
     setPosition(apple.div, apple.x, apple.y);
 
-    start();
-}
-function start() {
-    // Add key press event & start game
-    document.addEventListener("keydown", keypress);
-    document.addEventListener("keyup", keyReleased);
-    game = setInterval(gameloop, 1000 / 10); // 10FPS
+    start(10);
 }
 
 const assets = {
@@ -36,35 +31,13 @@ const assets = {
 }
 const windowSize = new URLSearchParams(window.location.search);
 
-const body = document.getElementById("main");
+const snakeDivs = document.createElement("div");
 
 // Update game size
-const width = parseInt(windowSize.get("width")) - 1 || 15;
-const height = parseInt(windowSize.get("height")) - 1 || 15;
+width = parseInt(windowSize.get("width")) - 1 || 15;
+height = parseInt(windowSize.get("height")) - 1 || 15;
 
-// Update grid size to a power of 2, since it helps render images better
-function getGridSize() {
-    const desired = Math.floor(
-        Math.min(
-            window.innerWidth / width,
-            window.innerHeight / height
-        )
-    );
-
-    if (desired >= 128) return 128;
-    if (desired >= 64) return 64;
-    if (desired >= 32) return 32;
-    return 16;
-}
-
-const gridSize = getGridSize();
-
-
-body.style.width = (width+1) * gridSize + "px";
-body.style.height = (height+1) * gridSize + "px";
-
-const keys = [];
-
+setBodySize();
 
 let snake = {
     positions: [
@@ -153,7 +126,7 @@ function createSnakeDiv(x, y, id, asset) {
     cell.style.width = gridSize + "px";
     cell.style.height = gridSize + "px";
 
-    body.appendChild(cell);
+    snakeDivs.appendChild(cell);
 
     return cell;
 }
@@ -181,8 +154,8 @@ function createAppleDiv(x, y) {
 }
 function setPosition(div, x, y) {
     
-    div.style.left = body.offsetLeft + x * gridSize + "px";
-    div.style.top = body.offsetTop + y * gridSize + "px";
+    div.style.left = x * gridSize + "px";
+    div.style.top = y * gridSize + "px";
 }
 function setObjPosition(obj) {
     setPosition(obj.div, obj.x, obj.y);
@@ -242,12 +215,6 @@ function handleKeyPress() {
         setSnakeVelocity("up");
     }
 }
-function keypress(e) {
-    keys[e.key.toLowerCase()] = true;
-}
-function keyReleased(e) {
-    keys[e.key.toLowerCase()] = false;
-}
 
 function setSnakeVelocity(dir) {
     switch (dir) {
@@ -271,12 +238,4 @@ function setSnakeVelocity(dir) {
                 snake.velocity = { x: 0, y: -1, direction: assets.down };
             }
     }
-}
-
-function resetGame() {
-    window.clearInterval(game);
-
-    // Pause for a quarter second to let the player know they died
-    // Then send the player back to the game room
-    setTimeout(() => window.location.href = "./game-room.html", 250); 
 }
