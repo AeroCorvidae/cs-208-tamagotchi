@@ -1,3 +1,10 @@
-body{
+Header{
     background-image: url(index-images/SleepyBackground.png);
+}
+#floor {
+    background-image: url(index-images/GoobertFloor.webp);
+}
+img {
+    image-rendering: pixelated;
+    color-interpolation-filters: sRGB;
 }
