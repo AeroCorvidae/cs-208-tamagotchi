@@ -23,17 +23,25 @@ class TopElement extends React.Component {
 
 				{this.room}
 
-				{this.gooberts.map((goobert, i) => (
-					<div key={i}>
-						{goobert}
-					</div>
-				))}
+				{
+					this.gooberts/*.filter((goobert, i) => {
+						goobert.room == this.room
+					})*/.map((goobert, i) => (
+						<div key={`Goobert${i}`}>
+							{goobert}
+						</div>
+					))
+				}
 			</>
 		);
 	}
 	load(component) {
 		this.room = rooms[component];
 		this.setState({room: rooms[component]});
+	}
+	createGoobert(goobert) {
+		this.gooberts.push(goobert);
+		this.setState({});
 	}
 
 }

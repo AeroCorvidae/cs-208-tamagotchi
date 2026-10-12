@@ -15,8 +15,10 @@ class TopElement extends React.Component {
     this.room = rooms.hub;
   }
   render() {
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(SharedAudioManager, null), this.room, this.gooberts.map((goobert, i) => /*#__PURE__*/React.createElement("div", {
-      key: i
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(SharedAudioManager, null), this.room, this.gooberts /*.filter((goobert, i) => {
+                                                                                                                                                       goobert.room == this.room
+                                                                                                                                                       })*/.map((goobert, i) => /*#__PURE__*/React.createElement("div", {
+      key: `Goobert${i}`
     }, goobert)));
   }
   load(component) {
@@ -24,6 +26,10 @@ class TopElement extends React.Component {
     this.setState({
       room: rooms[component]
     });
+  }
+  createGoobert(goobert) {
+    this.gooberts.push(goobert);
+    this.setState({});
   }
 }
 let topElement;
