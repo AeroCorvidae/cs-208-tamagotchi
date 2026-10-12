@@ -50,21 +50,21 @@ class Goobert extends React.Component {
         
         return (
             <div className="goobert-container">
-                <img id={this.legId} src="assets/goobert-parts/Transparent-BG.png" style={{
-                    backgroundPositionX: `${0}px`,
-                    backgroundPositionY: `${this.legType * -64}px`,
+                <img id={this.legId} src="assets/goobert-parts/208-tamagotchi-legs.png" style={{
+                    left: `${0}px`,
+                    top: `${this.legType * -64}px`,
                 }}/>
-                <img id={this.bodyId} src="assets/goobert-parts/Transparent-BG.png" style={{
-                    backgroundPositionX: `${0}px`,
-                    backgroundPositionY: `${this.bodyType * -64}px`,
+                <img id={this.bodyId} src="assets/goobert-parts/208-tamagotchi-bodies.png" style={{
+                    left: `${0}px`,
+                    top: `${this.bodyType * -64}px`,
                 }}/>
-                <img id={this.mouthId} src="assets/goobert-parts/Transparent-BG.png" style={{
-                    backgroundPositionX: `${0}px`,
-                    backgroundPositionY: `${this.mouthType * -64}px`,
+                <img id={this.mouthId} src="assets/goobert-parts/208-tamagotchi-mouths.png" style={{
+                    left: `${0}px`,
+                    top: `${this.mouthType * -64}px`,
                 }}/>
-                <img id={this.eyeId} src="assets/goobert-parts/Transparent-BG.png" style={{
-                    backgroundPositionX: `${0}px`,
-                    backgroundPositionY: `${this.eyeType * -64}px`,
+                <img id={this.eyeId} src="assets/goobert-parts/208-tamagotchi-eyes.png" style={{
+                    left: `${0}px`,
+                    top: `${this.eyeType * -64}px`,
                 }}/>
                 {/* <img id={this.goobertId} src="assets/goobert-parts/Transparent-BG.png" onClick={() => onClick()}/> */}
             </div>

@@ -18,7 +18,10 @@ class TopElement extends React.Component {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(SharedAudioManager, null), this.room, this.gooberts /*.filter((goobert, i) => {
                                                                                                                                                        goobert.room == this.room
                                                                                                                                                        })*/.map((goobert, i) => /*#__PURE__*/React.createElement("div", {
-      key: `Goobert${i}`
+      key: `Goobert${i}`,
+      style: {
+        position: "absolute"
+      }
     }, goobert)));
   }
   load(component) {

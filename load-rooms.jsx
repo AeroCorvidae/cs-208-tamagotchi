@@ -27,7 +27,7 @@ class TopElement extends React.Component {
 					this.gooberts/*.filter((goobert, i) => {
 						goobert.room == this.room
 					})*/.map((goobert, i) => (
-						<div key={`Goobert${i}`}>
+						<div key={`Goobert${i}`} style={{position:"absolute"}}>
 							{goobert}
 						</div>
 					))

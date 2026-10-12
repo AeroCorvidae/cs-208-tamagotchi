@@ -35,31 +35,31 @@ class Goobert extends React.Component {
       className: "goobert-container"
     }, /*#__PURE__*/React.createElement("img", {
       id: this.legId,
-      src: "assets/goobert-parts/Transparent-BG.png",
+      src: "assets/goobert-parts/208-tamagotchi-legs.png",
       style: {
-        backgroundPositionX: `${0}px`,
-        backgroundPositionY: `${this.legType * -64}px`
+        left: `${0}px`,
+        top: `${this.legType * -64}px`
       }
     }), /*#__PURE__*/React.createElement("img", {
       id: this.bodyId,
-      src: "assets/goobert-parts/Transparent-BG.png",
+      src: "assets/goobert-parts/208-tamagotchi-bodies.png",
       style: {
-        backgroundPositionX: `${0}px`,
-        backgroundPositionY: `${this.bodyType * -64}px`
+        left: `${0}px`,
+        top: `${this.bodyType * -64}px`
       }
     }), /*#__PURE__*/React.createElement("img", {
       id: this.mouthId,
-      src: "assets/goobert-parts/Transparent-BG.png",
+      src: "assets/goobert-parts/208-tamagotchi-mouths.png",
       style: {
-        backgroundPositionX: `${0}px`,
-        backgroundPositionY: `${this.mouthType * -64}px`
+        left: `${0}px`,
+        top: `${this.mouthType * -64}px`
       }
     }), /*#__PURE__*/React.createElement("img", {
       id: this.eyeId,
-      src: "assets/goobert-parts/Transparent-BG.png",
+      src: "assets/goobert-parts/208-tamagotchi-eyes.png",
       style: {
-        backgroundPositionX: `${0}px`,
-        backgroundPositionY: `${this.eyeType * -64}px`
+        left: `${0}px`,
+        top: `${this.eyeType * -64}px`
       }
     }));
   }
