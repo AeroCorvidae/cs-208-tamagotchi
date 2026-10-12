@@ -6,7 +6,7 @@ class TestGoobert extends React.Component {
     }
     render() {
         return (
-            <div className="goobert-container">
+            <div className="goobert-container" style={{scale: "3 3", left: "17em", top: "36em"}}>
                 <img id="goobert-legs" src="assets/goobert-parts/Transparent-BG.png"/>
                 <img id="goobert-body" src="assets/goobert-parts/Transparent-BG.png"/>
                 <img id="goobert-mouth" src="assets/goobert-parts/Transparent-BG.png"/>

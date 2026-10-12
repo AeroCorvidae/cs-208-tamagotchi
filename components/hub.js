@@ -6,7 +6,12 @@ class TestGoobert extends React.Component {
   }
   render() {
     return /*#__PURE__*/React.createElement("div", {
-      className: "goobert-container"
+      className: "goobert-container",
+      style: {
+        scale: "3 3",
+        left: "17em",
+        top: "36em"
+      }
     }, /*#__PURE__*/React.createElement("img", {
       id: "goobert-legs",
       src: "assets/goobert-parts/Transparent-BG.png"

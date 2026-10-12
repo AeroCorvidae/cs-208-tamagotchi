@@ -6,7 +6,6 @@ Top and Left change position of sprite.
 #goobert-legs, #goobert-body, #goobert-mouth, #goobert-eyes {
     width: 64px;
     height: 64px;
-    scale: 3 3;
     image-rendering: crisp-edges;
 }
 /*Background position gets set to the top-left corner of the

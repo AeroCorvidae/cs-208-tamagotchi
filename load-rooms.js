@@ -20,7 +20,8 @@ class TopElement extends React.Component {
                                                                                                                                                        })*/.map((goobert, i) => /*#__PURE__*/React.createElement("div", {
       key: `Goobert${i}`,
       style: {
-        position: "absolute"
+        position: "absolute",
+        top: "0px"
       }
     }, goobert)));
   }

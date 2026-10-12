@@ -49,13 +49,13 @@ class Goobert extends React.Component {
     render() {
         
         return (
-            <div className="goobert-container">
+            <div className="goobert-container" style={{left: `${this.xLocation}px`, top: `${this.yLocation}px`}}>
                 <img id={this.legId} src="assets/goobert-parts/208-tamagotchi-legs.png" style={{
-                    left: `${0}px`,
+                    left: `${this.legColor*(-64)}px`,
                     top: `${this.legType * -64}px`,
                 }}/>
                 <img id={this.bodyId} src="assets/goobert-parts/208-tamagotchi-bodies.png" style={{
-                    left: `${0}px`,
+                    left: `${this.bodyColor*(-64)}px`,
                     top: `${this.bodyType * -64}px`,
                 }}/>
                 <img id={this.mouthId} src="assets/goobert-parts/208-tamagotchi-mouths.png" style={{
