@@ -15,9 +15,9 @@ class TopElement extends React.Component {
     this.room = rooms.hub;
   }
   render() {
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(SharedAudioManager, null), this.room, this.gooberts /*.filter((goobert, i) => {
-                                                                                                                                                       goobert.room == this.room
-                                                                                                                                                       })*/.map((goobert, i) => /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(SharedAudioManager, null), this.room, this.gooberts.filter((goobert, i) => {
+      return goobert.props.location == this.room;
+    }).map((goobert, i) => /*#__PURE__*/React.createElement("div", {
       key: `Goobert${i}`,
       style: {
         position: "absolute",
@@ -47,4 +47,12 @@ function init() {
 init();
 function load(component) {
   topElement.current.load(component);
+}
+function createGoobert(name, x, y, location = rooms.hub) {
+  topElement.current.createGoobert(/*#__PURE__*/React.createElement(Goobert, {
+    name: name,
+    x: x,
+    y: y,
+    location: location
+  }));
 }

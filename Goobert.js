@@ -13,6 +13,7 @@ const MOUTH_SPRITE_SHEET = 'assets/goobert-parts/208-tamagotchi-mouths.png';
 class Goobert extends React.Component {
   constructor(props) {
     super(props);
+    this.room = this.props.room || rooms.hub;
     this.name = this.props.name, this.antihunger = 0,
     // Eating, catch the food game
     this.swagosity = 50,
@@ -55,14 +56,14 @@ class Goobert extends React.Component {
       id: this.mouthId,
       src: "assets/goobert-parts/208-tamagotchi-mouths.png",
       style: {
-        left: `${0}px`,
+        left: `${this.mouthExpression * -64}px`,
         top: `${this.mouthType * -64}px`
       }
     }), /*#__PURE__*/React.createElement("img", {
       id: this.eyeId,
       src: "assets/goobert-parts/208-tamagotchi-eyes.png",
       style: {
-        left: `${0}px`,
+        left: `${this.eyeExpression * -64}px`,
         top: `${this.eyeType * -64}px`
       }
     }));
@@ -78,50 +79,6 @@ class Goobert extends React.Component {
   bathe(amt = 1) {
     this.cleanliness += amt;
   }
-
-  /* Inserts the sprite HTML and sets up the styles */
-  // initializeSprite(){
-  //     let htmlString = ``;
-  //     document.getElementById("main").innerHTML += htmlString;
-  //     console.log(this.name + " exists now.");
-
-  //     const elemIds = [this.legId, this.bodyId, this.mouthId, this.eyeId, this.goobertId];
-  //     let len = elemIds.length;
-
-  //     for (let id = 0; id < len; id++) {
-  //         document.getElementById(elemIds[id]).style.width = '64px';
-  //         document.getElementById(elemIds[id]).style.height = '64px';
-  //         document.getElementById(elemIds[id]).style.imageRendering = 'crisp-edges';
-  //         document.getElementById(elemIds[id]).style.position = 'fixed';
-  //         console.log("Set " + elemIds[id] + "'s properties.");
-  //     }
-
-  //     document.getElementById(this.legId).style.backgroundImage = `url(${LEG_SPRITE_SHEET})`;
-  //     document.getElementById(this.bodyId).style.backgroundImage = `url(${BODY_SPRITE_SHEET})`;
-  //     document.getElementById(this.eyeId).style.backgroundImage = `url(${EYES_SPRITE_SHEET})`;
-  //     document.getElementById(this.mouthId).style.backgroundImage = `url(${MOUTH_SPRITE_SHEET})`;
-
-  //     document.getElementById(this.legId).style.zIndex = '1';
-  //     document.getElementById(this.bodyId).style.zIndex = '2';
-  //     document.getElementById(this.eyeId).style.zIndex = '3';
-  //     document.getElementById(this.mouthId).style.zIndex = '4';
-  //     document.getElementById(this.goobertId).style.zIndex = '5';
-
-  //     this.setPosition();
-  //     this.setBodyType();
-  //     this.setBodyColor();
-  //     this.setLegsType();
-  //     this.setLegsColor();
-  //     this.setEyes();
-  //     this.setEyeExpression();
-  //     this.setMouth();
-  //     this.setMouthExpression();
-
-  // }
-
-  /* The following functions set the features of the 
-     goobert using their element ids and asset index.  */
-
   setBodyType(type) {
     this.bodyType = type;
     this.setState({});
@@ -134,35 +91,28 @@ class Goobert extends React.Component {
     element.style.backgroundPositionX = this.bodyColor * -64 + 'px';
     console.log(this.name + "'s body color set.");
   }
-  setLegsType() {
-    const element = document.getElementById(this.legId);
-    element.style.backgroundPositionY = this.legType * -64 + 'px';
-    console.log(this.name + "'s leg type set.");
+  setLegsType(type) {
+    this.legType = type;
+    this.setState({});
   }
-  setLegsColor() {
-    const element = document.getElementById(this.legId);
-    element.style.backgroundPositionX = this.legColor * -64 + 'px';
-    console.log(this.name + "'s leg color set.");
+  setLegsColor(type) {
+    this.legColor = type;
+    this.setState({});
   }
-  setEyes() {
-    const element = document.getElementById(this.eyeId);
-    element.style.backgroundPositionY = this.eyeType * -64 + 'px';
-    console.log(this.name + "'s eye type set.");
+  setEyes(type) {
+    this.eyeType = type;
+    this.setState({});
   }
-  setEyeExpression() {
-    const element = document.getElementById(this.eyeId);
-    element.style.backgroundPositionX = this.eyeExpression * -64 + 'px';
-    console.log(this.name + "'s eye expression set.");
+  setEyeExpression(type) {
+    this.eyeExpression = type;
+    this.setState({});
   }
-  setMouth() {
-    const element = document.getElementById(this.mouthId);
-    element.style.backgroundPositionY = this.mouthType * -64 + 'px';
-    console.log(this.name + "'s mouth type set.");
+  setMouth(type) {
+    this.mouthType = type;
+    this.setState({});
   }
-  setMouthExpression() {
-    const element = document.getElementById(this.mouthId);
-    element.style.backgroundPositionX = this.mouthExpression * -64 + 'px';
-    console.log(this.name + "'s mouth expression set.");
+  setMouthExpression(type) {
+    this.mouthExpression = type;
     this.setState({});
   }
 

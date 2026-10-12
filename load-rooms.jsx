@@ -24,9 +24,9 @@ class TopElement extends React.Component {
 				{this.room}
 
 				{
-					this.gooberts/*.filter((goobert, i) => {
-						goobert.room == this.room
-					})*/.map((goobert, i) => (
+					this.gooberts.filter((goobert, i) => {
+						return goobert.props.location == this.room
+					}).map((goobert, i) => (
 						<div key={`Goobert${i}`} style={{position:"absolute", top: "0px"}}>
 							{goobert}
 						</div>
@@ -58,4 +58,7 @@ init();
 
 function load(component) {
     topElement.current.load(component);
+}
+function createGoobert(name, x, y, location = rooms.hub) {
+	topElement.current.createGoobert(<Goobert name={name} x={x} y={y} location={location} />);
 }
