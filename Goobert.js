@@ -19,14 +19,16 @@ class Goobert extends React.Component {
     this.yLocation = this.props.y;
 
     /* Setting assets to random index based on how many types/colors there currently are*/
-    this.bodyType = this.props.bodyType || Math.floor(Math.random() * MAX_BODY_TYPES);
-    this.bodyColor = this.props.bodyColor || Math.floor(Math.random() * MAX_COLORS);
-    this.legType = this.props.legType || Math.floor(Math.random() * MAX_LEG_TYPES);
-    this.legColor = this.props.legColor || Math.floor(Math.random() * MAX_COLORS);
-    this.eyeType = this.props.eyeType || Math.floor(Math.random() * MAX_EYE_TYPES);
-    this.mouthType = this.props.mouthType || Math.floor(Math.random() * MAX_MOUTH_TYPES);
-    this.eyeExpression = this.props.eyeExpression || 0;
-    this.mouthExpression = this.props.mouthExpression || 0;
+    this.bodyType = this.props.bodyType;
+    this.bodyColor = this.props.bodyColor;
+    this.legType = this.props.legType;
+    this.legColor = this.props.legColor;
+    this.eyeType = this.props.eyeType;
+    this.mouthType = this.props.mouthType;
+    this.eyeExpression = this.props.eyeExpression;
+    this.mouthExpression = this.props.mouthExpression;
+
+    console.log("Name: " + this.name, "eyeType: " + this.eyeType, this.props.eyeType);
   }
   render() {
     console.log(this.bodyType);
