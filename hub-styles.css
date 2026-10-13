@@ -12,6 +12,8 @@ main {
 }
 img {
     user-select: none;
+    user-drag: none;
+    -webkit-user-drag: none;
 }
 
 /* ==== GOOBERT POSITIONING ==== */
