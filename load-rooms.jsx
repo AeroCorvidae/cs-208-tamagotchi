@@ -25,11 +25,9 @@ class TopElement extends React.Component {
 
 				{
 					this.gooberts.filter((goobert, i) => {
-						return goobert.props.location == this.room
+						return goobert.location == this.room
 					}).map((goobert, i) => (
-						<div key={`Goobert${i}`} style={{position:"absolute", top: "0px"}}>
-							{goobert}
-						</div>
+						<Goobert key={goobert.id} {...goobert} />
 					))
 				}
 			</>
@@ -40,7 +38,9 @@ class TopElement extends React.Component {
 		this.setState({room: rooms[component]});
 	}
 	createGoobert(goobert) {
-		this.gooberts.push(goobert);
+		this.gooberts.push(
+			{...goobert}
+		);
 		this.setState({});
 	}
 
@@ -60,5 +60,32 @@ function load(component) {
     topElement.current.load(component);
 }
 function createGoobert(name, x, y, location = rooms.hub) {
-	topElement.current.createGoobert(<Goobert name={name} x={x} y={y} location={location} />);
+	topElement.current.createGoobert(
+		{
+			name: name, 
+			x:x, 
+			y:y, 
+			location:location, 
+			id: name + topElement.current.gooberts.length,
+
+			fullness: 0, // Eating, catch the food game
+			swagosity: 50, // Boredom, Snake
+			awakeness: 50, // Sleeping
+			cleanliness: 50, // Bathing, Flappy Goobert
+		
+			bodyType: Math.floor(Math.random() * MAX_BODY_TYPES),
+			bodyColor: Math.floor(Math.random() * MAX_COLORS),
+			legType: Math.floor(Math.random() * MAX_LEG_TYPES),
+			legColor: Math.floor(Math.random() * MAX_COLORS),
+			eyeType: Math.floor(Math.random() * MAX_EYE_TYPES),
+			mouthType: Math.floor(Math.random() * MAX_MOUTH_TYPES),
+			eyeExpression: 0,
+			mouthExpression: 0,
+
+			eat: (amt = 10) => this.fullness += amt,
+			sleep: () => this.awakeness = 100,
+			entertain: (quality) => this.swagosity += quality,
+			bathe: (amt) => this.cleanliness += amt
+		}
+	);
 }
