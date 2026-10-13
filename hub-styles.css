@@ -1,10 +1,19 @@
 /* ==== PAGE SETUP =====*/
 /* Forest Background fills entire browser */
-html, body {
+html, body, #content {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
+}
+main {
+    width: 100%;
+    height: 100%;
+}
+img {
+    user-select: none;
+    user-drag: none;
+    -webkit-user-drag: none;
 }
 
 /* ==== GOOBERT POSITIONING ==== */
@@ -13,39 +22,53 @@ html, body {
 #goobert-body,
 #goobert-mouth,
 #goobert-eyes {
-    position: absolute;
+    grid-column: 1;
+    grid-row: 1;
+
     width: 64px;
     height: 64px;
-    left: 50%;
-    top: auto;
-    scale: 3;
     image-rendering: crisp-edges;
+}
+
+/* ==== GOOBERT SPRITE SHEETS ==== */
+#goobert-legs {
+    background-image: url("assets/goobert-parts/208-tamagotchi-legs.png");
+}
+
+#goobert-body {
+    background-image: url("assets/goobert-parts/208-tamagotchi-bodies.png");
+}
+
+#goobert-mouth {
+    background-image: url("assets/goobert-parts/208-tamagotchi-mouths.png");
+}
+
+#goobert-eyes {
+    background-image: url("assets/goobert-parts/208-tamagotchi-eyes.png");
 }
 
 /* Positions Goobert relative to tree */
 .goobert-container {
     position: absolute;
-    width: 20%;
+    width: 64px;
+    height: 64px;
+    overflow: hidden;
     aspect-ratio: 1;
-    left: 65%;
-    bottom: 15%;
-    transform: translateX(-50%);
+
+    display: grid;
+    grid-template-columns: 1fr;
 }
 
 /* Layers Goobert's body parts */
 .goobert-container img {
-    position: absolute;
-    width: 64px;
-    height: 64px;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-    scale: 3;
+    position: relative;
     image-rendering: crisp-edges;
+    grid-row: 1;
+    grid-column: 1;
 }
 
 /* ====BACKGROUND POSITIONING ====*/
-.background {
+.hub {
     background-image: url("hub-images/gooberts_forest_background.jpg");
     background-size: cover;
     background-position: center;
@@ -188,4 +211,33 @@ html, body {
     width: 130px;
     height: auto;
     cursor: pointer;
+}
+
+/* Settings button */
+.hub .settings-fab {
+    position: fixed !important;
+    bottom: 25px !important;
+    right: 25px !important;
+    top: auto !important;
+    left: auto !important;
+
+    width: 55px;
+    height: 55px;
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #ff922b;
+    border: 3px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.hub .settings-fab img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
 }

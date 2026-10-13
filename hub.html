@@ -5,58 +5,35 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="hub-styles.css" />
-		<link href="test.css" rel="stylesheet" />
+		<link rel="stylesheet" href="icons-1.13.1/font/bootstrap-icons.min.css" />
 		<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+		<link href="test.css" rel="stylesheet" />
+		<link rel="stylesheet" href="./hub-styles.css">
+		<link rel="stylesheet" href="./bedroom.css" />
+		<link rel="stylesheet" href="./games/flappy-goobert.css" />
+		<link rel="stylesheet" href="./games/snake-stylesheet.css" />
+		<link rel="stylesheet" href="./shop-style.css" />
+		<link rel="stylesheet" href="./game-room.css">
+		
+		<script src="react/js/react.development.js"></script>
+		<script src="react/js/react-dom.development.js"></script>
+		
+		<script src="components/shared-audio.js" defer></script>
+		<script src="components/shared-settings-panel.js" defer></script>
 		<script src="Goobert.js" defer></script>
-		<script src="test.js" defer></script>
-		<script src="hub.js" defer></script>
+		<script src="components/hub.js" defer></script>
+		<script src="components/game-room.js" defer></script>
+		<script src="components/shop.js" defer></script>
+		<script src="components/bedroom.js" defer></script>
+		<script src="components/snake.js" defer></script>
+		<script src="components/flappy-goobert.js" defer></script>
+
+		<script src="load-rooms.js" defer></script>
+		
 	</head>
 	<body>
-		
-		<div class="background">
-			
-			<div class="tree-container">
-
-				<img src="hub-images/gooberts_tree.png" 
-					alt="GOOBERTS HUB" 
-					class="pixelated-tree" 
-					id="goobert-tree">
-
-				<!--CLickable Areas-->
-				<div id="tree-body-area"></div>
-				<div id="tree-legs-area"></div>
-				<div id="tree-mouth-area"></div>
-				<div id="tree-eyes-area"></div>
-				<div id="tree-body-color"></div>
-				<div id="tree-legs-color"></div>
-
-
-				<!--Goobert Container-->
-				<div class="goobert-container">
-					<img id="goobert-legs" src="assets/goobert-parts/Transparent-BG.png"/>
-					<img id="goobert-body" src="assets/goobert-parts/Transparent-BG.png"/>
-					<img id="goobert-mouth" src="assets/goobert-parts/Transparent-BG.png"/>
-					<img id="goobert-eyes" src="assets/goobert-parts/Transparent-BG.png"/>
-				</div> 
-			</div>
-
-			<!-- CLICKABLE DOORS -->
-			<div class="sleep-door-container">
-				<img src="index-images/sleepdoor.png" alt="BEDROOM" id="sleep-door">
-			</div>
-
-			<div class="game-door-container">
-				<img src="hub-images/game-door.png" alt="GAME" id="game-door">
-			</div>
-
-			<div class="shop-door-container">
-				<img src="hub-images/shop-door.png" alt="SHOP" id="shop-door">
-			</div>
-
-			<div class="leave-door-container">
-				<img src="hub-images/leave-door.png" alt="LEAVE" id="leave-door">
-			</div>
+		<div id="content">
 
 		</div>
 	</body>

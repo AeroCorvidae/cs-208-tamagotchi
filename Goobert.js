@@ -1,174 +1,110 @@
-'use strict'
+'use strict';
 
-let numOfGooberts = 0;
-const MAX_EYE_TYPES = 7;
+const MAX_EYE_TYPES = 10;
 const MAX_BODY_TYPES = 7;
 const MAX_LEG_TYPES = 7;
-const MAX_MOUTH_TYPES = 7;
+const MAX_MOUTH_TYPES = 11;
 const MAX_COLORS = 7;
-
 const BODY_SPRITE_SHEET = 'assets/goobert-parts/208-tamagotchi-bodies.png';
 const LEG_SPRITE_SHEET = 'assets/goobert-parts/208-tamagotchi-legs.png';
-const EYES_SPRITE_SHEET = 'assets/goobert-parts/208-tamagotchi-eyes-sample.png';
-const MOUTH_SPRITE_SHEET = 'assets/goobert-parts/208-tamagotchi-mouths2.png';
+const EYES_SPRITE_SHEET = 'assets/goobert-parts/208-tamagotchi-eyes.png';
+const MOUTH_SPRITE_SHEET = 'assets/goobert-parts/208-tamagotchi-mouths.png';
+class Goobert extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log("A goobert is being constructed!");
+    this.room = this.props.room || rooms.hub;
+    this.name = this.props.name;
+    this.xLocation = this.props.x; //Where the goobert is
+    this.yLocation = this.props.y;
 
+    /* Setting assets to random index based on how many types/colors there currently are*/
+    this.bodyType = this.props.bodyType || Math.floor(Math.random() * MAX_BODY_TYPES);
+    this.bodyColor = this.props.bodyColor || Math.floor(Math.random() * MAX_COLORS);
+    this.legType = this.props.legType || Math.floor(Math.random() * MAX_LEG_TYPES);
+    this.legColor = this.props.legColor || Math.floor(Math.random() * MAX_COLORS);
+    this.eyeType = this.props.eyeType || Math.floor(Math.random() * MAX_EYE_TYPES);
+    this.mouthType = this.props.mouthType || Math.floor(Math.random() * MAX_MOUTH_TYPES);
+    this.eyeExpression = this.props.eyeExpression || 0;
+    this.mouthExpression = this.props.mouthExpression || 0;
+  }
+  render() {
+    console.log(this.bodyType);
+    return /*#__PURE__*/React.createElement("div", {
+      className: "goobert-container",
+      onClick: () => this.click(this.name),
+      style: {
+        left: `${this.xLocation}px`,
+        top: `${this.yLocation}px`
+      }
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "assets/goobert-parts/208-tamagotchi-legs.png",
+      style: {
+        left: `${this.legColor * -64}px`,
+        top: `${this.legType * -64}px`
+      }
+    }), /*#__PURE__*/React.createElement("img", {
+      src: "assets/goobert-parts/208-tamagotchi-bodies.png",
+      style: {
+        left: `${this.bodyColor * -64}px`,
+        top: `${this.bodyType * -64}px`
+      }
+    }), /*#__PURE__*/React.createElement("img", {
+      src: "assets/goobert-parts/208-tamagotchi-mouths.png",
+      style: {
+        left: `${this.mouthExpression * -64}px`,
+        top: `${this.mouthType * -64}px`
+      }
+    }), /*#__PURE__*/React.createElement("img", {
+      src: "assets/goobert-parts/208-tamagotchi-eyes.png",
+      style: {
+        left: `${this.eyeExpression * -64}px`,
+        top: `${this.eyeType * -64}px`
+      }
+    }));
+  }
+  setBodyType(type) {
+    this.bodyType = type;
+    this.setState({});
+  }
+  setBodyColor(type) {
+    this.bodyColor = type;
+    this.setState({});
+  }
+  setLegsType(type) {
+    this.legType = type;
+    this.setState({});
+  }
+  setLegsColor(type) {
+    this.legColor = type;
+    this.setState({});
+  }
+  setEyes(type) {
+    this.eyeType = type;
+    this.setState({});
+  }
+  setEyeExpression(type) {
+    this.eyeExpression = type;
+    this.setState({});
+  }
+  setMouth(type) {
+    this.mouthType = type;
+    this.setState({});
+  }
+  setMouthExpression(type) {
+    this.mouthExpression = type;
+    this.setState({});
+  }
 
+  /* Sets the position of the sprite */
+  setPosition(x, y) {
+    this.xLocation = x;
+    this.yLocation = y;
+    this.setState({});
+  }
 
-class goobert {
-    constructor(name, xLoc = 0, yLoc = 0) {
-        this.name = name,
-        this.antihunger = 0, // Eating, catch the food game
-        this.swagosity = 50, // Boredom, Snake
-        this.snooziness = 50, // Sleeping
-        this.cleanliness = 50, // Bathing, Flappy Goobert
-        this.xLocation = xLoc, //Where the goobert is
-        this.yLocation = yLoc,
-
-        /* Sprite builder properties */
-        this.goobertId = this.name + numOfGooberts,
-        this.bodyId = this.goobertId + "body",
-        this.legId = this.goobertId + "legs",
-        this.eyeId = this.goobertId + "eyes",
-        this.mouthId = this.goobertId + "mouth",
-
-        /* Setting assets to random index based on how many types/colors there currently are*/
-        this.bodyType = Math.floor(Math.random() * MAX_BODY_TYPES),
-        this.bodyColor = Math.floor(Math.random() * MAX_COLORS),
-        this.legType = Math.floor(Math.random() * MAX_LEG_TYPES),
-        this.legColor = Math.floor(Math.random() * MAX_COLORS),
-        this.eyeType = Math.floor(Math.random() * MAX_EYE_TYPES),
-        this.mouthType = Math.floor(Math.random() * MAX_MOUTH_TYPES);
-
-        this.initializeSprite();
-
-        numOfGooberts++;
-    }
-
-
-    sleep() {
-        this.snooziness = 100;
-        console.log(this);
-    }
-    eat() {
-        this.antihunger >= 100 ? 100 : this.antihunger += 10;
-        console.log(this);
-    }
-    bathe(){
-
-    }
-
-
-    /* Inserts the sprite HTML and sets up the styles */
-    initializeSprite(){
-        let htmlString = `<div>
-						<img id="${this.legId}" src="assets/goobert-parts/Transparent-BG.png"/>
-						<img id="${this.bodyId}" src="assets/goobert-parts/Transparent-BG.png"/>
-						<img id="${this.mouthId}" src="assets/goobert-parts/Transparent-BG.png"/>
-						<img id="${this.eyeId}" src="assets/goobert-parts/Transparent-BG.png"/>
-                        <img id="${this.goobertId}" src="assets/goobert-parts/Transparent-BG.png" onclick="${this.name}.onClick()"/>
-					</div>`;
-        document.getElementById("main").innerHTML += htmlString;
-        console.log(this.name + " exists now.");
-        
-        const elemIds = [this.legId, this.bodyId, this.mouthId, this.eyeId, this.goobertId];
-        let len = elemIds.length;
-
-        for (let id = 0; id < len; id++) {
-            document.getElementById(elemIds[id]).style.width = '64px';
-            document.getElementById(elemIds[id]).style.height = '64px';
-            document.getElementById(elemIds[id]).style.imageRendering = 'crisp-edges';
-            document.getElementById(elemIds[id]).style.position = 'fixed';
-            console.log("Set " + elemIds[id] + "'s properties.");
-        }
-        
-        
-        document.getElementById(this.legId).style.backgroundImage = `url(${LEG_SPRITE_SHEET})`;
-        document.getElementById(this.bodyId).style.backgroundImage = `url(${BODY_SPRITE_SHEET})`;
-        document.getElementById(this.eyeId).style.backgroundImage = `url(${EYES_SPRITE_SHEET})`;
-        document.getElementById(this.mouthId).style.backgroundImage = `url(${MOUTH_SPRITE_SHEET})`;
-
-        document.getElementById(this.legId).style.zIndex = '1';
-        document.getElementById(this.bodyId).style.zIndex = '2';
-        document.getElementById(this.eyeId).style.zIndex = '3';
-        document.getElementById(this.mouthId).style.zIndex = '4';
-        document.getElementById(this.goobertId).style.zIndex = '5';
-
-        this.setPosition();
-        this.setBodyType();
-        this.setBodyColor();
-        this.setLegsType();
-        this.setLegsColor();
-        this.setEyes();
-        this.setMouth();
-        
-    }
-
-        /* The following functions set the features of the 
-           goobert using their element ids and asset index.  */
-
-    setBodyType(){
-        const element = document.getElementById(this.bodyId);
-        element.style.backgroundPositionY = (this.bodyType*(-64)) + 'px';
-        console.log(this.name + "'s body type set.");
-    }
-
-    setBodyColor(){
-        const element = document.getElementById(this.bodyId);
-        element.style.backgroundPositionX = (this.bodyColor*(-64)) + 'px';
-        console.log(this.name + "'s body color set.");
-    }
-
-    setLegsType(){
-        const element = document.getElementById(this.legId);
-        element.style.backgroundPositionY = (this.legType*(-64)) + 'px';
-        console.log(this.name + "'s leg type set.");
-    }
-
-    setLegsColor(){
-        const element = document.getElementById(this.legId);
-        element.style.backgroundPositionX = (this.legColor*(-64)) + 'px';
-        console.log(this.name + "'s leg color set.");
-    }
-
-    setEyes(){
-        const element = document.getElementById(this.eyeId);
-        element.style.backgroundPositionY = (this.eyeType*(-64)) + 'px';
-        console.log(this.name + "'s eye type set.");
-    }
-
-    setMouth(){
-        const element = document.getElementById(this.mouthId);
-        element.style.backgroundPositionY = (this.mouthType*(-64)) + 'px';
-        console.log(this.name + "'s mouth type set.");
-    }
-
-
-    /* Sets the position of the sprite */
-    setPosition(){
-        const elemIds = [this.legId, this.bodyId, this.mouthId, this.eyeId, this.goobertId];
-        let len = elemIds.length;
-
-        for (let id = 0; id < len; id++) {
-            document.getElementById(elemIds[id]).style.top = this.yLocation;
-            document.getElementById(elemIds[id]).style.left = this.xLocation;
-            console.log("Set " + elemIds[id] + "'s position.");
-        }
-    }
-
-    /* Will trigger only for a particular instance of a goobert when the sprite is clicked */
-    onClick(){
-        console.log(`${this.name} says, "I've been poked!"`);
-    }
+  /* Will trigger only for a particular instance of a goobert when the sprite is clicked */
+  click(name) {
+    console.log(`${name} says, "I've been poked!"`);
+  }
 }
-
-const david = new goobert('david', '25%', '75%');
-const emily = new goobert('emily', '40%', '75%');
-const grubert = new goobert('grubert', '55%', '75%');
-
-
-
-console.log(david);
-console.log(emily);
-
-
-

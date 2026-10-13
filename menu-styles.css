@@ -239,3 +239,36 @@ body {
     color: black;
     border-color: black;
 }
+
+/*--------------------------*/
+/*    Responsive Display    */
+/*--------------------------*/
+
+/* Normal desktop display */
+.btn-continue, .btn-new-game {
+    font-size: 2rem;
+}
+
+/* Smaller displays */
+@media (max-width: 768px) {
+
+    .btn-continue, .btn-new-game {
+        font-size: 1.4rem;
+    }
+    
+}
+
+/* Micro displays */
+@media (max-width: 480px) {
+
+    .btn-continue, .btn-new-game {
+        font-size: 1.1rem;
+    }
+
+    /* Credits modal */
+
+    #creditsModal .modal-content {
+        font-size: .90rem;
+    }
+
+}

@@ -77,26 +77,23 @@ muteMusicButton.addEventListener("click", toggleMusicMute);
 // Retrieve sound effect elements from HTML
 let hoverSound = document.getElementById("hoverSound");
 let clickSound = document.getElementById("clickSound");
-let titleNameSound = document.getElementById("titleNameSound");
 
 // Retrieve the sound effects volume controls from HTML
 let soundSlider = document.getElementById("soundSlider");
 let soundValue = document.getElementById("soundValue");
 
 // [IMPORTANT!!!] Retrieve all menu buttons from HTML
-// The querySelectorAll method retrieves all elements with the class "menu-button" from the HTML.
 let menuButtons = document.querySelectorAll(".menu-button");
-let gameTitle = document.getElementById("game-title");
+
 
 // Set initial volume for sound effects
 hoverSound.volume = 0.75;
 clickSound.volume = 0.75;
-titleNameSound.volume = 0.75;
 
 // Function changes sound effects volume
 function changeSoundVolume() {
 
-    //Retrieve the new volume velue from the sound effects slider
+    //Retrieve the new volume value from the sound effects slider
     let newSoundVolume = soundSlider.value;
 
     // Update sound effects volume display
@@ -105,7 +102,6 @@ function changeSoundVolume() {
     // Update all sound effect volumes
     hoverSound.volume = newSoundVolume / 100;
     clickSound.volume = newSoundVolume / 100;
-    titleNameSound.volume = newSoundVolume / 100;
 
 }
 
@@ -120,7 +116,6 @@ function toggleSoundMute() {
         // Mute all sound effects
         hoverSound.muted = true;
         clickSound.muted = true;
-        titleNameSound.muted = true;
 
         // Change button text
         muteSoundButton.textContent = "Unmute Sound Effects";
@@ -130,7 +125,6 @@ function toggleSoundMute() {
         // Unmute all sound effects
         hoverSound.muted = false;
         clickSound.muted = false;
-        titleNameSound.muted = false;
 
         // Change button text
         muteSoundButton.textContent = "Mute Sound Effects";
@@ -154,9 +148,6 @@ for (let i = 0; i < menuButtons.length; i++) {
 
 }
 
-// Play special sound when clicking the game title
-gameTitle.addEventListener("click", playTitleNameSound);
-
 // Function to play hover sound
 function playHoverSound() {
 
@@ -171,12 +162,4 @@ function playClickSound() {
     clickSound.currentTime = 0; // Reset the sound to start from the beginning
 
     clickSound.play();
-}
-
-// Function to play title name sound (secret)
-function playTitleNameSound() {
-
-    titleNameSound.currentTime = 0; // Reset the sound to start from the beginning
-
-    titleNameSound.play(); // Confetti sound
 }

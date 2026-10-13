@@ -1,28 +1,39 @@
-let game;
-window.onload = () => {
-    // Create an HTML element for each part of the snake
-    for (position of snake.positions) {
+function initSnakeGame(boardWidth, boardHeight) {
+    if (typeof stopGame === "function") {
+        stopGame();
+    }
+    if (typeof refreshGameBody === "function") {
+        refreshGameBody();
+    }
+    if (!body) return;
+
+    width = Math.max(6, parseInt(boardWidth, 10) || 15) - 1;
+    height = Math.max(6, parseInt(boardHeight, 10) || 15) - 1;
+    setBodySize();
+
+    body.innerHTML = "";
+    snakeDivs.innerHTML = "";
+    snakeDivs.id = "snakeDivs";
+    body.appendChild(snakeDivs);
+
+    snake = createInitialSnake();
+    apple = createInitialApple();
+
+    for (let position of snake.positions) {
         position.asset = [assets.right, assets.right];
         position.div = createSnakeDiv(position.x, position.y, position.id, position.asset);
         updateImage(position);
     }
-    // Initialize snake head
+
     snake.head = snake.positions[0];
     snake.head.asset[1] = assets.head;
     updateImage(snake.head);
 
-    // Create an HTML element for the apple
     createAppleDiv();
     apple.div = document.getElementById("apple");
     setPosition(apple.div, apple.x, apple.y);
 
-    start();
-}
-function start() {
-    // Add key press event & start game
-    document.addEventListener("keydown", keypress);
-    document.addEventListener("keyup", keyReleased);
-    game = setInterval(gameloop, 1000 / 10); // 10FPS
+    start(10, gameloop);
 }
 
 const assets = {
@@ -34,53 +45,34 @@ const assets = {
 
     size: 64 // Asset size in pixels
 }
-const windowSize = new URLSearchParams(window.location.search);
+const snakeDivs = document.createElement("div");
+let snake = null;
+let apple = null;
 
-const body = document.getElementById("main");
-
-// Update game size
-const width = parseInt(windowSize.get("width")) - 1 || 15;
-const height = parseInt(windowSize.get("height")) - 1 || 15;
-
-// Update grid size to a power of 2, since it helps render images better
-function getGridSize() {
-    const desired = Math.floor(
-        Math.min(
-            window.innerWidth / width,
-            window.innerHeight / height
-        )
-    );
-
-    if (desired >= 128) return 128;
-    if (desired >= 64) return 64;
-    if (desired >= 32) return 32;
-    return 16;
-}
-
-const gridSize = getGridSize();
-
-
-body.style.width = (width+1) * gridSize + "px";
-body.style.height = (height+1) * gridSize + "px";
-
-const keys = [];
-
-
-let snake = {
-    positions: [
-        { x: width > 10 ? 6 : 3, y: Math.floor(height / 2), id: 0 },
-        { x: width > 10 ? 5 : 2, y: Math.floor(height / 2), id: 1 },
-        { x: width > 10 ? 4 : 1, y: Math.floor(height / 2), id: 2 }
-    ],
-    velocity: {
-        y: 0,
-        x: 1,
+function createInitialSnake() {
+    const startY = Math.floor(height / 2);
+    return {
+        positions: [
+            { x: width > 10 ? 6 : 3, y: startY, id: 0 },
+            { x: width > 10 ? 5 : 2, y: startY, id: 1 },
+            { x: width > 10 ? 4 : 1, y: startY, id: 2 }
+        ],
+        velocity: {
+            y: 0,
+            x: 1,
+            direction: assets.right
+        },
+        head: { x: width > 10 ? 6 : 3, y: startY, id: 0 },
         direction: assets.right
-    },
-    head: { x: 4, y: Math.floor(height / 2), id: 2},
-    direction: "right"
+    };
 }
-let apple = { x: width > 15 ? width - 8 : width - 3, y: Math.floor(height / 2) };
+
+function createInitialApple() {
+    return {
+        x: width > 15 ? width - 8 : width - 3,
+        y: Math.floor(height / 2)
+    };
+}
 
 function gameloop() {
     handleKeyPress();
@@ -153,7 +145,7 @@ function createSnakeDiv(x, y, id, asset) {
     cell.style.width = gridSize + "px";
     cell.style.height = gridSize + "px";
 
-    body.appendChild(cell);
+    snakeDivs.appendChild(cell);
 
     return cell;
 }
@@ -181,8 +173,8 @@ function createAppleDiv(x, y) {
 }
 function setPosition(div, x, y) {
     
-    div.style.left = body.offsetLeft + x * gridSize + "px";
-    div.style.top = body.offsetTop + y * gridSize + "px";
+    div.style.left = x * gridSize + "px";
+    div.style.top = y * gridSize + "px";
 }
 function setObjPosition(obj) {
     setPosition(obj.div, obj.x, obj.y);
@@ -204,7 +196,7 @@ function eatApple() {
     snake.head = newSquare;
     updateImage(newSquare);
 
-    david.eat();
+    // david.eat();
 }
 function findValidSpaces() {
     // As much as I hate nested loops, this is the best way I could think to do this.
@@ -242,12 +234,6 @@ function handleKeyPress() {
         setSnakeVelocity("up");
     }
 }
-function keypress(e) {
-    keys[e.key.toLowerCase()] = true;
-}
-function keyReleased(e) {
-    keys[e.key.toLowerCase()] = false;
-}
 
 function setSnakeVelocity(dir) {
     switch (dir) {
@@ -271,9 +257,4 @@ function setSnakeVelocity(dir) {
                 snake.velocity = { x: 0, y: -1, direction: assets.down };
             }
     }
-}
-
-function resetGame() {
-    window.clearInterval(game);
-    window.location.href = "game-room.html";
 }

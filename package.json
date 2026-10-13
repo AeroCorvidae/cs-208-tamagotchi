@@ -1,0 +1,27 @@
+{
+    "name": "cs-208-tamagotchi",
+    "version": "0.1.0",
+    "description": "A tamagotchi-style video game web app designed for a CS-208 class.",
+    "contributors": [
+        "Quinton",
+        "Elena",
+        "Spencer",
+        "Katalina",
+        "Annette",
+        "Joseph"
+    ],
+    "scripts": {
+        "build": "./build.sh",
+        "hub": "npx babel --presets @babel/preset-react components/hub.jsx --out-file components/hub.js",
+        "game-room": "npx babel --presets @babel/preset-react components/game-room.jsx --out-file components/game-room.js",
+        "shop": "npx babel --presets @babel/preset-react components/shop.jsx --out-file components/shop.js",
+        "bedroom": "npx babel --presets @babel/preset-react components/bedroom.jsx --out-file components/bedroom.js",
+        "snake": "npx babel --presets @babel/preset-react components/snake.jsx --out-file components/snake.js",
+        "flappy-goobert": "npx babel --presets @babel/preset-react components/flappy-goobert.jsx --out-file components/flappy-goobert.js"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.28.3",
+        "@babel/core": "^7.28.4",
+        "@babel/preset-react": "^7.27.1"
+    }
+}
