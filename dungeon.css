@@ -1,0 +1,11 @@
+.dungeonWall {
+    min-height: 66.7%;
+    background-image: url(assets/backgrounds/AnnoyingTexture.webp);
+    background-size: 150px;
+}
+
+.dungeonFloor {
+    min-height: 33.3%;
+    background-image: url(assets/backgrounds/AnnoyingTexture2.webp);
+    background-size: 150px;
+}
