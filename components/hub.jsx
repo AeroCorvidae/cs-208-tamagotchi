@@ -108,6 +108,11 @@ class Hub extends React.Component {
                 <div className="leave-door-container">
                     <img src="hub-images/leave-door.png" alt="LEAVE" id="leave-door" onClick={() => {window.location.href = "index.html";}}/>
                 </div>
+
+                <div className="dungeon-door-container">
+                    <img src="assets/doors/DungeonDoor.webp" alt="THE DUNGEON" id="dungeon-door" onClick={() => {load("dungeon")}} />
+                </div>
+
                 <SettingsPanel 
                     buttonClassName="game-room-settings-button"
                     panelClassName="game-room-settings-panel"

@@ -241,3 +241,17 @@ img {
     height: 30px;
     object-fit: contain;
 }
+
+/* Dungeon Door Positioning */
+.dungeon-door-container {
+    position: absolute;
+    left: 20%;
+    bottom: 10%;
+    z-index: 1;
+}
+
+#dungeon-door {
+    width: 40%;
+    height: auto;
+    cursor: pointer;
+}
