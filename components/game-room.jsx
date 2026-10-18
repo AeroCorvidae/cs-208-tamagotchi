@@ -1,5 +1,7 @@
 "use strict";
 
+let gameGoobert;
+
 /* React room component for game selection, room navigation, and settings access. */
 class GameRoom extends React.Component {
     /* Centralized navigation so room changes stay consistent. */
@@ -61,7 +63,7 @@ class GameRoom extends React.Component {
         ];
 
         return (
-            <main className="game-room">
+            <main id="main" className="game-room">
                 {/* Top-left return control back to the hub room. */}
                 <div className="game-room-controls">
                     <button type="button" className="btn game-room-exit" onClick={() => this.navigateToRoom("hub")}>
@@ -83,7 +85,20 @@ class GameRoom extends React.Component {
                                 key={machine.id}
                                 type="button"
                                 className="machine-button"
-                                onClick={() => this.navigateToMachine(machine.gameKey)}
+
+                                data-bs-toggle="modal"
+                                data-bs-target="#goobertModal"
+
+                                onClick={() => {
+                                    // Move modal backdrop into main content
+                                    document.getElementById("main")
+                                        .appendChild(document.getElementsByClassName("modal-backdrop")[0]);
+                                    if(gooberts.length == 0) {
+                                        this.navigateToMachine(machine.gameKey);
+                                    } else {
+                                        this.setState({gameKey: machine.gameKey});
+                                    }
+                                }}
                                 onMouseEnter={() => this.handleMachineHover()}
                                 onFocus={() => this.handleMachineHover()}
                                 aria-label={machine.label}>
@@ -97,11 +112,52 @@ class GameRoom extends React.Component {
                     ))}
                 </div>
 
-                {/* Shared React settings panel (audio controls, no Bootstrap modal). */}
-                <SettingsPanel
-                    buttonClassName="game-room-settings-button"
-                    panelClassName="game-room-settings-panel"
-                />
+                {/* Modal for selecting which goobert to play the game with */}
+                <div className="modal" id="goobertModal">
+                    <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content">
+
+                            <div className="modal-header">
+                                <h5 className="modal-title">Select Goobert</h5>
+
+                                <button
+                                    type="button"
+                                    className="btn-close"
+                                    data-bs-dismiss="modal"
+                                >
+                                </button>
+                            </div>
+
+                            <div className="modal-body">
+                            {
+                                gooberts.filter((goobert, i) => {
+                                    return goobert.location == rooms.gameRoom
+                                }).map((goobert, i) => (
+                                <button 
+                                    type="button" 
+                                    className="btn save-slot save-slot-1 
+                                    menu-button w-100 mb-3"
+                                    onClick={() => {
+                                        gameGoobert = goobert;
+                                        this.navigateToRoom(this.state.gameKey);
+                                    }}
+                                >
+                                    <div className="goobert-icon">
+                                        <Goobert 
+                                            key={`${goobert.id}GameOption`} 
+                                            {...goobert} 
+                                            x={0} 
+                                            y={0} 
+                                        />
+                                        {goobert.name}
+                                    </div>
+                                </button>
+                                ))
+                            }
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </main>
         );
     }
