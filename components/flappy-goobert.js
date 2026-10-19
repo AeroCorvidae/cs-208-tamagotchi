@@ -4,7 +4,8 @@ class FlappyGoobert extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showPlayAgain: false
+      showPlayAgain: false,
+      cleanliness: gameGoobert ? gameGoobert.cleanliness : 0
     };
   }
   loadScript(src, id, onReady) {
@@ -88,7 +89,19 @@ class FlappyGoobert extends React.Component {
     }))), /*#__PURE__*/React.createElement("div", {
       id: "flappy-score",
       className: "flappy-score"
-    }, "Score: 0"), this.state.showPlayAgain && /*#__PURE__*/React.createElement("div", {
+    }, "Score: 0"), gameGoobert && /*#__PURE__*/React.createElement("div", {
+      className: "cleanliness-label"
+    }, /*#__PURE__*/React.createElement("label", {
+      htmlFor: "goobert-percentage",
+      key: "FlappyGoobertCleanlinessLabel"
+    }, "Cleanliness"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+      type: "range",
+      min: 0,
+      max: 100,
+      value: this.cleanliness,
+      id: "goobert-percentage",
+      key: "FlappyGoobertCleanliness"
+    })), this.state.showPlayAgain && /*#__PURE__*/React.createElement("div", {
       className: "game-over-panel"
     }, /*#__PURE__*/React.createElement("h3", null, "Game Over"), /*#__PURE__*/React.createElement("button", {
       type: "button",

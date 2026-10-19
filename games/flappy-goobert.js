@@ -154,7 +154,11 @@ function checkPipeIntersection() {
                 endFlappyRound();
             } else {
                 // Intersecting with water
-                // david.cleanliness += 0.04; // Wash goobert
+                if(gameGoobert) {
+                    gameGoobert.cleanliness = Math.min(gameGoobert.cleanliness + 0.2, 100); // Wash goobert
+                    // Update slider position
+                    document.getElementById('goobert-percentage').value = gameGoobert.cleanliness;
+                }
             }
         }
     }
