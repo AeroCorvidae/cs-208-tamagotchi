@@ -5,6 +5,7 @@ let rooms = {
 	gameRoom: <GameRoom />,
 	shop: <Shop />,
 	bedroom: <Bedroom />,
+	dungeon: <Dungeon />,
 
 	snakeGame: <SnakeGame />,
 	flappyGoobert: <FlappyGoobert />

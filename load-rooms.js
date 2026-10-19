@@ -6,6 +6,7 @@ let rooms = {
   gameRoom: /*#__PURE__*/React.createElement(GameRoom, null),
   shop: /*#__PURE__*/React.createElement(Shop, null),
   bedroom: /*#__PURE__*/React.createElement(Bedroom, null),
+  dungeon: /*#__PURE__*/React.createElement(Dungeon, null),
   snakeGame: /*#__PURE__*/React.createElement(SnakeGame, null),
   flappyGoobert: /*#__PURE__*/React.createElement(FlappyGoobert, null)
 };

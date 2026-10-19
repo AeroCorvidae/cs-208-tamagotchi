@@ -11,11 +11,12 @@
         "Joseph"
     ],
     "scripts": {
-        "build": "./build.sh",
+        "build": "node ./build.sh",
         "hub": "npx babel --presets @babel/preset-react components/hub.jsx --out-file components/hub.js",
         "game-room": "npx babel --presets @babel/preset-react components/game-room.jsx --out-file components/game-room.js",
         "shop": "npx babel --presets @babel/preset-react components/shop.jsx --out-file components/shop.js",
         "bedroom": "npx babel --presets @babel/preset-react components/bedroom.jsx --out-file components/bedroom.js",
+        "dungeon": "npx babel --presets @babel/preset-react components/dungeon.jsx --out-file components/dungeon.js",
         "snake": "npx babel --presets @babel/preset-react components/snake.jsx --out-file components/snake.js",
         "flappy-goobert": "npx babel --presets @babel/preset-react components/flappy-goobert.jsx --out-file components/flappy-goobert.js"
     },
