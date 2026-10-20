@@ -61,7 +61,7 @@ init();
 function load(component) {
     topElement.current.load(component);
 }
-function createGoobert(name, location = rooms.hub, x = Math.random() * window.innerWidth, y = (Math.random() * (window.innerHeight - 550)) + 550) {
+function createGoobert(name, location = rooms.hub, x = Math.random() * (window.innerWidth - 64 /* goobert width */), y = (Math.random() * (window.innerHeight - 550 - 64 /* goobert height */)) + 550) {
 	topElement.current.createGoobert(
 		{
 			name: name, 
