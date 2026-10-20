@@ -1,11 +1,20 @@
+.dungeon {
+    overflow: hidden;
+}
+
 .dungeonWall {
     min-height: 66.7%;
-    background-image: url(assets/backgrounds/AnnoyingTexture.webp);
-    background-size: 150px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(assets/backgrounds/DungeonBackground.webp);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .dungeonFloor {
     min-height: 33.3%;
-    background-image: url(assets/backgrounds/AnnoyingTexture2.webp);
-    background-size: 150px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)), url(assets/backgrounds/DungeonBackground.webp);
+    transform: perspective(300px) rotateX(30deg); 
+    transform-origin: center top; 
+}
+
+#escape{
+    background-color: linear-gradient(rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.0));
 }
