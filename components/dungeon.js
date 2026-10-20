@@ -31,18 +31,16 @@ var Dungeon = (function (_React$Component) {
                         { className: "dungeonWall" },
                         React.createElement(
                             "div",
-                            { className: "col-12 text-danger" },
-                            "DUNGEON WALL"
+                            { className: "col-12 text-center" },
+                            React.createElement("img", { id: "escape", className: "img-fluid", src: "assets/doors/Ladder.webp", alt: "", onClick: function () {
+                                    return load("hub");
+                                } })
                         )
                     ),
                     React.createElement(
                         "div",
                         { className: "dungeonFloor" },
-                        React.createElement(
-                            "div",
-                            { className: "col-12 text-warning" },
-                            "DUNGEON FLOOR"
-                        )
+                        React.createElement("div", { className: "col-12" })
                     )
                 )
             );
