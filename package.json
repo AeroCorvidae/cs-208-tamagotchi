@@ -11,7 +11,7 @@
         "Joseph"
     ],
     "scripts": {
-        "build": "node ./build.sh",
+        "build": "./build.sh",
         "hub": "npx babel --presets @babel/preset-react components/hub.jsx --out-file components/hub.js",
         "game-room": "npx babel --presets @babel/preset-react components/game-room.jsx --out-file components/game-room.js",
         "shop": "npx babel --presets @babel/preset-react components/shop.jsx --out-file components/shop.js",
