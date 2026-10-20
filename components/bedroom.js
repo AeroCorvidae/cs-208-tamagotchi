@@ -4,92 +4,54 @@ class Bedroom extends React.Component {
       className: "bedroom"
     }, /*#__PURE__*/React.createElement("div", {
       id: "wall"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "row"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "col-10"
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "col-2"
     }, /*#__PURE__*/React.createElement("button", {
-      onClick: () => alert('You found my secret easter egg!'),
-      className: "btn"
+      className: "bedroom-logo",
+      onClick: () => alert('You found my secret easter egg!')
     }, /*#__PURE__*/React.createElement("img", {
       className: "img-fluid",
       src: "bedroom-images/BedroomLogo.webp",
       alt: "BedRoom"
-    })))), /*#__PURE__*/React.createElement("div", {
-      className: "row"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "col-5"
-    }), /*#__PURE__*/React.createElement("div", {
-      id: "exit",
-      className: "col-2"
-    }, /*#__PURE__*/React.createElement("a", {
-      className: "ml-2",
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "bedroom-controls"
+    }, /*#__PURE__*/React.createElement("button", {
+      className: "bedroom-exit-button",
       onClick: () => load("hub")
     }, /*#__PURE__*/React.createElement("img", {
-      className: "img-fluid",
-      src: "bedroom-images/exitDoor.webp"
-    }))), /*#__PURE__*/React.createElement("div", {
-      className: "col-5"
-    })), /*#__PURE__*/React.createElement("div", {
-      className: "bg-warning"
-    }, /*#__PURE__*/React.createElement("br", null))), /*#__PURE__*/React.createElement("div", {
+      className: "bedroom-exit-icon",
+      src: "assets/pixelarticons/arrow-left.svg",
+      "aria-hidden": "true"
+    }), /*#__PURE__*/React.createElement("span", null, "BACK TO HUB")))), /*#__PURE__*/React.createElement("div", {
       id: "floor-wrapper"
     }, /*#__PURE__*/React.createElement("div", {
-      className: "row"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "col-12"
-    }, /*#__PURE__*/React.createElement("br", null))), /*#__PURE__*/React.createElement("div", {
-      className: "row"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "col-2"
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "col-2 btn"
+      className: "bedroom-beds"
     }, /*#__PURE__*/React.createElement("button", {
       onClick: () => david.sleep(),
-      className: "btn"
-    }, /*#__PURE__*/React.createElement("img", {
-      className: "img-fluid",
-      src: "bedroom-images/GoobBedWeb.png",
-      alt: "",
+      className: "bedroom-bed-button",
       title: "Click Here to sleep!"
-    }))), /*#__PURE__*/React.createElement("div", {
-      className: "col-4"
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "col-2 btn"
-    }, /*#__PURE__*/React.createElement("button", {
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "bedroom-images/GoobBedWeb.png",
+      alt: ""
+    })), /*#__PURE__*/React.createElement("button", {
       onClick: () => david.sleep(),
-      className: "btn"
-    }, /*#__PURE__*/React.createElement("img", {
-      className: "img-fluid",
-      src: "bedroom-images/GoobBedWeb.png",
-      alt: "",
+      className: "bedroom-bed-button",
       title: "Click Here to sleep!"
-    })))), /*#__PURE__*/React.createElement("div", {
-      className: "row"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "col-2 btn"
-    }, /*#__PURE__*/React.createElement("button", {
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "bedroom-images/GoobBedWeb.png",
+      alt: ""
+    })), /*#__PURE__*/React.createElement("button", {
       onClick: () => david.sleep(),
-      className: "btn"
-    }, /*#__PURE__*/React.createElement("img", {
-      className: "img-fluid",
-      src: "bedroom-images/GoobBedWeb.png",
-      alt: "",
+      className: "bedroom-bed-button",
       title: "Click Here to sleep!"
-    }))), /*#__PURE__*/React.createElement("div", {
-      className: "col-8"
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "col-2 btn"
-    }, /*#__PURE__*/React.createElement("button", {
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "bedroom-images/GoobBedWeb.png",
+      alt: ""
+    })), /*#__PURE__*/React.createElement("button", {
       onClick: () => david.sleep(),
-      className: "btn"
-    }, /*#__PURE__*/React.createElement("img", {
-      className: "img-fluid",
-      src: "bedroom-images/GoobBedWeb.png",
-      alt: "",
+      className: "bedroom-bed-button",
       title: "Click Here to sleep!"
-    }))))));
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "bedroom-images/GoobBedWeb.png",
+      alt: ""
+    })))));
   }
 }
