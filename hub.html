@@ -16,12 +16,17 @@
 		<link rel="stylesheet" href="./shop-style.css" />
 		<link rel="stylesheet" href="./game-room.css">
 		<link rel="stylesheet" href="./dungeon.css">
+		<!-- Shared mobile-friendly styling -->
+		<link rel="stylesheet" href="mobile-styles.css">
 		
 		<script src="react/js/react.development.js"></script>
 		<script src="react/js/react-dom.development.js"></script>
 		
-		<script src="components/shared-audio.js" defer></script>
-		<script src="components/shared-settings-panel.js" defer></script>
+		<!-- Howler.js is an audio library, similar to how Bootstrap helps with styling. -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+		<!-- Our game's background music, powered by Howler.js. -->
+		<script src="components/audio.js"></script>
+
 		<script src="Goobert.js" defer></script>
 		<script src="components/hub.js" defer></script>
 		<script src="components/game-room.js" defer></script>

@@ -1,61 +1,111 @@
 "use strict";
 
+/*
+Main React component for the Snake minigame.
+Handles loading game scripts, selecting difficulty,
+displaying controls, and returning to Game Room.
+*/
 class SnakeGame extends React.Component {
   constructor(props) {
     super(props);
+
+    // Store information that can change while game is running.
     this.state = {
       scriptsReady: false,
+      // Whether the Snake scripts have loaded
       selectedDifficulty: null,
+      // No diffuculty selected yet
       fullness: gameGoobert ? gameGoobert.fullness : 0
     };
   }
+
+  /*
+  Loads a js file needed by the Snake game.
+  If the script already exists, it will not add a duplicate.
+  */
   loadScript(src, id, onReady) {
+    // Check whether this script has already been added to page.
     const existing = document.getElementById(id);
     if (existing) {
+      // If the script finished loading, continue immediately.
       if (existing.dataset.loaded === "true") {
         onReady();
         return;
       }
+
+      // Otherwise, wait for the existing script to finish loading.
       existing.addEventListener("load", onReady, {
         once: true
       });
       return;
     }
+
+    // Create a new script element.
     const script = document.createElement("script");
     script.id = id;
     script.src = src;
     script.defer = true;
+
+    // Once loaded, mark the script as ready.
     script.onload = () => {
       script.dataset.loaded = "true";
       onReady();
     };
+
+    // Add the script to the webpage.
     document.body.appendChild(script);
   }
+
+  /*
+  React calls this method when the Snake component appears.
+  Loads the shared game script first, then the Sname game script.
+  */
   componentDidMount() {
     this.loadScript("games/games-global.js", "games-global-script", () => {
       this.loadScript("games/snake-game.js", "snake-game-script", () => {
+        // Enable difficulty selection once both scripts are ready.
         this.setState({
           scriptsReady: true
         });
       });
     });
   }
+
+  /*
+  React calls this method when the player leaves Snake.
+  Stops the game so it does not continue running in another room/game.
+  */
   componentWillUnmount() {
+    // Do not start if the game is not ready.
     if (typeof stopGame === "function") {
       stopGame();
     }
   }
+
+  /*
+  Starts Snake using the selected board size and difficulty.
+  The game can only start after its scripts finish loading.
+  */
   startSnake(width, height, difficulty) {
+    // Do not start if the game is not ready.
     if (!this.state.scriptsReady || typeof initSnakeGame !== "function") {
       return;
     }
+
+    // Save the selected difficulty, then initialize the game board.
     this.setState({
       selectedDifficulty: difficulty
     }, () => {
       initSnakeGame(width, height);
     });
   }
+
+  /*
+  Displays the Snake screen, difficulty buttons, 
+  Goobert's Fullness stat, and movement controls.
+  */
   render() {
+    // Only display difficulty choices before a difficulty is selected.
     const showDifficultyPicker = this.state.selectedDifficulty === null;
     return /*#__PURE__*/React.createElement("main", {
       className: "snake-screen"
@@ -130,9 +180,6 @@ class SnakeGame extends React.Component {
         event.preventDefault();
         setSnakeVelocity("right");
       }
-    })), /*#__PURE__*/React.createElement(SettingsPanel, {
-      buttonClassName: "game-room-settings-button",
-      panelClassName: "game-room-settings-panel"
-    }));
+    })));
   }
 }

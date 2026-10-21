@@ -18,33 +18,45 @@ class TopElement extends React.Component {
 		gooberts = this.gooberts;
 		this.room = rooms.hub;
 	}
-	render() {
-		return(
-			<>
-				<SharedAudioManager />
 
+	render() {
+
+		return (
+			<>
+				{/* Display the currently selected room (Hub, Bedroom, etc...) */}
 				{this.room}
 
-				{
-					this.gooberts.filter((goobert, i) => {
-						return goobert.location == this.room
-					}).map((goobert, i) => (
-						<Goobert key={goobert.id} {...goobert} />
+				{/* Find and display the Gooberts that belong in the current room */}
+				{this.gooberts
+					// Only keep Gooberts whose location matches the current room
+					.filter((goobert) => {
+						return goobert.location == this.room;
+					})
+
+					// Create a Goobert component for each matching Goobert
+					.map((goobert) => (
+						<Goobert 
+						key={goobert.id} // Unique ID helpts React track each Goobert
+							{...goobert} // Pass the Goobert's properties to the component
+						/>
 					))
 				}
 			</>
 		);
 	}
+
 	load(component) {
+		// Display the selected room.
 		this.room = rooms[component];
-		this.setState({room: rooms[component]});
+		this.setState({ room: rooms[component] });
 	}
-	createGoobert(goobert) {
-		this.gooberts.push(
-			{...goobert}
-		);
-		this.setState({});
-	}
+
+		createGoobert(goobert) {
+			this.gooberts.push(
+				{...goobert}
+			);
+			this.setState({});
+		}
 
 }
 let topElement, gooberts;

@@ -1,55 +1,93 @@
 "use strict";
 
+/*
+ * Flappy Goobert React component.
+ * Displays the game, tracks when the game ends,
+ * and allows the player to restart or leave.
+ */
 class FlappyGoobert extends React.Component {
   constructor(props) {
     super(props);
+
+    // Store values that React needs to track.
     this.state = {
       showPlayAgain: false,
       cleanliness: gameGoobert ? gameGoobert.cleanliness : 0
     };
   }
+
+  /*
+   * Loads a JavaScript file needed by the game.
+   * If the script already exists, we do not load it again.
+   */
   loadScript(src, id, onReady) {
     const existing = document.getElementById(id);
+
+    // Check whether the script was already added.
     if (existing) {
       if (existing.dataset.loaded === "true") {
         onReady();
         return;
       }
+
+      // Wait for the existing script to finish loading.
       existing.addEventListener("load", onReady, {
         once: true
       });
       return;
     }
+
+    // Create a new script element.
     const script = document.createElement("script");
     script.id = id;
     script.src = src;
     script.defer = true;
+
+    // Run the callback when the script finishes loading.
     script.onload = () => {
       script.dataset.loaded = "true";
       onReady();
     };
     document.body.appendChild(script);
   }
+
+  /*
+   * Runs when the Flappy Goobert screen first appears.
+   * Loads the required game files and starts the game.
+   */
   componentDidMount() {
     this.loadScript("games/games-global.js", "games-global-script", () => {
       this.loadScript("games/flappy-goobert.js", "flappy-goobert-script", () => {
+        // Show the Play Again button when the game ends.
         window.onFlappyGameOver = () => {
           this.setState({
             showPlayAgain: true
           });
         };
+
+        // Start Flappy Goobert if the function is available.
         if (typeof initFlappyGoobert === "function") {
           initFlappyGoobert();
         }
       });
     });
   }
+
+  /*
+   * Runs when the player leaves the Flappy Goobert screen.
+   * Stops the game and clears its game-over callback.
+   */
   componentWillUnmount() {
     window.onFlappyGameOver = null;
     if (typeof stopGame === "function") {
       stopGame();
     }
   }
+
+  /*
+   * Restarts the game after Game Over.
+   * Hides the Play Again button and starts a new game.
+   */
   playAgain() {
     this.setState({
       showPlayAgain: false
@@ -59,16 +97,28 @@ class FlappyGoobert extends React.Component {
       }
     });
   }
+
+  /*
+   * Handles touch controls on mobile devices.
+   * Touching the game makes Goobert jump.
+   * Touching a button does not trigger a jump.
+   */
   handleTouch(event) {
-    // Don't jump when touching a button or settings panel
-    if (event.target.closest("button, .game-room-settings-panel")) {
+    // Ignore touches on buttons.
+    if (event.target.closest("button")) {
       return;
     }
-    event.preventDefault;
+    event.preventDefault();
+
+    // Make Goobert jump if the function exists.
     if (typeof jump === "function") {
       jump();
     }
   }
+
+  /*
+   * Displays the Flappy Goobert game screen.
+   */
   render() {
     return /*#__PURE__*/React.createElement("main", {
       className: "flappy-screen",
@@ -98,18 +148,16 @@ class FlappyGoobert extends React.Component {
       type: "range",
       min: 0,
       max: 100,
-      value: this.cleanliness,
+      value: this.state.cleanliness,
       id: "goobert-percentage",
-      key: "FlappyGoobertCleanliness"
+      key: "FlappyGoobertCleanliness",
+      readOnly: true
     })), this.state.showPlayAgain && /*#__PURE__*/React.createElement("div", {
       className: "game-over-panel"
     }, /*#__PURE__*/React.createElement("h3", null, "Game Over"), /*#__PURE__*/React.createElement("button", {
       type: "button",
       className: "btn btn-warning",
       onClick: () => this.playAgain()
-    }, "Play Again")), /*#__PURE__*/React.createElement(SettingsPanel, {
-      buttonClassName: "game-room-settings-button",
-      panelClassName: "game-room-settings-panel"
-    }));
+    }, "Play Again")));
   }
 }

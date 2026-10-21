@@ -1,9 +1,13 @@
 "use strict"
-
+/* 
+Displays the test Goobert in the Hub.
+The different body parts are displayed using separate image elements.
+*/
 class TestGoobert extends React.Component {
     constructor(props) {
         super(props);
     }
+
     render() {
         return (
             <div className="goobert-container" style={{scale: "3 3", left: "17em", top: "36em"}}>
@@ -65,6 +69,10 @@ class TestGoobert extends React.Component {
         this.setState({});
     }
 }
+/* 
+Main Hub component where the player can customize Gooberts
+and navigate to different rooms.
+*/
 class Hub extends React.Component {
     constructor(props) {
         super(props);
@@ -73,6 +81,8 @@ class Hub extends React.Component {
     render() {
         return (
             <main id="main" className="hub">
+
+                {/* Tree used for Goobert Customization */}
                 <div className="tree-container">
 
                     <img src="hub-images/gooberts_tree.png" 
@@ -80,7 +90,7 @@ class Hub extends React.Component {
                         className="pixelated-tree" 
                         id="goobert-tree" />
 
-                    {/* <!--CLickable Areas--> */}
+                    {/* Clickable areas that change the Goobert's appearance */}
                     <div id="tree-body-area" onClick={changeBodyType}></div>
                     <div id="tree-legs-area" onClick={changeLegType}></div>
                     <div id="tree-mouth-area" onClick={changeMouth}></div>
@@ -88,41 +98,89 @@ class Hub extends React.Component {
                     <div id="tree-body-color" onClick={changeBodyColor}></div>
                     <div id="tree-legs-color" onClick={changeLegColor}></div>
 
-
-                    {/* Goobert Container */}
+                    {/* Display the Goobert being customized */}
                     <TestGoobert />
                 </div>
 
+                {/* Bedroom door */}
                 <div className="sleep-door-container">
-                    <img src="index-images/DreamDoor.webp" alt="BEDROOM" id="sleep-door" onClick={() => {load("bedroom")}} />
+                    <img src="hub-images/DreamDoor.webp" alt="BEDROOM" id="sleep-door"
+                    
+                    // Play the hover sound when mouse enters the door
+                    onMouseEnter={() => doorHoverSound.play()}
+                    // Play the opening sound and enter
+                    onClick={() => {
+                        doorOpenSound.play();
+                        load("bedroom");
+                    }} />
                 </div>
 
+                {/* Game Room door */}
                 <div className="game-door-container">
-                    <img src="hub-images/game-door.png" alt="GAME" id="game-door" onClick={() => {load("gameRoom")}} />
+                    <img src="hub-images/game-door.png" alt="GAME" id="game-door"
+                    
+                    // Play the hover sound when mouse enters the door
+                    onMouseEnter={() => doorHoverSound.play()}
+                    // Play the opening sound and enter
+                    onClick={() => {
+                        doorOpenSound.play();
+                        load("gameRoom");
+                    }} />
                 </div>
 
+                {/* Shop door */}
                 <div className="shop-door-container">
-                    <img src="hub-images/shop-door.png" alt="SHOP" id="shop-door" onClick={() => {load("shop")}} />
+                    <img src="hub-images/shop-door.png" alt="SHOP" id="shop-door"
+                    
+                    // Play the hover sound when mouse enters the door
+                    onMouseEnter={() => doorHoverSound.play()}
+                    // Play the opening sound and enter
+                    onClick={() => {
+                        doorOpenSound.play();
+                        load("shop");
+                    }} />               
                 </div>
 
+                {/* Return to main menu door */}
                 <div className="leave-door-container">
-                    <img src="hub-images/leave-door.png" alt="LEAVE" id="leave-door" onClick={() => {window.location.href = "index.html";}}/>
+                    <img src="hub-images/leave-door.png" alt="LEAVE" id="leave-door"
+                    
+                    // Play the hover sound when mouse enters the door
+                    onMouseEnter={() => doorHoverSound.play()}
+                    // Play the opening sound and enter
+                    onClick={() => {
+                        doorOpenSound.play();
+                        
+                        // Give the sound time to play before leaving the page.
+                        setTimeout(() => {
+                            window.location.href = "index.html";
+                        }, 500);
+                    }} />   
                 </div>
 
+                {/* Dungeon door */}
                 <div className="dungeon-door-container">
-                    <img src="assets/doors/DungeonDoor.webp" alt="THE DUNGEON" id="dungeon-door" onClick={() => {load("dungeon")}} />
+                    <img src="assets/doors/DungeonDoor.webp" alt="THE DUNGEON" id="dungeon-door" 
+                    
+                    // Play the hover sound when mouse enters the door
+                    onMouseEnter={() => dungeonHoverSound.play()}
+                    // Play the opening sound and enter
+                    onClick={() => {
+                        dungeonClickSound.play();
+                        load("dungeon");
+                    }} />
                 </div>
 
-                <SettingsPanel 
-                    buttonClassName="game-room-settings-button"
-                    panelClassName="game-room-settings-panel"
-                />
             </main>
         );
     }
 }
 
 /* Basic asset index selectors. */
+/*
+Stores the currently selected appearance options for the test Goobert.
+Each number represents a different sprite or color option
+*/
 let hubAssets = {
     bodyType: 0,
     bodyColor: 0,
@@ -132,7 +190,7 @@ let hubAssets = {
     eyeExpression: 0,
     mouthType: 0,
     mouthExpression: 0
-}
+};
 
 /* Controls for the test goobert */
 const randomizeFeatures = () => {
@@ -148,92 +206,101 @@ const randomizeFeatures = () => {
     setLegsColor(hubAssets.legColor);
     setEyes(hubAssets.eyeType);
     setMouth(hubAssets.mouthType);
-    console.log("Features randomized.")
-}
+    console.log("Features randomized.");
+};
 
+// Switches to the next body type when the player clicks tree
+// Once the last body type is reached, return to the first.
 const changeBodyType = function() {
     hubAssets.bodyType = (hubAssets.bodyType == 6) ? 0 : hubAssets.bodyType + 1;
+    // Update the Goobert's body sprite
     setBodyType(hubAssets.bodyType);
-}
+};
 
 const changeBodyColor = function() {
     hubAssets.bodyColor = (hubAssets.bodyColor == 6) ? 0 : hubAssets.bodyColor + 1;
     setBodyColor(hubAssets.bodyColor);
-}
+};
 
 const changeLegType = function() {
     hubAssets.legType = (hubAssets.legType == 6) ? 0 : hubAssets.legType + 1;
     setLegsType(hubAssets.legType);
-}
+};
 
 const changeLegColor = function() {
     hubAssets.legColor = (hubAssets.legColor == 6) ? 0 : hubAssets.legColor + 1;
     setLegsColor(hubAssets.legColor);
-}
+};
 
 const changeEyes = function() {
     hubAssets.eyeType = (hubAssets.eyeType == 9) ? 0 : hubAssets.eyeType + 1;
     setEyes(hubAssets.eyeType);
-}
+};
 
 const changeEyesExpression = () => {
     hubAssets.eyeExpression = (hubAssets.eyeExpression == 6) ? 0 : hubAssets.eyeExpression + 1;
     setEyeExpression(hubAssets.eyeExpression);
-}
+};
 
 const changeMouth = function() {
     hubAssets.mouthType = (hubAssets.mouthType == 10) ? 0 : hubAssets.mouthType + 1;
     setMouth(hubAssets.mouthType);
-}
+};
 
 const changeMouthExpression = () => {
     hubAssets.mouthExpression = (hubAssets.mouthExpression == 5) ? 0 : hubAssets.mouthExpression + 1;
     setMouthExpression(hubAssets.mouthExpression);
-}
+};
 
-/* The following functions set the features of the test goobert. */
+/*
+Stores the currently selected appearance options for the test Goobert.
+Each number represents a different sprite or color option.
+*/
 const setBodyType = (assetIndex) => {
     const element = document.getElementById('goobert-body');
+    // Move the background image vertically to display the selected body.
     element.style.backgroundPositionY = (hubAssets.bodyType*(-64)) + 'px';
-    console.log("Body type set.")
-}
+    console.log("Body type set.");
+};
 
 const setBodyColor = (assetIndex) => {
     const element = document.getElementById('goobert-body');
     element.style.backgroundPositionX = (assetIndex*(-64)) + 'px';
-    console.log("Body color set.")
-}
+    console.log("Body color set.");
+};
 
 const setLegsType = (assetIndex) => {
     const element = document.getElementById('goobert-legs');
     element.style.backgroundPositionY = (assetIndex*(-64)) + 'px';
     console.log("Leg type set.");
-}
+};
 
 const setLegsColor = (assetIndex) => {
     const element = document.getElementById('goobert-legs');
     element.style.backgroundPositionX = (assetIndex*(-64)) + 'px';
     console.log("Leg color set.");
-}
+};
 
 const setEyes = (assetIndex) => {
     const element = document.getElementById('goobert-eyes');
     element.style.backgroundPositionY = (assetIndex*(-64)) + 'px';
     console.log("Eye type set.");
-}
+};
+
 const setEyeExpression = (assetIndex) => {
     const element = document.getElementById('goobert-eyes');
     element.style.backgroundPositionX = (assetIndex*(-64)) + 'px';
-    console.log("Eye expression set.")
-}
+    console.log("Eye expression set.");
+};
 
 const setMouth = (assetIndex) => {
     const element = document.getElementById('goobert-mouth');
     element.style.backgroundPositionY = (assetIndex*(-64)) + 'px';
     console.log("Mouth type set.");
-}
+};
+
 const setMouthExpression = (assetIndex) => {
     const element = document.getElementById('goobert-mouth');
     element.style.backgroundPositionX = (assetIndex*(-64)) + 'px';
-    console.log("Mouth expression set.")
-}
+    console.log("Mouth expression set.");
+};

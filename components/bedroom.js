@@ -14,8 +14,13 @@ class Bedroom extends React.Component {
     })), /*#__PURE__*/React.createElement("div", {
       className: "bedroom-controls"
     }, /*#__PURE__*/React.createElement("button", {
-      className: "bedroom-exit-button",
-      onClick: () => load("hub")
+      className: "bedroom-exit-button"
+      // Play the door click sound before returning to the Hub.
+      ,
+      onClick: () => {
+        doorOpenSound.play();
+        load("hub");
+      }
     }, /*#__PURE__*/React.createElement("img", {
       className: "bedroom-exit-icon",
       src: "assets/pixelarticons/arrow-left.svg",

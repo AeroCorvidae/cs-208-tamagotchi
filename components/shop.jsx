@@ -73,7 +73,11 @@ class Shop extends React.Component {
                 {/* <!-- MAIN HUB LINK --> */}
                 <div className="bg-warning text-white">
                     <a href="#" onClick={(e) => {
+                        // Prevent the link from refreshing the page.
                         e.preventDefault();
+                        // Play the door click sound.
+                        doorOpenSound.play();
+                        // Return to the Hub.
                         load("hub");
                     }}>
                         Click here to go to the main hub!
