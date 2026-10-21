@@ -2,13 +2,21 @@
 <html>
     <head>
         <title>UI TESTING</title>
+
+        <script src="react/js/react.development.js"></script>
+		<script src="react/js/react-dom.development.js"></script>
+
+
         <script src="Goobert.js" defer></script>
         <script src="components/ui-script.js" defer></script>
         <link rel="stylesheet" href="ui.css"/>
     </head>
-    <body>
+    <body onload="start()">
+        <div id="tester-goobert">
+            
+        </div>
         <div id="ui">
-            <div class="info-card">
+<!--            <div class="info-card">
                 <img id="card-frame-back" src="assets/goobert-parts/Transparent-BG.png" />
                 <div class="ui-goobert-container" id="ui-goobert">
                     <img id="ui-goobert-legs" src="assets/goobert-parts/Transparent-BG.png"/>
@@ -29,8 +37,9 @@
                     <img id="ui-icon-swagosity" src="assets/goobert-parts/Transparent-BG.png"/>
                     <img id="ui-icon-cleanliness" src="assets/goobert-parts/Transparent-BG.png"/>
                 </div>
+                <img id="ui-card-xbutton" src="assets/goobert-parts/Transparent-BG.png" onClick="console.log('exited ui card')" />
 
-            </div>
+            </div>-->
         </div>
     </body>
 </html>

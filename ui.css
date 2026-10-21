@@ -167,3 +167,14 @@ of each other.*/
     top: 140px;
     background-position-x: -55px;
 }
+
+#ui-card-xbutton {
+    position: absolute;
+    top: inherit;
+    left: inherit;
+    width: 15px;
+    height: 15px;
+    background-image: url(assets/ui/ui-x-button.png);
+    background-position-x: 0px;
+    image-rendering: crisp-edges;
+}
