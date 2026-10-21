@@ -91,7 +91,7 @@ class FlappyGoobert extends React.Component {
                         Cleanliness
                     </label>
                     <br />
-                    <input type="range" min={0} max={100} value={this.cleanliness} 
+                    <input type="range" min={0} max={100} value={this.state.cleanliness} 
                     id="goobert-percentage" key={"FlappyGoobertCleanliness"} />
                 </div>
                 }

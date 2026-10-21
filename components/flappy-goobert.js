@@ -98,7 +98,7 @@ class FlappyGoobert extends React.Component {
       type: "range",
       min: 0,
       max: 100,
-      value: this.cleanliness,
+      value: this.state.cleanliness,
       id: "goobert-percentage",
       key: "FlappyGoobertCleanliness"
     })), this.state.showPlayAgain && /*#__PURE__*/React.createElement("div", {

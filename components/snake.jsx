@@ -74,7 +74,7 @@ class SnakeGame extends React.Component {
                         Fullness
                     </label>
                     <br />
-                    <input type="range" min={0} max={100} value={this.fullness} 
+                    <input type="range" min={0} max={100} value={this.state.fullness} 
                     id="goobert-percentage" key={"SnakeFullness"} />
                 </div>
                 }
