@@ -1,143 +1,107 @@
 /* WHOLE PAGE */
 .shop {
-	margin: 0;
+    margin: 0;
     min-height: 100vh;
-	min-width: 100vw;
-	position: relative;
+    width: 100%;
+    position: relative;
 
-    background-image: url(shop-images/nature_background_image.jpg);
+    /* PIXEL ART SHOP BACKGROUND - CAN CHANGED IF NEEDED */
+    background-image: url("shop-images/shop_background_image.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    box-sizing: border-box;
+    padding: 20px;
 }
 
 /* GOOBIE SHOP TITLE */
 .shop-title {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 90px;
-    letter-spacing: 15px;
-    font-weight: bold;
-    color: rgb(132, 8, 132);
+    font-family: Impact, "Arial Black", sans-serif;
+    font-size: clamp(28px, 5.5vw, 90px);
+    letter-spacing: 4px;
+    font-weight: 900;
+
+    /* RETRO ARCADE COLORS */
+    color: #cc1184;
     text-shadow:
-        3px 3px 0 cornsilk,
-        6px 6px 0 rgb(104, 0, 104);
-    margin-top: 30px;
-}
+        3px 3px 0 #06aeae,
+        6px 6px 0 #490249;
 
-/* SHOP AWNING */
-.awning {
-    width: 100%;
-    height: 155px;
-    margin: 0 auto;
-    border: 4px solid rgb(132, 8, 132);
-	background: repeating-linear-gradient(
-		90deg,
-		#ff5c8a 0px,
-		#ff5c8a 60px,
-		#ffd34e 60px,
-		#ffd34e 120px
-	);
-}
-
-/* SHELVES */
-.left-shelf {
+    /* TITLE POSITION */
     position: absolute;
-
-    left: 8%;
-    top: 28%;
-
-    width: 300px;
-    height: 450px;
-
-    background-color: burlywood;
-    border: 5px solid brown;
-}
-.shelf-row {
-	height: 33.33%;
-
-	border-bottom: 5px solid black;
-}
-.right-shelf {
-    position: absolute;
-
-    right: 8%;
-    top: 28%;
-
-    width: 300px;
-    height: 450px;
-
-    background-color: burlywood;
-    border: 5px solid brown;
-}
-.shelf-row {
-	height: 33.33%;
-
-	border-bottom: 5px solid brown;
-}
-
-/* SHOP COUNTER */
-.counter {
-    width: 550px;
-    height: 200px;
-    position: absolute;
+    top: 110px;
     left: 50%;
-    right: 70%;
-    top: 85%;
-    transform: translate(-50%, -50%);
-    background-color: burlywood;
-    border: 5px solid brown;
-}
-
-/* SHOP WALL */
-.shop-wall {
-	position: absolute;
-	top: 155px;
-	width: 85%;
-	height: calc(100vh - 155px);
-
-	left: 50%;
     transform: translateX(-50%);
-	background-color: cornsilk;
-    border: 5px solid #8b4513;
+    margin-top: 0;
+    text-align: center;
+    width: max-content;
+    max-width: 90%;
 }
 
-/* SHOP WINDOW */
-.shop-window {
-	position: absolute;
+/* SHOP DESCRIPTION UNDER TITLE */
+.shop-description {
+    position: absolute;
+    top: 230px;
+    left: 50%;
+    transform: translateX(-50%);
 
-	top: 60px;
-	left: 50%;
-	transform: translateX(-50%);
+    text-align: center;
+    width: max-content;
+    max-width: 90%;
 
-	width: 400px;
-	height: 300px;
-	background-color: transparent;
-	border: 6px solid #8b4513;
-
-    background-image: url(shop-images/nature_background_image.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    font-family: "Courier New", monospace;
+    font-size: clamp(14px, 2vw, 22px);
+    font-weight: bold;
+    color: #11cc2d;
 }
 
-/* HORIZONTAL WINDOW LINE */
-.window-horizontal {
-	position: absolute;
-	top: 50%;
-	left: 0;
-	width: 100%;
-	height: 5px;
-	background-color: #8b4513;
+/* SHOP CATEGORY BUTTONS */
+.shop-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 50px;
 }
-/* VERTICAL WINDOW LINE */
-.window-vertical {
-	position: absolute;
-	top: 0;
-	left: 50%;
-	width: 5px;
-	height: 100%;
-	background-color: #8b4513;
+
+/* ALL SHOP BUTTONS */
+.shop-button {
+    width: 350px;
+    max-width: 90%;
+    padding: 20px;
+
+    /* RETRO FONT */
+    font-family: "Courier New", monospace;
+    font-size: 24px;
+    font-weight: bold;
+
+    /* CHUNKY ARCADE BUTTON STYLE */
+    border: 4px solid #302050;
+    border-radius: 4px;
+    box-shadow: 6px 6px 0 #302050;
+
+    cursor: pointer;
 }
+
+/* HATS BUTTON */
+.hats-button {
+    background-color: #ff5c8a;
+    color: white;
+}
+
+/* GLASSES BUTTON */
+.glasses-button {
+    background-color: #ffd43b;
+    color: black;
+}
+
+/* ACCESSORIES BUTTON */
+.accessories-button {
+    background-color: #60d4c0;
+    color: black;
+}
+
 /* ACCESSORIES POPUP */
 .accessories-popup {
 	display: none;
@@ -149,8 +113,8 @@
 	transform: translate(-50%, -50%);
 
 	/* POPUP SIZE */
-	width: 500px;
-	height: 400px;
+	width: 380px;
+	height: 300px;
 
 	/* POPUP DESIGN */
 	background-color: #fff1d0;
@@ -162,6 +126,7 @@
 	/* KEEPS POPUP IN FRONT */
 	z-index: 10;
 }
+
 /* CLOSE BUTTON */
 .close-button {
 	position: absolute;
@@ -191,4 +156,65 @@
 	font-size: 20px;
 	font-weight: bold;
 	text-decoration: none;
+}
+
+/* BACK TO HUB BUTTON POSITION */
+.shop-controls {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 5;
+}
+
+/* BACK TO HUB BUTTON STYLE */
+.shop-exit {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    background-color: #ffd43b;
+    color: black;
+
+    border: 3px solid black;
+    border-radius: 8px;
+
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* BACK TO HUB BUTTON HOVER */
+.shop-exit:hover {
+    background-color: #ffd53bd0;
+}
+
+/* MOBILE LAYOUT ADJUSTMENTS */
+@media (max-width: 640px) {
+
+    /* MOBILE SHOP TITLE */
+    .shop-title {
+        font-size: clamp(24px, 7vw, 36px);
+        letter-spacing: 2px;
+        top: 110px;
+        margin-top: 0;
+    }
+
+    /* MOBILE SHOP DESCRIPTION */
+    .shop-description {
+        top: 165px;
+        font-size: 16px;
+        letter-spacing: 0;
+    }
+
+    /* ADJUST SHOP BUTTON SPACING */
+    .shop-buttons {
+        margin-top: 15px;
+        gap: 15px;
+    }
+
+    /* MAKE BUTTONS FIT MOBILE SCREENS */
+    .shop-button {
+        width: 90%;
+        font-size: 20px;
+        padding: 15px;
+    }
 }
