@@ -16,61 +16,42 @@ class Shop extends React.Component {
       className: "row"
     }, /*#__PURE__*/React.createElement("div", {
       className: "col text-center"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "awning"
     }, /*#__PURE__*/React.createElement("h1", {
       className: "shop-title"
-    }, "THE GOOBIE SHOP")))), /*#__PURE__*/React.createElement("div", {
-      className: "shop-wall"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "shop-window"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "window-horizontal"
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "window-vertical"
-    }))), /*#__PURE__*/React.createElement("div", {
-      className: "left-shelf"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "shelf-row"
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "shelf-row"
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "shelf-row"
-    })), /*#__PURE__*/React.createElement("div", {
-      className: "right-shelf"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "shelf-row"
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "shelf-row"
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "shelf-row"
-    })), /*#__PURE__*/React.createElement("div", {
-      className: "counter"
+    }, "GOOBIE SHOP"), /*#__PURE__*/React.createElement("p", {
+      className: "shop-description"
+    }, "Customize your Goobie!"))), /*#__PURE__*/React.createElement("div", {
+      className: "shop-buttons"
     }, /*#__PURE__*/React.createElement("button", {
-      className: "buy-button",
-      onClick: openShop
-    }, "BUY!")), /*#__PURE__*/React.createElement("div", {
+      className: "shop-button hats-button",
+      onClick: () => openShop("HATS")
+    }, "HATS"), /*#__PURE__*/React.createElement("button", {
+      className: "shop-button glasses-button",
+      onClick: () => openShop("GLASSES")
+    }, "GLASSES"), /*#__PURE__*/React.createElement("button", {
+      className: "shop-button accessories-button",
+      onClick: () => openShop("ACCESSORIES")
+    }, "ACCESSORIES")), /*#__PURE__*/React.createElement("div", {
       className: "accessories-popup",
       id: "accessoriesPopup"
-    }, /*#__PURE__*/React.createElement("h2", null, "ACCESSORIES"), /*#__PURE__*/React.createElement("div", {
-      className: "accessories"
-    }, /*#__PURE__*/React.createElement("p", null, "Accessories will go here!")), /*#__PURE__*/React.createElement("button", {
+    }, /*#__PURE__*/React.createElement("h2", {
+      id: "shopPopupTitle"
+    }, "HATS"), /*#__PURE__*/React.createElement("p", null, "Shop items will go here!"), /*#__PURE__*/React.createElement("button", {
       className: "close-button",
       onClick: closeShop
     }, "CLOSE")), /*#__PURE__*/React.createElement("div", {
-      className: "bg-warning text-white"
-    }, /*#__PURE__*/React.createElement("a", {
-      href: "#",
-      onClick: e => {
-        e.preventDefault();
-        load("hub");
-      }
-    }, "Click here to go to the main hub!")));
+      className: "shop-controls"
+    }, /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      className: "btn shop-exit",
+      onClick: () => load("hub")
+    }, /*#__PURE__*/React.createElement("span", null, "Back to hub"))));
   }
 }
 
-// OPENS ACCESSORIES POPUP
-function openShop() {
+// OPENS SHOP POPUP
+function openShop(category) {
+  document.getElementById("shopPopupTitle").textContent = category;
   document.getElementById("accessoriesPopup").style.display = "block";
 }
 
