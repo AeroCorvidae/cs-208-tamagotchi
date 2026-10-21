@@ -185,3 +185,9 @@ html, body {
         bottom: 68px;
     }
 }
+.goobert-icon > * {
+  position: relative;
+}
+#goobertModal {
+    z-index: 2000;
+}

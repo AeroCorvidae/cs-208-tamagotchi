@@ -57,6 +57,7 @@ img {
 
     display: grid;
     grid-template-columns: 1fr;
+    z-index: 2;
 }
 
 /* Layers Goobert's body parts */

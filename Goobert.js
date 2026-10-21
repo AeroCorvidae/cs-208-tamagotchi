@@ -12,26 +12,22 @@ const MOUTH_SPRITE_SHEET = 'assets/goobert-parts/208-tamagotchi-mouths.png';
 class Goobert extends React.Component {
   constructor(props) {
     super(props);
-    console.log("A goobert is being constructed!");
     this.room = this.props.room || rooms.hub;
     this.name = this.props.name;
     this.xLocation = this.props.x; //Where the goobert is
     this.yLocation = this.props.y;
 
     /* Setting assets to random index based on how many types/colors there currently are*/
-    this.bodyType = this.props.bodyType;
-    this.bodyColor = this.props.bodyColor;
-    this.legType = this.props.legType;
-    this.legColor = this.props.legColor;
-    this.eyeType = this.props.eyeType;
-    this.mouthType = this.props.mouthType;
-    this.eyeExpression = this.props.eyeExpression;
-    this.mouthExpression = this.props.mouthExpression;
-
-    console.log("Name: " + this.name, "eyeType: " + this.eyeType, this.props.eyeType);
+    this.bodyType = this.props.bodyType || Math.floor(Math.random() * MAX_BODY_TYPES);
+    this.bodyColor = this.props.bodyColor || Math.floor(Math.random() * MAX_COLORS);
+    this.legType = this.props.legType || Math.floor(Math.random() * MAX_LEG_TYPES);
+    this.legColor = this.props.legColor || Math.floor(Math.random() * MAX_COLORS);
+    this.eyeType = this.props.eyeType || Math.floor(Math.random() * MAX_EYE_TYPES);
+    this.mouthType = this.props.mouthType || Math.floor(Math.random() * MAX_MOUTH_TYPES);
+    this.eyeExpression = this.props.eyeExpression || 0;
+    this.mouthExpression = this.props.mouthExpression || 0;
   }
   render() {
-    console.log(this.bodyType);
     return /*#__PURE__*/React.createElement("div", {
       className: "goobert-container",
       onClick: () => this.click(this.name),

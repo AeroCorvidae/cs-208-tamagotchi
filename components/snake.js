@@ -5,7 +5,8 @@ class SnakeGame extends React.Component {
     super(props);
     this.state = {
       scriptsReady: false,
-      selectedDifficulty: null
+      selectedDifficulty: null,
+      fullness: gameGoobert ? gameGoobert.fullness : 0
     };
   }
   loadScript(src, id, onReady) {
@@ -62,7 +63,19 @@ class SnakeGame extends React.Component {
       type: "button",
       className: "btn game-return-btn",
       onClick: () => load("gameRoom")
-    }, "Back to Game Room"), showDifficultyPicker && /*#__PURE__*/React.createElement("div", {
+    }, "Back to Game Room"), gameGoobert && /*#__PURE__*/React.createElement("div", {
+      className: "fullness-label"
+    }, /*#__PURE__*/React.createElement("label", {
+      htmlFor: "goobert-percentage",
+      key: "SnakeFullnessLabel"
+    }, "Fullness"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+      type: "range",
+      min: 0,
+      max: 100,
+      value: this.state.fullness,
+      id: "goobert-percentage",
+      key: "SnakeFullness"
+    })), showDifficultyPicker && /*#__PURE__*/React.createElement("div", {
       className: "snake-difficulty-menu"
     }, /*#__PURE__*/React.createElement("h2", {
       className: "snake-difficulty-title"

@@ -196,7 +196,11 @@ function eatApple() {
     snake.head = newSquare;
     updateImage(newSquare);
 
-    // david.eat();
+    if(gameGoobert) {
+        gameGoobert.fullness = Math.min(gameGoobert.fullness + 5, 100); // Wash goobert
+        // Update slider position
+        document.getElementById('goobert-percentage').value = gameGoobert.fullness;
+    }
 }
 function findValidSpaces() {
     // As much as I hate nested loops, this is the best way I could think to do this.

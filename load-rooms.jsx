@@ -15,6 +15,7 @@ class TopElement extends React.Component {
 	constructor(props) {
 		super(props);
 		this.gooberts = [];
+		gooberts = this.gooberts;
 		this.room = rooms.hub;
 	}
 	render() {
@@ -46,7 +47,7 @@ class TopElement extends React.Component {
 	}
 
 }
-let topElement;
+let topElement, gooberts;
 const root = ReactDOM.createRoot(
     document.getElementById("content")
 );
@@ -60,7 +61,7 @@ init();
 function load(component) {
     topElement.current.load(component);
 }
-function createGoobert(name, x, y, location = rooms.hub) {
+function createGoobert(name, location = rooms.hub, x = Math.random() * (window.innerWidth - 64 /* goobert width */), y = (Math.random() * (window.innerHeight - 550 - 64 /* goobert height */)) + 550) {
 	topElement.current.createGoobert(
 		{
 			name: name, 

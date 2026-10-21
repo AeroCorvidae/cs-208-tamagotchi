@@ -1,5 +1,8 @@
 "use strict";
 
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+let gameGoobert;
+
 /* React room component for game selection, room navigation, and settings access. */
 class GameRoom extends React.Component {
   /* Centralized navigation so room changes stay consistent. */
@@ -51,6 +54,7 @@ class GameRoom extends React.Component {
       gameKey: null
     }];
     return /*#__PURE__*/React.createElement("main", {
+      id: "main",
       className: "game-room"
     }, /*#__PURE__*/React.createElement("div", {
       className: "game-room-controls"
@@ -75,7 +79,19 @@ class GameRoom extends React.Component {
       key: machine.id,
       type: "button",
       className: "machine-button",
-      onClick: () => this.navigateToMachine(machine.gameKey),
+      "data-bs-toggle": "modal",
+      "data-bs-target": "#goobertModal",
+      onClick: () => {
+        // Move modal backdrop into main content
+        document.getElementById("main").appendChild(document.getElementsByClassName("modal-backdrop")[0]);
+        if (gooberts.length == 0) {
+          this.navigateToMachine(machine.gameKey);
+        } else {
+          this.setState({
+            gameKey: machine.gameKey
+          });
+        }
+      },
       onMouseEnter: () => this.handleMachineHover(),
       onFocus: () => this.handleMachineHover(),
       "aria-label": machine.label
@@ -89,9 +105,39 @@ class GameRoom extends React.Component {
     }, /*#__PURE__*/React.createElement("img", {
       src: machine.image,
       alt: machine.alt
-    })))), /*#__PURE__*/React.createElement(SettingsPanel, {
-      buttonClassName: "game-room-settings-button",
-      panelClassName: "game-room-settings-panel"
-    }));
+    })))), /*#__PURE__*/React.createElement("div", {
+      className: "modal",
+      id: "goobertModal"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "modal-dialog modal-dialog-centered"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "modal-content"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "modal-header"
+    }, /*#__PURE__*/React.createElement("h5", {
+      className: "modal-title"
+    }, "Select Goobert"), /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      className: "btn-close",
+      "data-bs-dismiss": "modal"
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "modal-body"
+    }, gooberts.filter((goobert, i) => {
+      return goobert.location == rooms.gameRoom;
+    }).map((goobert, i) => /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      className: "btn save-slot save-slot-1  menu-button w-100 mb-3",
+      onClick: () => {
+        gameGoobert = goobert;
+        this.navigateToRoom(this.state.gameKey);
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "goobert-icon"
+    }, /*#__PURE__*/React.createElement(Goobert, _extends({
+      key: `${goobert.id}GameOption`
+    }, goobert, {
+      x: 0,
+      y: 0
+    })), goobert.name))))))));
   }
 }

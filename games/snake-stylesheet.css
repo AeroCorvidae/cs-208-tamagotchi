@@ -67,7 +67,7 @@ body {
 }
 
 .snake-board {
-    background-color: #067c04;
+    background-color: #14a9ff;
     border: 3px solid #1f2b1f;
     box-sizing: content-box;
 }
@@ -103,4 +103,32 @@ body {
     display: flex;
     gap: 0.75rem;
     justify-content: center;
+}
+#goobert-percentage {
+    pointer-events: none;
+    top: 7em;
+    width: 14em;
+}
+.fullness-label {
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: center;
+    color: #fff;
+    border-radius: 1em;
+    border: 0.1em solid;
+    padding: 0.3em;
+    border-color: #fff;
+}
+.fullness-label > input {
+    accent-color: #14a9ff;
+}
+/* MOBILE */
+@media (max-width: 640px) {
+    .fullness-label {
+        position: relative;
+    }
+    #goobert-percentage {
+        width: 90%
+    }
 }

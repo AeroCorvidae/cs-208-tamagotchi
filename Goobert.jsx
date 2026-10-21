@@ -16,7 +16,6 @@ const MOUTH_SPRITE_SHEET = 'assets/goobert-parts/208-tamagotchi-mouths.png';
 class Goobert extends React.Component {
     constructor(props) {
         super(props);
-        console.log("A goobert is being constructed!");
         
         this.room = this.props.room || rooms.hub;
         this.name = this.props.name;
@@ -35,7 +34,6 @@ class Goobert extends React.Component {
     }
 
     render() {
-        console.log(this.bodyType);
         return (
             <div className="goobert-container" onClick={() => this.click(this.name)} style={{left: `${this.xLocation}px`, top: `${this.yLocation}px`}}>
                 <img src="assets/goobert-parts/208-tamagotchi-legs.png" style={{
