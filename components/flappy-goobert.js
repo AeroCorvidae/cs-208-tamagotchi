@@ -11,8 +11,7 @@ class FlappyGoobert extends React.Component {
 
     // Store values that React needs to track.
     this.state = {
-      showPlayAgain: false,
-      cleanliness: gameGoobert ? gameGoobert.cleanliness : 0
+      showPlayAgain: false
     };
   }
 
@@ -148,7 +147,7 @@ class FlappyGoobert extends React.Component {
       type: "range",
       min: 0,
       max: 100,
-      value: this.state.cleanliness,
+      value: gameGoobert.cleanliness,
       id: "goobert-percentage",
       key: "FlappyGoobertCleanliness",
       readOnly: true

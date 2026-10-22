@@ -122,7 +122,7 @@ class SnakeGame extends React.Component {
       type: "range",
       min: 0,
       max: 100,
-      value: this.fullness,
+      value: gameGoobert.fullness,
       id: "goobert-percentage",
       key: "SnakeFullness"
     })), showDifficultyPicker && /*#__PURE__*/React.createElement("div", {

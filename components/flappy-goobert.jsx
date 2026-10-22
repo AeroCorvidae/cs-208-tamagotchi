@@ -13,8 +13,7 @@ class FlappyGoobert extends React.Component {
 
         // Store values that React needs to track.
         this.state = {
-            showPlayAgain: false,
-            cleanliness: gameGoobert ? gameGoobert.cleanliness : 0
+            showPlayAgain: false
         };
     }
 
@@ -146,10 +145,15 @@ class FlappyGoobert extends React.Component {
                         ></i>
                     </div>
                 </div>
-
-                {/* Displays the player's current score. */}
-                <div id="flappy-score" className="flappy-score">
-                    Score: 0
+                <div id="flappy-score" className="flappy-score">Score: 0</div>
+                {gameGoobert && 
+                <div className="cleanliness-label">
+                    <label htmlFor="goobert-percentage" key={"FlappyGoobertCleanlinessLabel"}>
+                        Cleanliness
+                    </label>
+                    <br />
+                    <input type="range" min={0} max={100} value={gameGoobert.cleanliness} 
+                    id="goobert-percentage" key={"FlappyGoobertCleanliness"} />
                 </div>
 
                 {/* Display Cleanliness when a Goobert is selected. */}

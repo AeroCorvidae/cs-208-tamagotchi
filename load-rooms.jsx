@@ -17,6 +17,9 @@ class TopElement extends React.Component {
 		this.gooberts = [];
 		gooberts = this.gooberts;
 		this.room = rooms.hub;
+		this.state = {
+			uiGoobert: undefined
+		}
 	}
 
 	render() {
@@ -26,20 +29,27 @@ class TopElement extends React.Component {
 				{/* Display the currently selected room (Hub, Bedroom, etc...) */}
 				{this.room}
 
-				{/* Find and display the Gooberts that belong in the current room */}
-				{this.gooberts
-					// Only keep Gooberts whose location matches the current room
-					.filter((goobert) => {
-						return goobert.location == this.room;
+				{
+					this.gooberts.filter((goobert, i) => {
+						return goobert.location == this.room
+					}).map((goobert, i) => {
+						return (
+							<Goobert
+								key={goobert.id}
+								{...goobert}
+								onGoobertSelected={
+									() => {
+										console.log("Ui goobert selected!");
+										this.setState({uiGoobert: goobert});
+									}
+								} 
+							/>
+						);
 					})
+				}
 
-					// Create a Goobert component for each matching Goobert
-					.map((goobert) => (
-						<Goobert 
-						key={goobert.id} // Unique ID helpts React track each Goobert
-							{...goobert} // Pass the Goobert's properties to the component
-						/>
-					))
+				{
+					this.state.uiGoobert && <UIGoobertCard goobert={this.state.uiGoobert} />
 				}
 			</>
 		);
@@ -65,7 +75,11 @@ const root = ReactDOM.createRoot(
 );
 function init() {
     topElement = React.createRef();
-    root.render(<TopElement ref={topElement} />);
+    root.render(
+		<>
+			<TopElement ref={topElement} />
+		</>
+	);
 }
 
 init();

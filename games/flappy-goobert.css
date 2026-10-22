@@ -135,3 +135,13 @@ body {
 .cleanliness-label > input {
     accent-color: #14a9ff;
 }
+
+@media (max-width: 640px) {
+    .cleanliness-label {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #goobert-percentage {
+        width: 1em;
+    }
+}

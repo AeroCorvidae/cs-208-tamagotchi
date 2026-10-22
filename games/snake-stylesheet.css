@@ -112,7 +112,7 @@ body {
 .fullness-label {
     position: absolute;
     right: 0;
-    top: 4em;
+    top: 0;
     text-align: center;
     color: #fff;
     border-radius: 1em;
@@ -122,4 +122,13 @@ body {
 }
 .fullness-label > input {
     accent-color: #14a9ff;
+}
+/* MOBILE */
+@media (max-width: 640px) {
+    .fullness-label {
+        position: relative;
+    }
+    #goobert-percentage {
+        width: 90%
+    }
 }

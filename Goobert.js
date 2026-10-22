@@ -104,5 +104,6 @@ class Goobert extends React.Component {
   /* Will trigger only for a particular instance of a goobert when the sprite is clicked */
   click(name) {
     console.log(`${name} says, "I've been poked!"`);
+    this.props.onGoobertSelected();
   }
 }
