@@ -21,11 +21,12 @@ class TopElement extends React.Component {
 			uiGoobert: undefined
 		}
 	}
-	render() {
-		return(
-			<>
-				<SharedAudioManager />
 
+	render() {
+
+		return (
+			<>
+				{/* Display the currently selected room (Hub, Bedroom, etc...) */}
 				{this.room}
 
 				{
@@ -53,16 +54,19 @@ class TopElement extends React.Component {
 			</>
 		);
 	}
+
 	load(component) {
+		// Display the selected room.
 		this.room = rooms[component];
-		this.setState({room: rooms[component]});
+		this.setState({ room: rooms[component] });
 	}
-	createGoobert(goobert) {
-		this.gooberts.push(
-			{...goobert}
-		);
-		this.setState({});
-	}
+
+		createGoobert(goobert) {
+			this.gooberts.push(
+				{...goobert}
+			);
+			this.setState({});
+		}
 
 }
 let topElement, gooberts;

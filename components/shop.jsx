@@ -78,14 +78,17 @@ class Shop extends React.Component {
                 </div>
 
                 {/* <!-- MAIN HUB LINK --> */}
-                <div className="shop-controls">
-                    <button
-                        type="button"
-                        className="btn shop-exit"
-                        onClick={() => load("hub")}
-                >
-                        <span>Back to hub</span>
-                    </button>
+                <div className="bg-warning text-white">
+                    <a href="#" onClick={(e) => {
+                        // Prevent the link from refreshing the page.
+                        e.preventDefault();
+                        // Play the door click sound.
+                        doorOpenSound.play();
+                        // Return to the Hub.
+                        load("hub");
+                    }}>
+                        Click here to go to the main hub!
+                    </a>
                 </div>
             </main>
         );

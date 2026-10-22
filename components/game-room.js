@@ -1,58 +1,17 @@
 "use strict";
 
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-let gameGoobert;
+/*
+ * Game Room
+ * Displays five arcade machines.
+ *
+ * Snake and Flappy Goobert are playable.
+ * The other three machines only play sound effects.
+ */
 
-/* React room component for game selection, room navigation, and settings access. */
+// The first Goobie receives rewards from arcade games.
+let gameGoobert = null;
 class GameRoom extends React.Component {
-  /* Centralized navigation so room changes stay consistent. */
-  navigateToRoom(target) {
-    if (window.GoobiesAudio) {
-      window.GoobiesAudio.playClick();
-    }
-    load(target);
-  }
-  navigateToMachine(target) {
-    if (window.GoobiesAudio) {
-      window.GoobiesAudio.playArcadeSelect();
-    }
-    load(target);
-  }
-  handleMachineHover() {
-    if (window.GoobiesAudio) {
-      window.GoobiesAudio.playArcadeHover();
-    }
-  }
   render() {
-    /* Game machine config keeps enabled/disabled machine behavior simple to extend. */
-    const machines = [{
-      id: "snake",
-      image: "game-room-images/snake-machine.png",
-      alt: "Snake game machine",
-      label: "Play Snake",
-      gameKey: "snakeGame"
-    }, {
-      id: "flappy",
-      image: "game-room-images/flappy-goobert-machine.png",
-      alt: "Flappy Goobert machine",
-      label: "Play Flappy Goobert",
-      gameKey: "flappyGoobert"
-    }, {
-      id: "frogoobert",
-      image: "game-room-images/frogoobert-machine.png",
-      alt: "Frogoobert machine coming soon",
-      gameKey: null
-    }, {
-      id: "pipelined",
-      image: "game-room-images/pipelined-machine.png",
-      alt: "Pipelined machine coming soon",
-      gameKey: null
-    }, {
-      id: "feast-fest",
-      image: "game-room-images/feast-fest-machine.png",
-      alt: "Feast Fest machine coming soon",
-      gameKey: null
-    }];
     return /*#__PURE__*/React.createElement("main", {
       id: "main",
       className: "game-room"
@@ -61,7 +20,10 @@ class GameRoom extends React.Component {
     }, /*#__PURE__*/React.createElement("button", {
       type: "button",
       className: "btn game-room-exit",
-      onClick: () => this.navigateToRoom("hub")
+      onClick: () => {
+        doorOpenSound.play();
+        load("hub");
+      }
     }, /*#__PURE__*/React.createElement("img", {
       className: "game-room-exit-icon",
       src: "assets/pixelarticons/arrow-left.svg",
@@ -75,69 +37,62 @@ class GameRoom extends React.Component {
       className: "game-room-logo"
     })), /*#__PURE__*/React.createElement("div", {
       className: "game-room-machines"
-    }, machines.map(machine => machine.gameKey ? /*#__PURE__*/React.createElement("button", {
-      key: machine.id,
+    }, /*#__PURE__*/React.createElement("button", {
       type: "button",
       className: "machine-button",
-      "data-bs-toggle": "modal",
-      "data-bs-target": "#goobertModal",
+      onMouseEnter: () => arcadeHoverSound.play(),
       onClick: () => {
-        // Move modal backdrop into main content
-        document.getElementById("main").appendChild(document.getElementsByClassName("modal-backdrop")[0]);
-        if (gooberts.length == 0) {
-          this.navigateToMachine(machine.gameKey);
-        } else {
-          this.setState({
-            gameKey: machine.gameKey
-          });
-        }
-      },
-      onMouseEnter: () => this.handleMachineHover(),
-      onFocus: () => this.handleMachineHover(),
-      "aria-label": machine.label
-    }, /*#__PURE__*/React.createElement("img", {
-      src: machine.image,
-      alt: machine.alt
-    })) : /*#__PURE__*/React.createElement("span", {
-      key: machine.id,
-      className: "machine-button machine-disabled",
-      "aria-hidden": "true"
-    }, /*#__PURE__*/React.createElement("img", {
-      src: machine.image,
-      alt: machine.alt
-    })))), /*#__PURE__*/React.createElement("div", {
-      className: "modal",
-      id: "goobertModal"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "modal-dialog modal-dialog-centered"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "modal-content"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "modal-header"
-    }, /*#__PURE__*/React.createElement("h5", {
-      className: "modal-title"
-    }, "Select Goobert"), /*#__PURE__*/React.createElement("button", {
-      type: "button",
-      className: "btn-close",
-      "data-bs-dismiss": "modal"
-    })), /*#__PURE__*/React.createElement("div", {
-      className: "modal-body"
-    }, gooberts.filter((goobert, i) => {
-      return goobert.location == rooms.gameRoom;
-    }).map((goobert, i) => /*#__PURE__*/React.createElement("button", {
-      type: "button",
-      className: "btn save-slot save-slot-1  menu-button w-100 mb-3",
-      onClick: () => {
-        gameGoobert = goobert;
-        this.navigateToRoom(this.state.gameKey);
+        arcadeClickSound.play();
+
+        // Select the first Goobie for rewards.
+        gameGoobert = gooberts[0] || null;
+
+        // Open Snake.
+        load("snakeGame");
       }
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "goobert-icon"
-    }, /*#__PURE__*/React.createElement(Goobert, _extends({
-      key: `${goobert.id}GameOption`
-    }, goobert, {
-      x: 0,
-      y: 0
-    })), goobert.name))))))));
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "game-room-images/snake-machine.png",
+      alt: "Play Snake"
+    })), /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      className: "machine-button",
+      onMouseEnter: () => arcadeHoverSound.play(),
+      onClick: () => {
+        arcadeClickSound.play();
+
+        // Select the first Goobie for rewards.
+        gameGoobert = gooberts[0] || null;
+
+        // Open Flappy Goobert.
+        load("flappyGoobert");
+      }
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "game-room-images/flappy-goobert-machine.png",
+      alt: "Play Flappy Goobert"
+    })), /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      className: "machine-button",
+      onMouseEnter: () => arcadeHoverSound.play(),
+      onClick: () => arcadeClickSound.play()
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "game-room-images/frogoobert-machine.png",
+      alt: "Frogoobert - Coming Soon"
+    })), /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      className: "machine-button",
+      onMouseEnter: () => arcadeHoverSound.play(),
+      onClick: () => arcadeClickSound.play()
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "game-room-images/pipelined-machine.png",
+      alt: "Pipelined - Coming Soon"
+    })), /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      className: "machine-button",
+      onMouseEnter: () => arcadeHoverSound.play(),
+      onClick: () => arcadeClickSound.play()
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "game-room-images/feast-fest-machine.png",
+      alt: "Feast Fest - Coming Soon"
+    }))));
   }
 }

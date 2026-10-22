@@ -21,7 +21,9 @@ class TopElement extends React.Component {
     };
   }
   render() {
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(SharedAudioManager, null), this.room, this.gooberts.filter((goobert, i) => {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, this.room, this.gooberts
+    // Only keep Gooberts whose location matches the current room
+    .filter(goobert => {
       return goobert.location == this.room;
     }).map((goobert, i) => {
       return /*#__PURE__*/React.createElement(Goobert, _extends({
@@ -39,6 +41,7 @@ class TopElement extends React.Component {
     }));
   }
   load(component) {
+    // Display the selected room.
     this.room = rooms[component];
     this.setState({
       room: rooms[component]

@@ -40,12 +40,18 @@ class Shop extends React.Component {
       className: "close-button",
       onClick: closeShop
     }, "CLOSE")), /*#__PURE__*/React.createElement("div", {
-      className: "shop-controls"
-    }, /*#__PURE__*/React.createElement("button", {
-      type: "button",
-      className: "btn shop-exit",
-      onClick: () => load("hub")
-    }, /*#__PURE__*/React.createElement("span", null, "Back to hub"))));
+      className: "bg-warning text-white"
+    }, /*#__PURE__*/React.createElement("a", {
+      href: "#",
+      onClick: e => {
+        // Prevent the link from refreshing the page.
+        e.preventDefault();
+        // Play the door click sound.
+        doorOpenSound.play();
+        // Return to the Hub.
+        load("hub");
+      }
+    }, "Click here to go to the main hub!")));
   }
 }
 

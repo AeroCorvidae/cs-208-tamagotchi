@@ -1,5 +1,9 @@
 "use strict";
 
+/* 
+Displays the test Goobert in the Hub.
+The different body parts are displayed using separate image elements.
+*/
 class TestGoobert extends React.Component {
   constructor(props) {
     super(props);
@@ -70,6 +74,10 @@ class TestGoobert extends React.Component {
     this.setState({});
   }
 }
+/* 
+Main Hub component where the player can customize Gooberts
+and navigate to different rooms.
+*/
 class Hub extends React.Component {
   constructor(props) {
     super(props);
@@ -106,10 +114,17 @@ class Hub extends React.Component {
     }), /*#__PURE__*/React.createElement(TestGoobert, null)), /*#__PURE__*/React.createElement("div", {
       className: "sleep-door-container"
     }, /*#__PURE__*/React.createElement("img", {
-      src: "index-images/DreamDoor.webp",
+      src: "hub-images/DreamDoor.webp",
       alt: "BEDROOM",
-      id: "sleep-door",
+      id: "sleep-door"
+
+      // Play the hover sound when mouse enters the door
+      ,
+      onMouseEnter: () => doorHoverSound.play()
+      // Play the opening sound and enter
+      ,
       onClick: () => {
+        doorOpenSound.play();
         load("bedroom");
       }
     })), /*#__PURE__*/React.createElement("div", {
@@ -117,8 +132,15 @@ class Hub extends React.Component {
     }, /*#__PURE__*/React.createElement("img", {
       src: "hub-images/game-door.png",
       alt: "GAME",
-      id: "game-door",
+      id: "game-door"
+
+      // Play the hover sound when mouse enters the door
+      ,
+      onMouseEnter: () => doorHoverSound.play()
+      // Play the opening sound and enter
+      ,
       onClick: () => {
+        doorOpenSound.play();
         load("gameRoom");
       }
     })), /*#__PURE__*/React.createElement("div", {
@@ -126,8 +148,15 @@ class Hub extends React.Component {
     }, /*#__PURE__*/React.createElement("img", {
       src: "hub-images/shop-door.png",
       alt: "SHOP",
-      id: "shop-door",
+      id: "shop-door"
+
+      // Play the hover sound when mouse enters the door
+      ,
+      onMouseEnter: () => doorHoverSound.play()
+      // Play the opening sound and enter
+      ,
       onClick: () => {
+        doorOpenSound.play();
         load("shop");
       }
     })), /*#__PURE__*/React.createElement("div", {
@@ -135,27 +164,46 @@ class Hub extends React.Component {
     }, /*#__PURE__*/React.createElement("img", {
       src: "hub-images/leave-door.png",
       alt: "LEAVE",
-      id: "leave-door",
+      id: "leave-door"
+
+      // Play the hover sound when mouse enters the door
+      ,
+      onMouseEnter: () => doorHoverSound.play()
+      // Play the opening sound and enter
+      ,
       onClick: () => {
-        window.location.href = "index.html";
+        doorOpenSound.play();
+
+        // Give the sound time to play before leaving the page.
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 500);
       }
     })), /*#__PURE__*/React.createElement("div", {
       className: "dungeon-door-container"
     }, /*#__PURE__*/React.createElement("img", {
       src: "assets/doors/DungeonDoor.webp",
       alt: "THE DUNGEON",
-      id: "dungeon-door",
+      id: "dungeon-door"
+
+      // Play the hover sound when mouse enters the door
+      ,
+      onMouseEnter: () => dungeonHoverSound.play()
+      // Play the opening sound and enter
+      ,
       onClick: () => {
+        dungeonClickSound.play();
         load("dungeon");
       }
-    })), /*#__PURE__*/React.createElement(SettingsPanel, {
-      buttonClassName: "game-room-settings-button",
-      panelClassName: "game-room-settings-panel"
-    }));
+    })));
   }
 }
 
 /* Basic asset index selectors. */
+/*
+Stores the currently selected appearance options for the test Goobert.
+Each number represents a different sprite or color option
+*/
 let hubAssets = {
   bodyType: 0,
   bodyColor: 0,
@@ -183,8 +231,12 @@ const randomizeFeatures = () => {
   setMouth(hubAssets.mouthType);
   console.log("Features randomized.");
 };
+
+// Switches to the next body type when the player clicks tree
+// Once the last body type is reached, return to the first.
 const changeBodyType = function () {
   hubAssets.bodyType = hubAssets.bodyType == 6 ? 0 : hubAssets.bodyType + 1;
+  // Update the Goobert's body sprite
   setBodyType(hubAssets.bodyType);
 };
 const changeBodyColor = function () {
@@ -216,9 +268,13 @@ const changeMouthExpression = () => {
   setMouthExpression(hubAssets.mouthExpression);
 };
 
-/* The following functions set the features of the test goobert. */
+/*
+Stores the currently selected appearance options for the test Goobert.
+Each number represents a different sprite or color option.
+*/
 const setBodyType = assetIndex => {
   const element = document.getElementById('goobert-body');
+  // Move the background image vertically to display the selected body.
   element.style.backgroundPositionY = hubAssets.bodyType * -64 + 'px';
   console.log("Body type set.");
 };

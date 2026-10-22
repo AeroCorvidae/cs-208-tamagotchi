@@ -20,7 +20,12 @@ class Bedroom extends React.Component {
                     <div className="bedroom-controls">
                         <button 
                             className="bedroom-exit-button" 
-                            onClick={() => load("hub")}>
+                            // Play the door click sound before returning to the Hub.
+                            onClick={() => {
+                                doorOpenSound.play();
+                                load("hub");
+                            }}>
+
                             <img 
                                 className="bedroom-exit-icon" 
                                 src="assets/pixelarticons/arrow-left.svg"
