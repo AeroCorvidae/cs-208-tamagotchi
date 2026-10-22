@@ -21,9 +21,7 @@ class TopElement extends React.Component {
     };
   }
   render() {
-    return /*#__PURE__*/React.createElement(React.Fragment, null, this.room, this.gooberts
-    // Only keep Gooberts whose location matches the current room
-    .filter(goobert => {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, this.room, this.gooberts.filter((goobert, i) => {
       return goobert.location == this.room;
     }).map((goobert, i) => {
       return /*#__PURE__*/React.createElement(Goobert, _extends({

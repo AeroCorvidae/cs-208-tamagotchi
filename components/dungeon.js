@@ -12,8 +12,13 @@ class Dungeon extends React.Component {
       id: "escape",
       className: "img-fluid",
       src: "assets/doors/Ladder.webp",
-      alt: "",
-      onClick: () => load("hub")
+      alt: "Return to Hub"
+      // Play the Dungeon click sound before returning.
+      ,
+      onClick: () => {
+        ladderClickSound.play();
+        load("hub");
+      }
     }))), /*#__PURE__*/React.createElement("div", {
       className: "dungeonFloor"
     }, /*#__PURE__*/React.createElement("div", {

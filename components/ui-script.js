@@ -59,4 +59,3 @@ class UIGoobertCard extends React.Component {
     }));
   }
 }
-const uiRoot = ReactDOM.createRoot(document.getElementById("ui"));

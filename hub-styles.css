@@ -61,7 +61,10 @@ img {
 
 /* Layers Goobert's body parts */
 .goobert-container img {
+    position: relative;
     image-rendering: crisp-edges;
+    grid-column: 1;
+    grid-row: 1;
 }
 
 /* ====BACKGROUND POSITIONING ====*/

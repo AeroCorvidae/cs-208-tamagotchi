@@ -138,7 +138,7 @@ class FlappyGoobert extends React.Component {
     }))), /*#__PURE__*/React.createElement("div", {
       id: "flappy-score",
       className: "flappy-score"
-    }, "Score: 0"), gameGoobert && /*#__PURE__*/React.createElement("div", {
+    }, "Score: 0"), "//  Display Cleanliness when a Goobert is selected.", gameGoobert && /*#__PURE__*/React.createElement("div", {
       className: "cleanliness-label"
     }, /*#__PURE__*/React.createElement("label", {
       htmlFor: "goobert-percentage",

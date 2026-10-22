@@ -146,17 +146,8 @@ class FlappyGoobert extends React.Component {
                     </div>
                 </div>
                 <div id="flappy-score" className="flappy-score">Score: 0</div>
-                {gameGoobert && 
-                <div className="cleanliness-label">
-                    <label htmlFor="goobert-percentage" key={"FlappyGoobertCleanlinessLabel"}>
-                        Cleanliness
-                    </label>
-                    <br />
-                    <input type="range" min={0} max={100} value={gameGoobert.cleanliness} 
-                    id="goobert-percentage" key={"FlappyGoobertCleanliness"} />
-                </div>
 
-                {/* Display Cleanliness when a Goobert is selected. */}
+                //  Display Cleanliness when a Goobert is selected. 
                 {gameGoobert &&
                     <div className="cleanliness-label">
                         <label
@@ -170,7 +161,7 @@ class FlappyGoobert extends React.Component {
                             type="range"
                             min={0}
                             max={100}
-                            value={this.state.cleanliness}
+                            value={gameGoobert.cleanliness}
                             id="goobert-percentage"
                             key={"FlappyGoobertCleanliness"}
                             readOnly
