@@ -18,7 +18,8 @@
         "bedroom": "npx babel --presets @babel/preset-react components/bedroom.jsx --out-file components/bedroom.js",
         "dungeon": "npx babel --presets @babel/preset-react components/dungeon.jsx --out-file components/dungeon.js",
         "snake": "npx babel --presets @babel/preset-react components/snake.jsx --out-file components/snake.js",
-        "flappy-goobert": "npx babel --presets @babel/preset-react components/flappy-goobert.jsx --out-file components/flappy-goobert.js"
+        "flappy-goobert": "npx babel --presets @babel/preset-react components/flappy-goobert.jsx --out-file components/flappy-goobert.js",
+        "ui": "npx babel --presets @babel/preset-react components/ui-script.jsx --out-file components/ui-script.js"
     },
     "devDependencies": {
         "@babel/cli": "^7.28.3",
