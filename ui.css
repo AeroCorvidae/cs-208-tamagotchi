@@ -26,6 +26,11 @@
     height: 168px;
     image-rendering: crisp-edges;
 }
+.info-card > .goobert-container {
+    left: 0.6em;
+    top: 0.6em;
+    scale: 0.95;
+}
 
 #card-frame-front {
     background-position-x: -84px; /* do not change this */
@@ -177,4 +182,8 @@ of each other.*/
     background-image: url(assets/ui/ui-x-button.png);
     background-position-x: 0px;
     image-rendering: crisp-edges;
+}
+
+.icon { 
+    position: relative;
 }

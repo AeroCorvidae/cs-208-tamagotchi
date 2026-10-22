@@ -10,18 +10,19 @@
 class UIGoobertCard extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props.goobert);
     }
 
     render() {
         return (
             <div className="info-card">
                 <img id="card-frame-back" src="assets/goobert-parts/Transparent-BG.png" />
-                <div className="ui-goobert-container">
-                    <img id="ui-goobert-legs" src="assets/goobert-parts/Transparent-BG.png"/>
-                    <img id="ui-goobert-body" src="assets/goobert-parts/Transparent-BG.png"/>
-                    <img id="ui-goobert-mouth" src="assets/goobert-parts/Transparent-BG.png"/>
-                    <img id="ui-goobert-eyes" src="assets/goobert-parts/Transparent-BG.png"/>
-                </div>
+                <Goobert 
+                    {...this.props.goobert}
+                    x={"0.6em"} 
+                    y={"0.6em"} 
+                    className="goobert-container icon"
+                />
                 <div className="ui-statbar-container">
                     <img id="ui-statbar-fullness" src="assets/goobert-parts/Transparent-BG.png"/>
                     <img id="ui-statbar-awakeness" src="assets/goobert-parts/Transparent-BG.png"/>
@@ -47,8 +48,3 @@ class UIGoobertCard extends React.Component {
 }
 
 const uiRoot = ReactDOM.createRoot(document.getElementById("ui"));
-
-
-function start() {
-    uiRoot.render(<UIGoobertCard/>);
-}

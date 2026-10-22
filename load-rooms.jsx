@@ -17,6 +17,9 @@ class TopElement extends React.Component {
 		this.gooberts = [];
 		gooberts = this.gooberts;
 		this.room = rooms.hub;
+		this.state = {
+			uiGoobert: undefined
+		}
 	}
 	render() {
 		return(
@@ -28,9 +31,24 @@ class TopElement extends React.Component {
 				{
 					this.gooberts.filter((goobert, i) => {
 						return goobert.location == this.room
-					}).map((goobert, i) => (
-						<Goobert key={goobert.id} {...goobert} />
-					))
+					}).map((goobert, i) => {
+						return (
+							<Goobert
+								key={goobert.id}
+								{...goobert}
+								onGoobertSelected={
+									() => {
+										console.log("Ui goobert selected!");
+										this.setState({uiGoobert: goobert});
+									}
+								} 
+							/>
+						);
+					})
+				}
+
+				{
+					this.state.uiGoobert && <UIGoobertCard goobert={this.state.uiGoobert} />
 				}
 			</>
 		);
@@ -53,7 +71,11 @@ const root = ReactDOM.createRoot(
 );
 function init() {
     topElement = React.createRef();
-    root.render(<TopElement ref={topElement} />);
+    root.render(
+		<>
+			<TopElement ref={topElement} />
+		</>
+	);
 }
 
 init();

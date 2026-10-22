@@ -16,13 +16,27 @@ class TopElement extends React.Component {
     this.gooberts = [];
     gooberts = this.gooberts;
     this.room = rooms.hub;
+    this.state = {
+      uiGoobert: undefined
+    };
   }
   render() {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(SharedAudioManager, null), this.room, this.gooberts.filter((goobert, i) => {
       return goobert.location == this.room;
-    }).map((goobert, i) => /*#__PURE__*/React.createElement(Goobert, _extends({
-      key: goobert.id
-    }, goobert))));
+    }).map((goobert, i) => {
+      return /*#__PURE__*/React.createElement(Goobert, _extends({
+        key: goobert.id
+      }, goobert, {
+        onGoobertSelected: () => {
+          console.log("Ui goobert selected!");
+          this.setState({
+            uiGoobert: goobert
+          });
+        }
+      }));
+    }), this.state.uiGoobert && /*#__PURE__*/React.createElement(UIGoobertCard, {
+      goobert: this.state.uiGoobert
+    }));
   }
   load(component) {
     this.room = rooms[component];
@@ -41,9 +55,9 @@ let topElement, gooberts;
 const root = ReactDOM.createRoot(document.getElementById("content"));
 function init() {
   topElement = React.createRef();
-  root.render(/*#__PURE__*/React.createElement(TopElement, {
+  root.render(/*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(TopElement, {
     ref: topElement
-  }));
+  })));
 }
 init();
 function load(component) {
