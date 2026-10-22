@@ -47,7 +47,6 @@ class UIGoobertCard extends React.Component {
 }
 
 const uiRoot = ReactDOM.createRoot(document.getElementById("ui"));
-const root = ReactDOM.createRoot(document.getElementById("tester-goobert"))
 
 
 function start() {
