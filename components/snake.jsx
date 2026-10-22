@@ -5,8 +5,7 @@ class SnakeGame extends React.Component {
         super(props);
         this.state = {
             scriptsReady: false,
-            selectedDifficulty: null,
-            fullness: gameGoobert ? gameGoobert.fullness : 0
+            selectedDifficulty: null
         };
     }
 
@@ -74,7 +73,7 @@ class SnakeGame extends React.Component {
                         Fullness
                     </label>
                     <br />
-                    <input type="range" min={0} max={100} value={this.state.fullness} 
+                    <input type="range" min={0} max={100} value={gameGoobert.fullness} 
                     id="goobert-percentage" key={"SnakeFullness"} />
                 </div>
                 }

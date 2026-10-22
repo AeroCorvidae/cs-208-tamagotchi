@@ -4,8 +4,7 @@ class FlappyGoobert extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showPlayAgain: false,
-      cleanliness: gameGoobert ? gameGoobert.cleanliness : 0
+      showPlayAgain: false
     };
   }
   loadScript(src, id, onReady) {
@@ -98,7 +97,7 @@ class FlappyGoobert extends React.Component {
       type: "range",
       min: 0,
       max: 100,
-      value: this.state.cleanliness,
+      value: gameGoobert.cleanliness,
       id: "goobert-percentage",
       key: "FlappyGoobertCleanliness"
     })), this.state.showPlayAgain && /*#__PURE__*/React.createElement("div", {
