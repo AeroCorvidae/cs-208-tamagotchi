@@ -147,7 +147,7 @@ class FlappyGoobert extends React.Component {
                 </div>
                 <div id="flappy-score" className="flappy-score">Score: 0</div>
 
-                //  Display Cleanliness when a Goobert is selected. 
+                {/* Display Cleanliness when a Goobert is selected.  */}
                 {gameGoobert &&
                     <div className="cleanliness-label">
                         <label

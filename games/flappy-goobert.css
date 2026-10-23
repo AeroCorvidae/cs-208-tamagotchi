@@ -102,20 +102,6 @@ body {
     padding: 0.35rem 0.55rem;
     font-weight: 700;
 }
-#keys {
-    position: absolute;
-    bottom: 30px;
-    text-align: center;
-}
-.key {
-    margin-bottom: 2px;
-    opacity: 0.5;
-    display: inline-block;
-    align-content: center;
-    text-align: center;
-    width: 3em;
-    height: 8em;
-}
 #goobert-percentage {
     pointer-events: none;
     top: 7em;
@@ -142,6 +128,6 @@ body {
         transform: translateX(-50%);
     }
     #goobert-percentage {
-        width: 1em;
+        width: 90%
     }
 }
