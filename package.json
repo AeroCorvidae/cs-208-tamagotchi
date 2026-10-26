@@ -10,21 +10,25 @@
         "Annette",
         "Joseph"
     ],
+    "type": "module",
     "scripts": {
-        "build": "./build.sh",
-        "hub": "npx babel --presets @babel/preset-react components/hub.jsx --out-file components/hub.js",
-        "game-room": "npx babel --presets @babel/preset-react components/game-room.jsx --out-file components/game-room.js",
-        "shop": "npx babel --presets @babel/preset-react components/shop.jsx --out-file components/shop.js",
-        "bedroom": "npx babel --presets @babel/preset-react components/bedroom.jsx --out-file components/bedroom.js",
-        "dungeon": "npx babel --presets @babel/preset-react components/dungeon.jsx --out-file components/dungeon.js",
-        "snake": "npx babel --presets @babel/preset-react components/snake.jsx --out-file components/snake.js",
-        "flappy-goobert": "npx babel --presets @babel/preset-react components/flappy-goobert.jsx --out-file components/flappy-goobert.js",
-        "ui": "npx babel --presets @babel/preset-react components/ui-script.jsx --out-file components/ui-script.js"
+        "build": "webpack --config-node-env production",
+        "build-dev": "webpack"
     },
     "devDependencies": {
-        "@babel/cli": "^7.28.3",
-        "@babel/core": "^7.28.4",
-        "@babel/preset-react": "^7.27.1"
+        "@types/howler": "^2.2.13",
+        "@types/react": "^19.3.0",
+        "@types/react-dom": "^19.3.0",
+        "copy-webpack-plugin": "^14.0.0",
+        "css-loader": "^7.1.5",
+        "html-webpack-plugin": "^5.6.8",
+        "react": "^19.3.0",
+        "react-dom": "^19.3.0",
+        "style-loader": "^4.0.0",
+        "ts-loader": "^9.6.2",
+        "typescript": "^5.9.3",
+        "webpack": "^5.112.0",
+        "webpack-cli": "^7.2.3"
     },
     "dependencies": {
         "howler": "^2.2.4"

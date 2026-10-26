@@ -1,0 +1,138 @@
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #067c04;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+#main {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.apple {
+    position: absolute;
+    background-image: url("../images/games/apple.png");
+    background-size: 400px 480px;
+    /* background-color: red; */
+    width: 50px;
+    height: 50px;
+}
+.snake {
+    position: absolute;
+    /* background-color: green; */
+    width: 64px;
+    height: 64px;
+
+    background-image: url("../images/games/snake.png");
+}
+#main {
+    max-width: 100%;
+    margin: 0 auto;
+}
+#keys {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 25%;
+    z-index: 10;
+    text-align: center;
+}
+.key {
+    margin-bottom: 2px;
+    opacity: 0.5;
+    display: inline-block;
+    align-content: center;
+    text-align: center;
+    width: 33%;
+    height: 50%;
+    touch-action: manipulation;
+    cursor: pointer;
+    position: relative;
+}
+
+.snake-screen {
+    width: 100vw;
+    height: 100svh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #067c04;
+}
+
+.snake-board {
+    background-color: #14a9ff;
+    border: 3px solid #1f2b1f;
+    box-sizing: content-box;
+}
+
+.game-return-btn {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 10;
+    border: 3px solid #000;
+    background: #ffd43b;
+    color: #000;
+    font-weight: 700;
+}
+
+.snake-difficulty-menu {
+    position: absolute;
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.snake-difficulty-title {
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+}
+
+.snake-difficulty-buttons {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+}
+#goobert-percentage {
+    pointer-events: none;
+    top: 7em;
+    width: 14em;
+}
+.fullness-label {
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: center;
+    color: #fff;
+    border-radius: 1em;
+    border: 0.1em solid;
+    padding: 0.3em;
+    border-color: #fff;
+}
+.fullness-label > input {
+    accent-color: #14a9ff;
+}
+/* MOBILE */
+@media (max-width: 640px) {
+    .fullness-label {
+        top: 6em;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #goobert-percentage {
+        width: 90%
+    }
+}
