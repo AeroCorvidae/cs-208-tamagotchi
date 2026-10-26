@@ -3,6 +3,7 @@
 import React from "react";
 import { arcadeClickSound, arcadeHoverSound, doorOpenSound } from "./audio";
 import { gooberts, load, rooms, type Goobert } from "../App";
+import "../styles/game-room.css";
 
 /*
  * Game Room

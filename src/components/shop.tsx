@@ -1,4 +1,5 @@
 "use strict";
+import "../styles/shop.css";
 import React from "react";
 import { doorOpenSound } from "./audio";
 import { load, rooms } from "../App";

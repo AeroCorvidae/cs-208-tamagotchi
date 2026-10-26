@@ -5,6 +5,8 @@ import { stopGame } from "../games/games-global";
 import { initFlappyGoobert, jump } from "../games/flappy-goobert";
 import { load, rooms } from "../App";
 import { gameGoobert } from "./game-room";
+import "../games/flappy-goobert.css";
+
 
 declare global {
     interface WindowEventMap {

@@ -4,6 +4,7 @@ import { gameGoobert } from "./game-room";
 import { refreshGameBody, setBodySize, stopGame, body, width, height } from "../games/games-global";
 import { load, rooms } from "../App";
 import { initSnakeGame, setSnakeVelocity } from "../games/snake-game";
+import "../games/snake-stylesheet.css";
 
 /*
 Main React component for the Snake minigame.

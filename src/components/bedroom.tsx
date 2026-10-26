@@ -1,6 +1,8 @@
 import React from "react";
 import { doorOpenSound } from "./audio";
 import { load, rooms } from "../App";
+import "../styles/bedroom.css";
+
 export default class Bedroom extends React.Component {
     render() {
         return(

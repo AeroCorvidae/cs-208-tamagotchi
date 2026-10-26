@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { indexClickSound, indexHoverSound } from "./audio";
 import Credits from "./credits";
+import "../styles/index.css" ;
 
 
 /*

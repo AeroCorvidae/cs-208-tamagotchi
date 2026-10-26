@@ -1,6 +1,8 @@
 import React from "react";
 import { ladderClickSound } from "./audio";
 import { load, rooms } from "../App";
+import "../styles/dungeon.css";
+
 
 export default class Dungeon extends React.Component {
     render(){

@@ -41,11 +41,13 @@ const config = {
                 {from: "./src/images", to: "images"},
                 // {from: "./src/css", to: "css"},  // no longer needed after css/style loaders added
                 {from: "./src/bootstrap", to: "bootstrap"},
+                { from: "./src/react", to: "react" },
             ]
         }),
         new HtmlWebpackPlugin({
             template: "./src/index.html",
-            filename: "index.html"
+            filename: "index.html",
+            
         })
     ]
 }
@@ -61,8 +63,8 @@ if (production) {
             ]
         }),
         new HtmlWebpackPlugin({
-            template: "./src/adventure_prod.html",
-            filename: "adventure.html"
+            template: "./src/index.html",
+            filename: "index.html"
         })
     ];
 }
