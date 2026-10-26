@@ -39,14 +39,16 @@ const config = {
         new CopyPlugin({
             patterns: [
                 {from: "./src/images", to: "images"},
+                {from: "./src/audio", to: "audio"},
                 // {from: "./src/css", to: "css"},  // no longer needed after css/style loaders added
                 {from: "./src/bootstrap", to: "bootstrap"},
+                {from: "./src/icons-1.13.1", to: "icons-1.13.1"},
                 { from: "./src/react", to: "react" },
             ]
         }),
         new HtmlWebpackPlugin({
-            template: "./src/index.html",
-            filename: "index.html",
+            template: "./src/hub.html",
+            filename: "hub.html",
             
         })
     ]
@@ -63,8 +65,8 @@ if (production) {
             ]
         }),
         new HtmlWebpackPlugin({
-            template: "./src/index.html",
-            filename: "index.html"
+            template: "./src/hub.html",
+            filename: "hub.html"
         })
     ];
 }

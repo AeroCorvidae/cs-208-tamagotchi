@@ -4,13 +4,13 @@
 
 .dungeonWall {
     min-height: 66.7%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(assets/backgrounds/DungeonBackground.webp);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(../images/backgrounds/DungeonBackground.webp);
     background-color: rgba(0, 0, 0, 0.5);
 }
 
 .dungeonFloor {
     min-height: 33.3%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)), url(assets/backgrounds/DungeonBackground.webp);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)), url(../images/backgrounds/DungeonBackground.webp);
     transform: perspective(300px) rotateX(30deg); 
     transform-origin: center top; 
 }

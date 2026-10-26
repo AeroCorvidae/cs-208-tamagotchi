@@ -1,4 +1,6 @@
 import { body, refreshGameBody, setBodySize, stopGame } from "./games-global.ts";
+import "./snake-stylesheet.css";
+
 
 export function initSnakeGame(boardWidth, boardHeight) {
     if (typeof stopGame === "function") {

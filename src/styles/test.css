@@ -13,25 +13,25 @@ desired sprite in the sheet (-64px for each spot moved).
 Z-index refers to the order in which they're layered on top
 of each other.*/
 #goobert-legs {
-    background-image: url(assets/goobert-parts/208-tamagotchi-legs.png);
+    background-image: url(../images/goobert-parts/208-tamagotchi-legs.png);
     background-position-x: 0px;
     background-position-y: 0px;
     z-index: 1;
 }
 #goobert-body {
-    background-image: url(assets/goobert-parts/208-tamagotchi-bodies.png);
+    background-image: url(../images/goobert-parts/208-tamagotchi-bodies.png);
     background-position-x: 0px;
     background-position-y: 0px;
     z-index: 2;
 }
 #goobert-mouth {
-    background-image: url(assets/goobert-parts/208-tamagotchi-mouths.png);
+    background-image: url(../images/goobert-parts/208-tamagotchi-mouths.png);
     background-position-x: 0px;
     background-position-y: 0px;
     z-index: 3;
 }
 #goobert-eyes {
-    background-image: url(assets/goobert-parts/208-tamagotchi-eyes.png);
+    background-image: url(../images/goobert-parts/208-tamagotchi-eyes.png);
     background-position-x: 0px;
     background-position-y: 0px;
     z-index: 4;

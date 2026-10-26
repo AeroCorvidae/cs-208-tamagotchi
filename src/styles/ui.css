@@ -18,7 +18,7 @@
 }
 
 #card-frame-back, #card-frame-front {
-    background-image: url(assets/ui/ui-frame.png);
+    background-image: url(../images/ui/ui-frame.png);
     position: absolute;
     top: inherit;
     left: inherit;
@@ -58,25 +58,25 @@ desired sprite in the sheet (-64px for each spot moved).
 Z-index refers to the order in which they're layered on top
 of each other.*/
 #ui-goobert-legs {
-    background-image: url(assets/goobert-parts/208-tamagotchi-legs.png);
+    background-image: url(../images/goobert-parts/208-tamagotchi-legs.png);
     background-position-x: 0px;
     background-position-y: 0px;
     z-index: 1;
 }
 #ui-goobert-body {
-    background-image: url(assets/goobert-parts/208-tamagotchi-bodies.png);
+    background-image: url(../images/goobert-parts/208-tamagotchi-bodies.png);
     background-position-x: 0px;
     background-position-y: 0px;
     z-index: 2;
 }
 #ui-goobert-mouth {
-    background-image: url(assets/goobert-parts/208-tamagotchi-mouths.png);
+    background-image: url(../images/goobert-parts/208-tamagotchi-mouths.png);
     background-position-x: 0px;
     background-position-y: 0px;
     z-index: 3;
 }
 #ui-goobert-eyes {
-    background-image: url(assets/goobert-parts/208-tamagotchi-eyes.png);
+    background-image: url(../images/goobert-parts/208-tamagotchi-eyes.png);
     background-position-x: 0px;
     background-position-y: 0px;
     z-index: 4;
@@ -107,7 +107,7 @@ of each other.*/
     left: inherit;
     width: 46px;
     height: 11px;
-    background-image: url(assets/ui/ui-bars.png);
+    background-image: url(../images/ui/ui-bars.png);
     image-rendering: crisp-edges;
 }
 
@@ -125,7 +125,7 @@ of each other.*/
 }
 #ui-statbar-cleanliness {
     top: 140px;
-    background-image: url(assets/goobert-parts/Transparent-BG.png);
+    background-image: url(../images/goobert-parts/Transparent-BG.png);
 }
 
 /* ----------------------------------------
@@ -152,7 +152,7 @@ of each other.*/
     left: inherit;
     width: 11px;
     height: 11px;
-    background-image: url(assets/ui/UI-Icons.png);
+    background-image: url(../images/ui/UI-Icons.png);
     image-rendering: crisp-edges;
 }
 
@@ -179,7 +179,7 @@ of each other.*/
     left: inherit;
     width: 15px;
     height: 15px;
-    background-image: url(assets/ui/ui-x-button.png);
+    background-image: url(../images/ui/ui-x-button.png);
     background-position-x: 0px;
     image-rendering: crisp-edges;
 }

@@ -1,10 +1,10 @@
 'use strict';
 import React from "react";
 
-const BODY_SPRITE_SHEET = 'assets/goobert-parts/208-tamagotchi-bodies.png';
-const LEG_SPRITE_SHEET = 'assets/goobert-parts/208-tamagotchi-legs.png';
-const EYES_SPRITE_SHEET = 'assets/goobert-parts/208-tamagotchi-eyes.png';
-const MOUTH_SPRITE_SHEET = 'assets/goobert-parts/208-tamagotchi-mouths.png';
+const BODY_SPRITE_SHEET = 'images/goobert-parts/208-tamagotchi-bodies.png';
+const LEG_SPRITE_SHEET = 'images/goobert-parts/208-tamagotchi-legs.png';
+const EYES_SPRITE_SHEET = 'images/goobert-parts/208-tamagotchi-eyes.png';
+const MOUTH_SPRITE_SHEET = 'images/goobert-parts/208-tamagotchi-mouths.png';
 type GoobertProps = {
     room: any,
     name: any,
@@ -31,19 +31,19 @@ export default function Goobert(props: GoobertProps): React.JSX.Element {
     }
     return (
         <div className="goobert-container" onClick={() => click(props.name)} style={{left: `${props.x}px`, top: `${props.y}px`}}>
-            <img src="assets/goobert-parts/208-tamagotchi-legs.png" style={{
+            <img src={LEG_SPRITE_SHEET} style={{
                 left: `${props.legColor*(-64)}px`,
                 top: `${props.legType * -64}px`,
             }}/>
-            <img src="assets/goobert-parts/208-tamagotchi-bodies.png" style={{
+            <img src={BODY_SPRITE_SHEET} style={{
                 left: `${props.bodyColor*(-64)}px`,
                 top: `${props.bodyType * -64}px`,
             }}/>
-            <img src="assets/goobert-parts/208-tamagotchi-mouths.png" style={{
+            <img src={MOUTH_SPRITE_SHEET} style={{
                 left: `${props.mouthExpression*(-64)}px`,
                 top: `${props.mouthType * -64}px`,
             }}/>
-            <img src="assets/goobert-parts/208-tamagotchi-eyes.png" style={{
+            <img src={EYES_SPRITE_SHEET} style={{
                 left: `${props.eyeExpression*(-64)}px`,
                 top: `${props.eyeType * -64}px`,
             }}/>

@@ -12,10 +12,10 @@ The different body parts are displayed using separate image elements.
 export const TestGoobert = (props: any) => {
     return (
         <div className="goobert-container" style={{scale: "3 3", left: "17em", top: "36em"}}>
-            <img id="goobert-legs" src="assets/goobert-parts/Transparent-BG.png"/>
-            <img id="goobert-body" src="assets/goobert-parts/Transparent-BG.png"/>
-            <img id="goobert-mouth" src="assets/goobert-parts/Transparent-BG.png"/>
-            <img id="goobert-eyes" src="assets/goobert-parts/Transparent-BG.png"/>
+            <img id="goobert-legs" src="images/goobert-parts/Transparent-BG.png"/>
+            <img id="goobert-body" src="images/goobert-parts/Transparent-BG.png"/>
+            <img id="goobert-mouth" src="images/goobert-parts/Transparent-BG.png"/>
+            <img id="goobert-eyes" src="images/goobert-parts/Transparent-BG.png"/>
         </div>
     );
 }
@@ -30,7 +30,7 @@ export default function Hub(props: any): React.JSX.Element {
             {/* Tree used for Goobert Customization */}
             <div className="tree-container">
 
-                <img src="hub-images/gooberts_tree.png" 
+                <img src="images/hub/gooberts_tree.png" 
                     alt="GOOBERTS HUB" 
                     className="pixelated-tree" 
                     id="goobert-tree" />
@@ -63,7 +63,7 @@ export default function Hub(props: any): React.JSX.Element {
 
             {/* Game Room door */}
             <div className="game-door-container">
-                <img src="hub-images/game-door.png" alt="GAME" id="game-door"
+                <img src="images/hub/game-door.png" alt="GAME" id="game-door"
                 
                 // Play the hover sound when mouse enters the door
                 onMouseEnter={() => doorHoverSound.play()}
@@ -76,7 +76,7 @@ export default function Hub(props: any): React.JSX.Element {
 
             {/* Shop door */}
             <div className="shop-door-container">
-                <img src="hub-images/shop-door.png" alt="SHOP" id="shop-door"
+                <img src="images/hub/shop-door.png" alt="SHOP" id="shop-door"
                 
                 // Play the hover sound when mouse enters the door
                 onMouseEnter={() => doorHoverSound.play()}
@@ -89,7 +89,7 @@ export default function Hub(props: any): React.JSX.Element {
 
             {/* Return to main menu door */}
             <div className="leave-door-container">
-                <img src="hub-images/leave-door.png" alt="LEAVE" id="leave-door"
+                <img src="images/hub/leave-door.png" alt="LEAVE" id="leave-door"
                 
                 // Play the hover sound when mouse enters the door
                 onMouseEnter={() => doorHoverSound.play()}
@@ -106,7 +106,7 @@ export default function Hub(props: any): React.JSX.Element {
 
             {/* Dungeon door */}
             <div className="dungeon-door-container">
-                <img src="assets/doors/DungeonDoor.webp" alt="THE DUNGEON" id="dungeon-door" 
+                <img src="images/doors/DungeonDoor.webp" alt="THE DUNGEON" id="dungeon-door" 
                 
                 // Play the hover sound when mouse enters the door
                 onMouseEnter={() => dungeonHoverSound.play()}

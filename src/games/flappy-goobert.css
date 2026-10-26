@@ -22,7 +22,6 @@ body {
     position: absolute;
 }
 .pipe {
-    /* background-image: url("assets/apple.png"); */
     background-size: 400px 480px;
     background-color: green;
 }
@@ -38,13 +37,13 @@ body {
     width: 64em;
     height: 64em;
 
-    background-image: url("assets/bird.png");
+    background-image: url("../images/games/bird.png");
 }
 .eyes {
     position: relative;
     left: 0.8em;
 
-    background-image: url("assets/eyes.png");
+    background-image: url("../images/games/eyes.png");
 }
 #main {
     max-width: 100%;

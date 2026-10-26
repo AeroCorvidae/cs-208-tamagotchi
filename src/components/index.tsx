@@ -1,8 +1,9 @@
 "use strict";
+import "../styles/index.css";
 import React, { useState } from "react";
 import { indexClickSound, indexHoverSound } from "./audio";
 import Credits from "./credits";
-import "../styles/index.css" ;
+import { createRoot } from "react-dom/client";
 
 
 /*
@@ -37,7 +38,7 @@ export default function MainMenu(): React.JSX.Element {
                     <div className="row">
                         <div className="col text-center">
                             <img
-                                src="index-images/Goobies_Logo_text.gif"
+                                src="images/index/Goobies_Logo_text.gif"
                                 alt="Goobies"
                                 id="game-title"
                                 className="img-fluid"
@@ -95,3 +96,7 @@ export default function MainMenu(): React.JSX.Element {
         </main>
     );
 }
+
+createRoot(document.getElementById('content')!).render(
+    <MainMenu />
+);

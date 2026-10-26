@@ -5,7 +5,7 @@
 
 
 body {
-    background-image: url("index-images/hills-background.gif");
+    background-image: url("../images/index/hills-background.gif");
     
     /* Do not repeat the image */
     background-repeat: no-repeat;

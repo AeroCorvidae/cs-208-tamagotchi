@@ -16,7 +16,7 @@ type UIProps = {
 export default function UIGoobertCard(props: UIProps): React.JSX.Element {
     return (
         <div className="info-card">
-            <img id="card-frame-back" src="assets/goobert-parts/Transparent-BG.png" />
+            <img id="card-frame-back" src="images/goobert-parts/Transparent-BG.png" />
             <GoobertElement
                 {...props.goobert}
                 x={"0.6em"} 
@@ -24,19 +24,19 @@ export default function UIGoobertCard(props: UIProps): React.JSX.Element {
                 className="goobert-container icon"
             />
             <div className="ui-statbar-container">
-                <img id="ui-statbar-fullness" src="assets/goobert-parts/Transparent-BG.png"/>
-                <img id="ui-statbar-awakeness" src="assets/goobert-parts/Transparent-BG.png"/>
-                <img id="ui-statbar-swagosity" src="assets/goobert-parts/Transparent-BG.png"/>
-                <img id="ui-statbar-cleanliness" src="assets/goobert-parts/Transparent-BG.png"/>
+                <img id="ui-statbar-fullness" src="images/goobert-parts/Transparent-BG.png"/>
+                <img id="ui-statbar-awakeness" src="images/goobert-parts/Transparent-BG.png"/>
+                <img id="ui-statbar-swagosity" src="images/goobert-parts/Transparent-BG.png"/>
+                <img id="ui-statbar-cleanliness" src="images/goobert-parts/Transparent-BG.png"/>
             </div>
-            <img id="card-frame-front" src="assets/goobert-parts/Transparent-BG.png" />
+            <img id="card-frame-front" src="images/goobert-parts/Transparent-BG.png" />
             <div className="ui-icon-container">
-                <img id="ui-icon-fullness" src="assets/goobert-parts/Transparent-BG.png"/>
-                <img id="ui-icon-awakeness" src="assets/goobert-parts/Transparent-BG.png"/>
-                <img id="ui-icon-swagosity" src="assets/goobert-parts/Transparent-BG.png"/>
-                <img id="ui-icon-cleanliness" src="assets/goobert-parts/Transparent-BG.png"/>
+                <img id="ui-icon-fullness" src="images/goobert-parts/Transparent-BG.png"/>
+                <img id="ui-icon-awakeness" src="images/goobert-parts/Transparent-BG.png"/>
+                <img id="ui-icon-swagosity" src="images/goobert-parts/Transparent-BG.png"/>
+                <img id="ui-icon-cleanliness" src="images/goobert-parts/Transparent-BG.png"/>
             </div>
-            <img id="ui-card-xbutton" src="assets/goobert-parts/Transparent-BG.png" />
+            <img id="ui-card-xbutton" src="images/goobert-parts/Transparent-BG.png" />
 
         </div>
     );

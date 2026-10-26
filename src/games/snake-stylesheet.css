@@ -19,7 +19,7 @@ body {
 }
 .apple {
     position: absolute;
-    background-image: url("assets/apple.png");
+    background-image: url("../images/games/apple.png");
     background-size: 400px 480px;
     /* background-color: red; */
     width: 50px;
@@ -31,7 +31,7 @@ body {
     width: 64px;
     height: 64px;
 
-    background-image: url("assets/snake.png");
+    background-image: url("../images/games/snake.png");
 }
 #main {
     max-width: 100%;

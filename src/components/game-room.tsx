@@ -35,7 +35,7 @@ export default class GameRoom extends React.Component {
                     >
                         <img
                             className="game-room-exit-icon"
-                            src="assets/pixelarticons/arrow-left.svg"
+                            src="images/pixelarticons/arrow-left.svg"
                             alt=""
                             aria-hidden="true"
                         />
@@ -46,7 +46,7 @@ export default class GameRoom extends React.Component {
                 {/* Game Room Logo */}
                 <div className="game-room-logo-wrap">
                     <img
-                        src="game-room-images/game-room-logo.png"
+                        src="images/game-room/game-room-logo.png"
                         alt="Game Room"
                         className="game-room-logo"
                     />
@@ -71,7 +71,7 @@ export default class GameRoom extends React.Component {
                         }}
                     >
                         <img
-                            src="game-room-images/snake-machine.png"
+                            src="images/game-room/snake-machine.png"
                             alt="Play Snake"
                         />
                     </button>
@@ -92,7 +92,7 @@ export default class GameRoom extends React.Component {
                         }}
                     >
                         <img
-                            src="game-room-images/flappy-goobert-machine.png"
+                            src="images/game-room/flappy-goobert-machine.png"
                             alt="Play Flappy Goobert"
                         />
                     </button>
@@ -105,7 +105,7 @@ export default class GameRoom extends React.Component {
                         onClick={() => arcadeClickSound.play()}
                     >
                         <img
-                            src="game-room-images/frogoobert-machine.png"
+                            src="images/game-room/frogoobert-machine.png"
                             alt="Frogoobert - Coming Soon"
                         />
                     </button>
@@ -118,7 +118,7 @@ export default class GameRoom extends React.Component {
                         onClick={() => arcadeClickSound.play()}
                     >
                         <img
-                            src="game-room-images/pipelined-machine.png"
+                            src="images/game-room/pipelined-machine.png"
                             alt="Pipelined - Coming Soon"
                         />
                     </button>
@@ -131,7 +131,7 @@ export default class GameRoom extends React.Component {
                         onClick={() => arcadeClickSound.play()}
                     >
                         <img
-                            src="game-room-images/feast-fest-machine.png"
+                            src="images/game-room/feast-fest-machine.png"
                             alt="Feast Fest - Coming Soon"
                         />
                     </button>

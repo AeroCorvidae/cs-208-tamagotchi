@@ -1,3 +1,5 @@
+import { gridSize } from "./games-global.ts";
+import "./flappy-goobert.css";
 export function initFlappyGoobert() {
     stopGame();
     body = document.getElementById("main");

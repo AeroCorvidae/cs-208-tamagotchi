@@ -50,7 +50,7 @@ export default class Bedroom extends React.Component {
                             title="Click Here to sleep!"
                         >
                             <img 
-                                src="bedroom-images/GoobBedWeb.png" 
+                                src="images/bedroom/GoobBedWeb.png" 
                                 alt="" 
                             />
                         </button>
@@ -61,7 +61,7 @@ export default class Bedroom extends React.Component {
                             title="Click Here to sleep!"
                         >
                             <img 
-                                src="bedroom-images/GoobBedWeb.png" 
+                                src="images/bedroom/GoobBedWeb.png" 
                                 alt="" 
                             />
                         </button>
@@ -72,7 +72,7 @@ export default class Bedroom extends React.Component {
                             title="Click Here to sleep!"
                         >
                             <img 
-                                src="bedroom-images/GoobBedWeb.png" 
+                                src="images/bedroom/GoobBedWeb.png" 
                                 alt="" 
                             />
                         </button>
@@ -83,7 +83,7 @@ export default class Bedroom extends React.Component {
                             title="Click Here to sleep!"
                         >
                             <img 
-                                src="bedroom-images/GoobBedWeb.png" 
+                                src="images/bedroom/GoobBedWeb.png" 
                                 alt="" 
                             />
                         </button>
