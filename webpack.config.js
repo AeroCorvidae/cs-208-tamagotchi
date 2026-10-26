@@ -11,9 +11,9 @@ let production = process.env.NODE_ENV === "production";
 
 const config = {
     mode: "development",
-    entry: "./src/adventure.tsx",
+    entry: "./src/App.tsx",
     output: {
-        filename: "adventure-bundle.js",
+        filename: "tamagotchi-bundle.js",
         path: path.resolve(__dirname, "dist"),
         clean: true
     },
@@ -44,8 +44,8 @@ const config = {
             ]
         }),
         new HtmlWebpackPlugin({
-            template: "./src/adventure.html",
-            filename: "adventure.html"
+            template: "./src/index.html",
+            filename: "index.html"
         })
     ]
 }
