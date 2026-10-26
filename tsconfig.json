@@ -4,6 +4,7 @@
     "rootDir": "./", /* Specify the base directory to resolve non-relative module names. */
     "module": "esnext", /* Specify what module management is used. */
     "target": "esnext", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "outDir": "dist", // Necessary so Typescript doesn't try to compile already built files
 
 	  "esModuleInterop": true, /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
 
@@ -20,5 +21,7 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true, /* Skip type checking all .d.ts files. */
+    
+    "allowJs": true // To prevent the need to completely refactor longer js files
   }
 }

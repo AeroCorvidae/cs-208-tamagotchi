@@ -1,5 +1,7 @@
 "use strict";
 import React from "react";
+import { doorOpenSound } from "./audio";
+import { load, rooms } from "../App";
 
 
 export default class Shop extends React.Component {
@@ -87,7 +89,7 @@ export default class Shop extends React.Component {
                         // Play the door click sound.
                         doorOpenSound.play();
                         // Return to the Hub.
-                        load("hub");
+                        load(rooms.hub);
                     }}>
                         Click here to go to the main hub!
                     </a>
@@ -98,12 +100,12 @@ export default class Shop extends React.Component {
 }
 
 // OPENS SHOP POPUP
-function openShop(category) {
-    document.getElementById("shopPopupTitle").textContent = category;
-    document.getElementById("accessoriesPopup").style.display = "block";
+function openShop(category: string) {
+    document.getElementById("shopPopupTitle")!.textContent = category;
+    document.getElementById("accessoriesPopup")!.style.display = "block";
 }
 
 // CLOSES ACCESSORIES POPUP
 function closeShop() {
-	document.getElementById("accessoriesPopup").style.display = "none";
+	document.getElementById("accessoriesPopup")!.style.display = "none";
 }

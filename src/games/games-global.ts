@@ -1,12 +1,14 @@
-let game;
-var body = null;
+import { load, rooms } from "../App";
 
-function refreshGameBody() {
+export let game: any;
+export let body: any = null;
+
+export function refreshGameBody() {
     body = document.getElementById("main");
     return body;
 }
 
-function stopGame() {
+export function stopGame() {
     if (game) {
         window.clearInterval(game);
         game = null;
@@ -15,7 +17,7 @@ function stopGame() {
     document.removeEventListener("keyup", keyReleased);
 }
 
-function start(fps, gameLoop) {
+export function start(fps: number, gameLoop: Function) {
     stopGame();
     refreshGameBody();
     if (!body) return;
@@ -25,11 +27,11 @@ function start(fps, gameLoop) {
     document.addEventListener("keyup", keyReleased);
     game = setInterval(gameLoop, 1000 / fps); // 10FPS
 }
-const keys = [];
-let width = 15, height = 15;
+export const keys: boolean[] = [];
+export let width = 15, height = 15;
 
 // Update grid size to a power of 2, since it helps render images better
-function getGridSize() {
+export function getGridSize() {
     const columns = Math.max(width + 1, 1);
     const rows = Math.max(height + 1, 1);
     const desired = Math.floor(
@@ -41,7 +43,7 @@ function getGridSize() {
 
     return Math.max(desired, 4);
 }
-function setBodySize() {
+export function setBodySize() {
     refreshGameBody();
     if (!body) return;
 
@@ -53,25 +55,25 @@ function setBodySize() {
     body.style.height = (height+1) * gridSize + "px";
 
 }
-let gridSize = getGridSize();
+export let gridSize = getGridSize();
 
 
-function resetGame() {
+export function resetGame() {
     stopGame();
 
     // Pause for a quarter second to let the player know they died
     // Then send the player back to game room
     setTimeout(() => {
         if (typeof load === "function") {
-            load("gameRoom");
+            load(rooms.gameRoom);
         } else {
             history.back();
         }
     }, 250);
 }
-function keypress(e) {
+export function keypress(e: any) {
     keys[e.key.toLowerCase()] = true;
 }
-function keyReleased(e) {
+export function keyReleased(e: any) {
     keys[e.key.toLowerCase()] = false;
 }

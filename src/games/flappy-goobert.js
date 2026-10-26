@@ -1,4 +1,4 @@
-function initFlappyGoobert() {
+export function initFlappyGoobert() {
     stopGame();
     body = document.getElementById("main");
 
@@ -296,7 +296,7 @@ function handleKeyPress() {
         keys["w"] = keys[" "] = keys["arrowup"] = false;
     }
 }
-function jump() {
+export function jump() {
     if(bird.velocity > 0) {
         bird.velocity = -bird.jumpPower
     }

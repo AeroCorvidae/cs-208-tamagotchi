@@ -1,5 +1,5 @@
 "use strict";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createRoot } from 'react-dom/client';
 
 import GoobertElement from "./Goobert";
@@ -21,7 +21,7 @@ const MAX_LEG_TYPES = 7;
 const MAX_MOUTH_TYPES = 11;
 const MAX_COLORS = 7;
 
-let gooberts: Goobert[] = [];
+export let gooberts: Goobert[] = [];
 
 export type Room = {
 	room: React.JSX.Element
@@ -46,6 +46,21 @@ type TopElementProps = {
 const TopElement = (props: TopElementProps): React.JSX.Element => {
 	const [room, setRoom] = useState(props.room);
 	const [uiGoobert, setUiGoobert] = useState(props.uiGoobert);
+	const [goobertList, setGoobertList] = useState(gooberts);
+
+	useEffect(() => {
+		// Define the load function to load a room and re-render the page
+		load = (component: React.JSX.Element) => {
+			setRoom(component);
+		}
+	});
+	useEffect(() => {
+		// Define the load function to create a goobert and re-render the page
+		renderGoobert = (goobert: Goobert) => {
+			setGoobertList([...goobertList, goobert]);
+		}
+	});
+
 	
 	return (
 		<>
@@ -95,13 +110,17 @@ function init() {
 init();
 
 
+// Implemented by TopElement, loads a room defined within the rooms variable
+type Load = ((component: React.JSX.Element) => void);
+export let load: Load;
 
-export function load(component: React.JSX.Element) {
-    this.room = rooms[component];
-	this.setState({ room: rooms[component] });
-}
-export function createGoobert(name: string, location = rooms.hub, x = (Math.random() * (window.innerWidth - 64) + "px" /* goobert width */), y = ((Math.random() * (window.innerHeight - 550 - 64) + "px" /* goobert height */)) + 550) {
-	gooberts.push(
+export function createGoobert(
+	name: string, 
+	location = rooms.hub, 
+	x = (Math.random() * (window.innerWidth - 64) + "px" /* goobert width */), 
+	y = ((Math.random() * (window.innerHeight - 550 - 64) /* goobert height */)) + 550 + "px") 
+{
+	return (
 		{
 			name: name, 
 			x:x, 
@@ -134,7 +153,7 @@ export function createGoobert(name: string, location = rooms.hub, x = (Math.rand
 		}
 	);
 }
-type Goobert = {
+export type Goobert = {
 	name: string, 
 	x: string, 
 	y: string, 
@@ -163,4 +182,7 @@ type Goobert = {
 	onGoobertSelected: Function
 
 } 
-export type { Goobert };
+// Defined within TopElement, takes a goobert and adds it to the list 
+// used to render TopElement gooberts
+type RenderGoobert = ((goobert: Goobert) => void);
+export let renderGoobert: Function;

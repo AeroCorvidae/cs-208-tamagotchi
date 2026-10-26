@@ -1,6 +1,8 @@
 
 "use strict";
 import React from "react";
+import { arcadeClickSound, arcadeHoverSound, doorOpenSound } from "./audio";
+import { gooberts, load, rooms, type Goobert } from "../App";
 
 /*
  * Game Room
@@ -11,7 +13,7 @@ import React from "react";
  */
 
 // The first Goobie receives rewards from arcade games.
-let gameGoobert = null;
+export let gameGoobert: Goobert | null = null;
 
 export default class GameRoom extends React.Component {
 
@@ -27,7 +29,7 @@ export default class GameRoom extends React.Component {
                         className="btn game-room-exit"
                         onClick={() => {
                             doorOpenSound.play();
-                            load("hub");
+                            load(rooms.hub);
                         }}
                     >
                         <img
@@ -64,7 +66,7 @@ export default class GameRoom extends React.Component {
                             gameGoobert = gooberts[0] || null;
 
                             // Open Snake.
-                            load("snakeGame");
+                            load(rooms.snakeGame);
                         }}
                     >
                         <img
@@ -85,7 +87,7 @@ export default class GameRoom extends React.Component {
                             gameGoobert = gooberts[0] || null;
 
                             // Open Flappy Goobert.
-                            load("flappyGoobert");
+                            load(rooms.flappyGoobert);
                         }}
                     >
                         <img

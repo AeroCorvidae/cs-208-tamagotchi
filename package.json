@@ -10,6 +10,7 @@
         "Annette",
         "Joseph"
     ],
+    "type": "module",
     "scripts": {
         "build": "webpack --config-node-env production",
         "build-dev": "webpack"

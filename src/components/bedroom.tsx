@@ -1,5 +1,6 @@
 import React from "react";
-import { doorOpenSound } from "./audio.js";
+import { doorOpenSound } from "./audio";
+import { load, rooms } from "../App";
 export default class Bedroom extends React.Component {
     render() {
         return(
@@ -25,7 +26,7 @@ export default class Bedroom extends React.Component {
                             // Play the door click sound before returning to the Hub.
                             onClick={() => {
                                 doorOpenSound.play();
-                                load("hub");
+                                load(rooms.hub);
                             }}>
 
                             <img 
@@ -53,7 +54,7 @@ export default class Bedroom extends React.Component {
                         </button>
 
                         <button 
-                            onClick={() => david.sleep()} 
+                            /*onClick={() => david.sleep()}*/ 
                             className="bedroom-bed-button"
                             title="Click Here to sleep!"
                         >
@@ -64,7 +65,7 @@ export default class Bedroom extends React.Component {
                         </button>
 
                         <button 
-                            onClick={() => david.sleep()} 
+                            /*onClick={() => david.sleep()}*/ 
                             className="bedroom-bed-button"
                             title="Click Here to sleep!"
                         >
@@ -75,7 +76,7 @@ export default class Bedroom extends React.Component {
                         </button>
 
                         <button 
-                            onClick={() => david.sleep()} 
+                            /*onClick={() => david.sleep()}*/ 
                             className="bedroom-bed-button"
                             title="Click Here to sleep!"
                         >

@@ -1,4 +1,6 @@
 import React from "react";
+import { ladderClickSound } from "./audio";
+import { load, rooms } from "../App";
 
 export default class Dungeon extends React.Component {
     render(){
@@ -11,7 +13,7 @@ export default class Dungeon extends React.Component {
                             // Play the Dungeon click sound before returning.
                             onClick={() => {
                                 ladderClickSound.play();
-                                load("hub")
+                                load(rooms.hub);
                                 }} 
                             />
                         </div>

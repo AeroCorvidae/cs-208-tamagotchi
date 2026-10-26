@@ -1,181 +1,122 @@
 "use strict";
 import React from "react";
+import { load, rooms, type Goobert, type createGoobert } from "../App";
+import { doorHoverSound, doorOpenSound, dungeonClickSound, dungeonHoverSound } from "./audio";
 
 /* 
 Displays the test Goobert in the Hub.
 The different body parts are displayed using separate image elements.
 */
-class TestGoobert extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div className="goobert-container" style={{scale: "3 3", left: "17em", top: "36em"}}>
-                <img id="goobert-legs" src="assets/goobert-parts/Transparent-BG.png"/>
-                <img id="goobert-body" src="assets/goobert-parts/Transparent-BG.png"/>
-                <img id="goobert-mouth" src="assets/goobert-parts/Transparent-BG.png"/>
-                <img id="goobert-eyes" src="assets/goobert-parts/Transparent-BG.png"/>
-            </div>
-        );
-    }
-    setBodyType(type){
-        this.bodyType = type;
-        this.setState({});
-
-        const element = document.getElementById(this.bodyId);
-        element.style.backgroundPositionY = (this.bodyType*(-64)) + 'px';
-        console.log(this.name + "'s body type set.");
-    }
-
-    setBodyColor(){
-        const element = document.getElementById(this.bodyId);
-        element.style.backgroundPositionX = (this.bodyColor*(-64)) + 'px';
-        console.log(this.name + "'s body color set.");
-    }
-
-    setLegsType(){
-        const element = document.getElementById(this.legId);
-        element.style.backgroundPositionY = (this.legType*(-64)) + 'px';
-        console.log(this.name + "'s leg type set.");
-    }
-
-    setLegsColor(){
-        const element = document.getElementById(this.legId);
-        element.style.backgroundPositionX = (this.legColor*(-64)) + 'px';
-        console.log(this.name + "'s leg color set.");
-    }
-
-    setEyes(){
-        const element = document.getElementById(this.eyeId);
-        element.style.backgroundPositionY = (this.eyeType*(-64)) + 'px';
-        console.log(this.name + "'s eye type set.");
-    }
-    setEyeExpression(){
-        const element = document.getElementById(this.eyeId);
-        element.style.backgroundPositionX = (this.eyeExpression*(-64)) + 'px';
-        console.log(this.name + "'s eye expression set.");
-    }
-
-    setMouth(){
-        const element = document.getElementById(this.mouthId);
-        element.style.backgroundPositionY = (this.mouthType*(-64)) + 'px';
-        console.log(this.name + "'s mouth type set.");
-    }
-    setMouthExpression(){
-        const element = document.getElementById(this.mouthId);
-        element.style.backgroundPositionX = (this.mouthExpression*(-64)) + 'px';
-        console.log(this.name + "'s mouth expression set.");
-        
-        this.setState({});
-    }
+export const TestGoobert = (props: any) => {
+    return (
+        <div className="goobert-container" style={{scale: "3 3", left: "17em", top: "36em"}}>
+            <img id="goobert-legs" src="assets/goobert-parts/Transparent-BG.png"/>
+            <img id="goobert-body" src="assets/goobert-parts/Transparent-BG.png"/>
+            <img id="goobert-mouth" src="assets/goobert-parts/Transparent-BG.png"/>
+            <img id="goobert-eyes" src="assets/goobert-parts/Transparent-BG.png"/>
+        </div>
+    );
 }
 /* 
 Main Hub component where the player can customize Gooberts
 and navigate to different rooms.
 */
-export default class Hub extends React.Component {
-    constructor(props) {
-        super(props);
+export default function Hub(props: any): React.JSX.Element {
+    return (
+        <main id="main" className="hub">
 
-    }
-    render() {
-        return (
-            <main id="main" className="hub">
+            {/* Tree used for Goobert Customization */}
+            <div className="tree-container">
 
-                {/* Tree used for Goobert Customization */}
-                <div className="tree-container">
+                <img src="hub-images/gooberts_tree.png" 
+                    alt="GOOBERTS HUB" 
+                    className="pixelated-tree" 
+                    id="goobert-tree" />
 
-                    <img src="hub-images/gooberts_tree.png" 
-                        alt="GOOBERTS HUB" 
-                        className="pixelated-tree" 
-                        id="goobert-tree" />
+                {/* Clickable areas that change the Goobert's appearance */}
+                <div id="tree-body-area" onClick={changeBodyType}></div>
+                <div id="tree-legs-area" onClick={changeLegType}></div>
+                <div id="tree-mouth-area" onClick={changeMouth}></div>
+                <div id="tree-eyes-area" onClick={changeEyes}></div>
+                <div id="tree-body-color" onClick={changeBodyColor}></div>
+                <div id="tree-legs-color" onClick={changeLegColor}></div>
 
-                    {/* Clickable areas that change the Goobert's appearance */}
-                    <div id="tree-body-area" onClick={changeBodyType}></div>
-                    <div id="tree-legs-area" onClick={changeLegType}></div>
-                    <div id="tree-mouth-area" onClick={changeMouth}></div>
-                    <div id="tree-eyes-area" onClick={changeEyes}></div>
-                    <div id="tree-body-color" onClick={changeBodyColor}></div>
-                    <div id="tree-legs-color" onClick={changeLegColor}></div>
+                {/* Display the Goobert being customized */}
+                <TestGoobert createGoobert
+                />
+            </div>
 
-                    {/* Display the Goobert being customized */}
-                    <TestGoobert />
-                </div>
+            {/* Bedroom door */}
+            <div className="sleep-door-container">
+                <img src="hub-images/DreamDoor.webp" alt="BEDROOM" id="sleep-door"
+                
+                // Play the hover sound when mouse enters the door
+                onMouseEnter={() => doorHoverSound.play()}
+                // Play the opening sound and enter
+                onClick={() => {
+                    doorOpenSound.play();
+                    load(rooms.bedroom);
+                }} />
+            </div>
 
-                {/* Bedroom door */}
-                <div className="sleep-door-container">
-                    <img src="hub-images/DreamDoor.webp" alt="BEDROOM" id="sleep-door"
+            {/* Game Room door */}
+            <div className="game-door-container">
+                <img src="hub-images/game-door.png" alt="GAME" id="game-door"
+                
+                // Play the hover sound when mouse enters the door
+                onMouseEnter={() => doorHoverSound.play()}
+                // Play the opening sound and enter
+                onClick={() => {
+                    doorOpenSound.play();
+                    load(rooms.gameRoom);
+                }} />
+            </div>
+
+            {/* Shop door */}
+            <div className="shop-door-container">
+                <img src="hub-images/shop-door.png" alt="SHOP" id="shop-door"
+                
+                // Play the hover sound when mouse enters the door
+                onMouseEnter={() => doorHoverSound.play()}
+                // Play the opening sound and enter
+                onClick={() => {
+                    doorOpenSound.play();
+                    load(rooms.shop);
+                }} />               
+            </div>
+
+            {/* Return to main menu door */}
+            <div className="leave-door-container">
+                <img src="hub-images/leave-door.png" alt="LEAVE" id="leave-door"
+                
+                // Play the hover sound when mouse enters the door
+                onMouseEnter={() => doorHoverSound.play()}
+                // Play the opening sound and enter
+                onClick={() => {
+                    doorOpenSound.play();
                     
-                    // Play the hover sound when mouse enters the door
-                    onMouseEnter={() => doorHoverSound.play()}
-                    // Play the opening sound and enter
-                    onClick={() => {
-                        doorOpenSound.play();
-                        load("bedroom");
-                    }} />
-                </div>
+                    // Give the sound time to play before leaving the page.
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 500);
+                }} />   
+            </div>
 
-                {/* Game Room door */}
-                <div className="game-door-container">
-                    <img src="hub-images/game-door.png" alt="GAME" id="game-door"
-                    
-                    // Play the hover sound when mouse enters the door
-                    onMouseEnter={() => doorHoverSound.play()}
-                    // Play the opening sound and enter
-                    onClick={() => {
-                        doorOpenSound.play();
-                        load("gameRoom");
-                    }} />
-                </div>
+            {/* Dungeon door */}
+            <div className="dungeon-door-container">
+                <img src="assets/doors/DungeonDoor.webp" alt="THE DUNGEON" id="dungeon-door" 
+                
+                // Play the hover sound when mouse enters the door
+                onMouseEnter={() => dungeonHoverSound.play()}
+                // Play the opening sound and enter
+                onClick={() => {
+                    dungeonClickSound.play();
+                    load(rooms.dungeon);
+                }} />
+            </div>
 
-                {/* Shop door */}
-                <div className="shop-door-container">
-                    <img src="hub-images/shop-door.png" alt="SHOP" id="shop-door"
-                    
-                    // Play the hover sound when mouse enters the door
-                    onMouseEnter={() => doorHoverSound.play()}
-                    // Play the opening sound and enter
-                    onClick={() => {
-                        doorOpenSound.play();
-                        load("shop");
-                    }} />               
-                </div>
-
-                {/* Return to main menu door */}
-                <div className="leave-door-container">
-                    <img src="hub-images/leave-door.png" alt="LEAVE" id="leave-door"
-                    
-                    // Play the hover sound when mouse enters the door
-                    onMouseEnter={() => doorHoverSound.play()}
-                    // Play the opening sound and enter
-                    onClick={() => {
-                        doorOpenSound.play();
-                        
-                        // Give the sound time to play before leaving the page.
-                        setTimeout(() => {
-                            window.location.href = "index.html";
-                        }, 500);
-                    }} />   
-                </div>
-
-                {/* Dungeon door */}
-                <div className="dungeon-door-container">
-                    <img src="assets/doors/DungeonDoor.webp" alt="THE DUNGEON" id="dungeon-door" 
-                    
-                    // Play the hover sound when mouse enters the door
-                    onMouseEnter={() => dungeonHoverSound.play()}
-                    // Play the opening sound and enter
-                    onClick={() => {
-                        dungeonClickSound.play();
-                        load("dungeon");
-                    }} />
-                </div>
-
-            </main>
-        );
-    }
+        </main>
+    );
 }
 
 /* Basic asset index selectors. */
@@ -258,51 +199,51 @@ const changeMouthExpression = () => {
 Stores the currently selected appearance options for the test Goobert.
 Each number represents a different sprite or color option.
 */
-const setBodyType = (assetIndex) => {
-    const element = document.getElementById('goobert-body');
+const setBodyType = (assetIndex: number) => {
+    const element = document.getElementById('goobert-body')!;
     // Move the background image vertically to display the selected body.
     element.style.backgroundPositionY = (hubAssets.bodyType*(-64)) + 'px';
     console.log("Body type set.");
 };
 
-const setBodyColor = (assetIndex) => {
-    const element = document.getElementById('goobert-body');
+const setBodyColor = (assetIndex: number) => {
+    const element = document.getElementById('goobert-body')!;
     element.style.backgroundPositionX = (assetIndex*(-64)) + 'px';
     console.log("Body color set.");
 };
 
-const setLegsType = (assetIndex) => {
-    const element = document.getElementById('goobert-legs');
+const setLegsType = (assetIndex: number) => {
+    const element = document.getElementById('goobert-legs')!;
     element.style.backgroundPositionY = (assetIndex*(-64)) + 'px';
     console.log("Leg type set.");
 };
 
-const setLegsColor = (assetIndex) => {
-    const element = document.getElementById('goobert-legs');
+const setLegsColor = (assetIndex: number) => {
+    const element = document.getElementById('goobert-legs')!;
     element.style.backgroundPositionX = (assetIndex*(-64)) + 'px';
     console.log("Leg color set.");
 };
 
-const setEyes = (assetIndex) => {
-    const element = document.getElementById('goobert-eyes');
+const setEyes = (assetIndex: number) => {
+    const element = document.getElementById('goobert-eyes')!;
     element.style.backgroundPositionY = (assetIndex*(-64)) + 'px';
     console.log("Eye type set.");
 };
 
-const setEyeExpression = (assetIndex) => {
-    const element = document.getElementById('goobert-eyes');
+const setEyeExpression = (assetIndex: number) => {
+    const element = document.getElementById('goobert-eyes')!;
     element.style.backgroundPositionX = (assetIndex*(-64)) + 'px';
     console.log("Eye expression set.");
 };
 
-const setMouth = (assetIndex) => {
-    const element = document.getElementById('goobert-mouth');
+const setMouth = (assetIndex: number) => {
+    const element = document.getElementById('goobert-mouth')!;
     element.style.backgroundPositionY = (assetIndex*(-64)) + 'px';
     console.log("Mouth type set.");
 };
 
-const setMouthExpression = (assetIndex) => {
-    const element = document.getElementById('goobert-mouth');
+const setMouthExpression = (assetIndex: number) => {
+    const element = document.getElementById('goobert-mouth')!;
     element.style.backgroundPositionX = (assetIndex*(-64)) + 'px';
     console.log("Mouth expression set.");
 };

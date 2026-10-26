@@ -1,29 +1,29 @@
 
 "use strict";
-import React from "react";
+import React, { useState } from "react";
+import { stopGame } from "../games/games-global";
+import { initFlappyGoobert, jump } from "../games/flappy-goobert";
+import { load, rooms } from "../App";
+import { gameGoobert } from "./game-room";
 
-
+declare global {
+    interface WindowEventMap {
+        'flappy-game-over': CustomEvent<Function>;
+    }
+}
 /*
  * Flappy Goobert React component.
  * Displays the game, tracks when the game ends,
  * and allows the player to restart or leave.
  */
-export default class FlappyGoobert extends React.Component {
-
-    constructor(props) {
-        super(props);
-
-        // Store values that React needs to track.
-        this.state = {
-            showPlayAgain: false
-        };
-    }
+export default function FlappyGoobert(): React.JSX.Element {
+    let [showPlayAgain, setShowPlayAgain] = useState(false); 
 
     /*
      * Loads a JavaScript file needed by the game.
      * If the script already exists, we do not load it again.
      */
-    loadScript(src, id, onReady) {
+    function loadScript(src: string, id: string, onReady: Function) {
         const existing = document.getElementById(id);
 
         // Check whether the script was already added.
@@ -34,7 +34,7 @@ export default class FlappyGoobert extends React.Component {
             }
 
             // Wait for the existing script to finish loading.
-            existing.addEventListener("load", onReady, { once: true });
+            existing.addEventListener("load", onReady as (this: HTMLElement, ev: Event) => any, { once: true });
             return;
         }
 
@@ -57,14 +57,14 @@ export default class FlappyGoobert extends React.Component {
      * Runs when the Flappy Goobert screen first appears.
      * Loads the required game files and starts the game.
      */
-    componentDidMount() {
-        this.loadScript("games/games-global.js", "games-global-script", () => {
-            this.loadScript("games/flappy-goobert.js", "flappy-goobert-script", () => {
+    function componentDidMount() {
+        loadScript("games/games-global.js", "games-global-script", () => {
+            loadScript("games/flappy-goobert.js", "flappy-goobert-script", () => {
 
                 // Show the Play Again button when the game ends.
-                window.onFlappyGameOver = () => {
-                    this.setState({ showPlayAgain: true });
-                };
+                // window.onFlappyGameOver = () => {
+                //     setShowPlayAgain(true);
+                // };
 
                 // Start Flappy Goobert if the function is available.
                 if (typeof initFlappyGoobert === "function") {
@@ -78,8 +78,9 @@ export default class FlappyGoobert extends React.Component {
      * Runs when the player leaves the Flappy Goobert screen.
      * Stops the game and clears its game-over callback.
      */
-    componentWillUnmount() {
-        window.onFlappyGameOver = null;
+    function componentWillUnmount() {
+        // TODO: add onFlappyGameOver-like global event
+        // window.onFlappyGameOver = null;
 
         if (typeof stopGame === "function") {
             stopGame();
@@ -90,12 +91,11 @@ export default class FlappyGoobert extends React.Component {
      * Restarts the game after Game Over.
      * Hides the Play Again button and starts a new game.
      */
-    playAgain() {
-        this.setState({ showPlayAgain: false }, () => {
-            if (typeof initFlappyGoobert === "function") {
-                initFlappyGoobert();
-            }
-        });
+    function playAgain() {
+        setShowPlayAgain(true);
+        if (typeof initFlappyGoobert === "function") {
+            initFlappyGoobert();
+        }
     }
 
     /*
@@ -103,9 +103,10 @@ export default class FlappyGoobert extends React.Component {
      * Touching the game makes Goobert jump.
      * Touching a button does not trigger a jump.
      */
-    handleTouch(event) {
+    function handleTouch(event: MouseEvent) {
         // Ignore touches on buttons.
-        if (event.target.closest("button")) {
+        let target = event.target as HTMLElement;
+        if (target.closest("button")) {
             return;
         }
 
@@ -120,74 +121,72 @@ export default class FlappyGoobert extends React.Component {
     /*
      * Displays the Flappy Goobert game screen.
      */
-    render() {
-        return (
-            <main
-                className="flappy-screen"
-                onTouchStart={(event) => this.handleTouch(event)}
+    return (
+        <main
+            className="flappy-screen"
+            onTouchStart={(event: any) => handleTouch(event)}
+        >
+
+            {/* Button to return to the Game Room. */}
+            <button
+                type="button"
+                className="btn game-return-btn"
+                onClick={() => load(rooms.gameRoom)}
             >
+                Back to Game Room
+            </button>
 
-                {/* Button to return to the Game Room. */}
-                <button
-                    type="button"
-                    className="btn game-return-btn"
-                    onClick={() => load("gameRoom")}
-                >
-                    Back to Game Room
-                </button>
+            {/* Area where the Flappy Goobert game appears. */}
+            <div id="main" className="flappy-board">
 
-                {/* Area where the Flappy Goobert game appears. */}
-                <div id="main" className="flappy-board">
-
-                    {/* Jump button for mobile devices. */}
-                    <div id="keys" className="d-block d-md-none vw-100">
-                        <i
-                            className="bi bi-arrow-up text-white bg-warning p-1 rounded-pill key keyup vw-100"
-                            onClick={() => jump()}
-                        ></i>
-                    </div>
+                {/* Jump button for mobile devices. */}
+                <div id="keys" className="d-block d-md-none vw-100">
+                    <i
+                        className="bi bi-arrow-up text-white bg-warning p-1 rounded-pill key keyup vw-100"
+                        onClick={() => jump()}
+                    ></i>
                 </div>
-                <div id="flappy-score" className="flappy-score">Score: 0</div>
+            </div>
+            <div id="flappy-score" className="flappy-score">Score: 0</div>
 
-                {/* Display Cleanliness when a Goobert is selected.  */}
-                {gameGoobert &&
-                    <div className="cleanliness-label">
-                        <label
-                            htmlFor="goobert-percentage"
-                            key={"FlappyGoobertCleanlinessLabel"}
-                        >
-                            Cleanliness
-                        </label>
-                        <br />
-                        <input
-                            type="range"
-                            min={0}
-                            max={100}
-                            value={gameGoobert.cleanliness}
-                            id="goobert-percentage"
-                            key={"FlappyGoobertCleanliness"}
-                            readOnly
-                        />
-                    </div>
-                }
+            {/* Display Cleanliness when a Goobert is selected.  */}
+            {gameGoobert &&
+                <div className="cleanliness-label">
+                    <label
+                        htmlFor="goobert-percentage"
+                        key={"FlappyGoobertCleanlinessLabel"}
+                    >
+                        Cleanliness
+                    </label>
+                    <br />
+                    <input
+                        type="range"
+                        min={0}
+                        max={100}
+                        value={gameGoobert.cleanliness}
+                        id="goobert-percentage"
+                        key={"FlappyGoobertCleanliness"}
+                        readOnly
+                    />
+                </div>
+            }
 
-                {/* Show the Game Over screen only when the game ends. */}
-                {this.state.showPlayAgain && (
-                    <div className="game-over-panel">
-                        <h3>Game Over</h3>
+            {/* Show the Game Over screen only when the game ends. */}
+            {showPlayAgain && (
+                <div className="game-over-panel">
+                    <h3>Game Over</h3>
 
-                        {/* Restart the game when clicked. */}
-                        <button
-                            type="button"
-                            className="btn btn-warning"
-                            onClick={() => this.playAgain()}
-                        >
-                            Play Again
-                        </button>
-                    </div>
-                )}
+                    {/* Restart the game when clicked. */}
+                    <button
+                        type="button"
+                        className="btn btn-warning"
+                        onClick={() => playAgain()}
+                    >
+                        Play Again
+                    </button>
+                </div>
+            )}
 
-            </main>
-        );
-    }
+        </main>
+    );
 }

@@ -1,4 +1,6 @@
-function initSnakeGame(boardWidth, boardHeight) {
+import { body, refreshGameBody, setBodySize, stopGame } from "./games-global.";
+
+export function initSnakeGame(boardWidth, boardHeight) {
     if (typeof stopGame === "function") {
         stopGame();
     }
@@ -239,7 +241,7 @@ function handleKeyPress() {
     }
 }
 
-function setSnakeVelocity(dir) {
+export function setSnakeVelocity(dir) {
     switch (dir) {
         case "left":
             if(snake.direction != assets.right) {
