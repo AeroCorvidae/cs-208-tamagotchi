@@ -1,4 +1,6 @@
-class Bedroom extends React.Component {
+import React from "react";
+import { doorOpenSound } from "./audio.js";
+export default class Bedroom extends React.Component {
     render() {
         return(
             <main className="bedroom">
@@ -39,7 +41,8 @@ class Bedroom extends React.Component {
                 <div id="floor-wrapper">
                     <div className="bedroom-beds">
                         <button 
-                            onClick={() => david.sleep()} 
+                            //TODO: Add mechanism for sleeping gooberts
+                            /*onClick={() => david.sleep()}*/ 
                             className="bedroom-bed-button"
                             title="Click Here to sleep!"
                         >

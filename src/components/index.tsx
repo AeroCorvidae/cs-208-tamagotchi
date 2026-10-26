@@ -1,4 +1,6 @@
 "use strict";
+import React from "react";
+
 
 /*
  * Goobies Main Menu
@@ -6,7 +8,7 @@
  * All audio is handled by components/audio.js using Howler.js.
  */
 
-class MainMenu extends React.Component {
+export default class MainMenu extends React.Component {
     constructor(props) {
         super(props);
 

@@ -1,7 +1,13 @@
 "use strict";
+import React, { type MouseEventHandler } from "react";
+
 
 /* Credits screen. This is a React screen, not another HTML page. */
-function Credits(props) {
+type CreditsProps = {
+    onHover: MouseEventHandler<HTMLButtonElement>,
+    onBack: MouseEventHandler<HTMLButtonElement>
+}
+export default function Credits(props: CreditsProps) {
     return (
         <section className="credits-screen" aria-label="Goobies credits">
             {/* Return to the menu without reloading the page. */}

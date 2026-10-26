@@ -1,4 +1,6 @@
-"use strict"
+"use strict";
+import React from "react";
+
 /* 
 Displays the test Goobert in the Hub.
 The different body parts are displayed using separate image elements.
@@ -73,7 +75,7 @@ class TestGoobert extends React.Component {
 Main Hub component where the player can customize Gooberts
 and navigate to different rooms.
 */
-class Hub extends React.Component {
+export default class Hub extends React.Component {
     constructor(props) {
         super(props);
 

@@ -1,12 +1,14 @@
 
 "use strict";
+import React from "react";
+
 
 /*
  * Flappy Goobert React component.
  * Displays the game, tracks when the game ends,
  * and allows the player to restart or leave.
  */
-class FlappyGoobert extends React.Component {
+export default class FlappyGoobert extends React.Component {
 
     constructor(props) {
         super(props);

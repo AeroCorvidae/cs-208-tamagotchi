@@ -1,11 +1,13 @@
 "use strict";
+import React from "react";
+
 
 /*
 Main React component for the Snake minigame.
 Handles loading game scripts, selecting difficulty,
 displaying controls, and returning to Game Room.
 */
-class SnakeGame extends React.Component {
+export default class SnakeGame extends React.Component {
 
     constructor(props) {
         super(props);

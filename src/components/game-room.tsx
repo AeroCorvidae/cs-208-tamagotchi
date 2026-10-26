@@ -1,5 +1,6 @@
 
 "use strict";
+import React from "react";
 
 /*
  * Game Room
@@ -12,7 +13,7 @@
 // The first Goobie receives rewards from arcade games.
 let gameGoobert = null;
 
-class GameRoom extends React.Component {
+export default class GameRoom extends React.Component {
 
     render() {
 
