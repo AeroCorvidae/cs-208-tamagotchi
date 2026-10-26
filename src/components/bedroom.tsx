@@ -33,7 +33,7 @@ export default class Bedroom extends React.Component {
 
                             <img 
                                 className="bedroom-exit-icon" 
-                                src="assets/pixelarticons/arrow-left.svg"
+                                src="images/pixelarticons/arrow-left.svg"
                                 aria-hidden="true" />
                             <span>BACK TO HUB</span>
                         </button>

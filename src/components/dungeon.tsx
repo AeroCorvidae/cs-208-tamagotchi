@@ -11,7 +11,7 @@ export default class Dungeon extends React.Component {
                 <div className="dungeonWrapper d-flex flex-column justify-content-between vh-100">
                     <div className="dungeonWall">
                         <div className="col-12 text-center">
-                            <img id="escape" className="img-fluid" src="assets/doors/Ladder.webp" alt="Return to Hub"
+                            <img id="escape" className="img-fluid" src="images/doors/Ladder.webp" alt="Return to Hub"
                             // Play the Dungeon click sound before returning.
                             onClick={() => {
                                 ladderClickSound.play();

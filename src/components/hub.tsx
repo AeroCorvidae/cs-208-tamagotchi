@@ -50,7 +50,7 @@ export default function Hub(props: any): React.JSX.Element {
 
             {/* Bedroom door */}
             <div className="sleep-door-container">
-                <img src="hub-images/DreamDoor.webp" alt="BEDROOM" id="sleep-door"
+                <img src="images/hub/DreamDoor.webp" alt="BEDROOM" id="sleep-door"
                 
                 // Play the hover sound when mouse enters the door
                 onMouseEnter={() => doorHoverSound.play()}
