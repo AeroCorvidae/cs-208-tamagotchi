@@ -29,6 +29,12 @@ export function start(fps: number, gameLoop: Function) {
 }
 export const keys: boolean[] = [];
 export let width = 15, height = 15;
+export function setWidth(amt: number): void {
+    width = amt;
+}
+export function setHeight(amt: number): void {
+    height = amt;
+}
 
 // Update grid size to a power of 2, since it helps render images better
 export function getGridSize() {

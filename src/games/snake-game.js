@@ -11,8 +11,8 @@ export function initSnakeGame(boardWidth, boardHeight) {
     }
     if (!body) return;
 
-    width = Math.max(6, parseInt(boardWidth, 10) || 15) - 1;
-    height = Math.max(6, parseInt(boardHeight, 10) || 15) - 1;
+    setWidth(Math.max(6, parseInt(boardWidth, 10) || 15) - 1);
+    setHeight(Math.max(6, parseInt(boardHeight, 10) || 15) - 1);
     setBodySize();
 
     body.innerHTML = "";
