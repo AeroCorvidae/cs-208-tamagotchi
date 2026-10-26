@@ -1,17 +1,25 @@
-import { gridSize } from "./games-global.ts";
+import { 
+    resetGame, keys, start, 
+    gridSize, setWidth, setHeight, 
+    setBody, width, height, body, 
+    stopGame, setBodySize 
+} from "./games-global.ts";
+import { gameGoobert } from "../components/game-room.tsx";
 import "./flappy-goobert.css";
+import { setPlayAgain, gameOver } from "../components/flappy-goobert.tsx";
+
 export function initFlappyGoobert() {
     stopGame();
-    body = document.getElementById("main");
+    setBody(document.getElementById("main"));
 
     if (!body) return;
 
     if (window.innerWidth <= 640) {
-        width = 12;
-        height = 18;
+        setWidth(12);
+        setHeight(18);
     } else {
-        width = 20;
-        height = 15; 
+        setWidth(20);
+        setHeight(15);
     }
     setBodySize();
 
@@ -19,7 +27,6 @@ export function initFlappyGoobert() {
     pipes = [];
     countdown = 0;
     score = 0;
-    gameOver = false; // Reset game-over status
 
     bird.x = gridSize * 3;
     bird.y = Math.floor((height * gridSize) / 2);
@@ -29,6 +36,8 @@ export function initFlappyGoobert() {
     bird.eyes = createEyeDiv();
     bird.div.appendChild(bird.eyes);
     updateScoreDisplay();
+
+    console.log(width, height, body);
 
     start(30, flappyGameloop);
 }
@@ -66,6 +75,11 @@ class Pipe {
 }
 
 function flappyGameloop() {
+    setFlappyPosition(bird.div, bird.x, bird.y);
+    bird.eyes.style.top = 
+        Math.max(Math.min((bird.velocity) * (gridSize / 64), gridSize * 0.5), -(gridSize * 0.5)) 
+        + "px";
+
     if (gameOver) return;
 
     handleKeyPress();
@@ -91,11 +105,6 @@ function flappyGameloop() {
             }
         }
     }
-
-    setFlappyPosition(bird.div, bird.x, bird.y);
-    bird.eyes.style.top = 
-        Math.max(Math.min((bird.velocity) * (gridSize / 64), gridSize * 0.5), -(gridSize * 0.5)) 
-        + "px";
     countdown--;
 }
 
@@ -171,8 +180,8 @@ function endFlappyRound() {
         stopGame();
     }
 
-    if (typeof window.onFlappyGameOver === "function") {
-        window.onFlappyGameOver();
+    if (setPlayAgain) {
+        setPlayAgain(true);
     } else {
         resetGame();
     }

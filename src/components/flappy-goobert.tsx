@@ -8,11 +8,8 @@ import { gameGoobert } from "./game-room";
 import "../games/flappy-goobert.css";
 
 
-declare global {
-    interface WindowEventMap {
-        'flappy-game-over': CustomEvent<Function>;
-    }
-}
+export let setPlayAgain: Function | null;
+export let gameOver: boolean;
 /*
  * Flappy Goobert React component.
  * Displays the game, tracks when the game ends,
@@ -21,68 +18,15 @@ declare global {
 export default function FlappyGoobert(): React.JSX.Element {
     let [showPlayAgain, setShowPlayAgain] = useState(false); 
 
-    /*
-     * Loads a JavaScript file needed by the game.
-     * If the script already exists, we do not load it again.
-     */
-    function loadScript(src: string, id: string, onReady: Function) {
-        const existing = document.getElementById(id);
-
-        // Check whether the script was already added.
-        if (existing) {
-            if (existing.dataset.loaded === "true") {
-                onReady();
-                return;
-            }
-
-            // Wait for the existing script to finish loading.
-            existing.addEventListener("load", onReady as (this: HTMLElement, ev: Event) => any, { once: true });
-            return;
-        }
-
-        // Create a new script element.
-        const script = document.createElement("script");
-        script.id = id;
-        script.src = src;
-        script.defer = true;
-
-        // Run the callback when the script finishes loading.
-        script.onload = () => {
-            script.dataset.loaded = "true";
-            onReady();
-        };
-
-        document.body.appendChild(script);
-    }
-
-    /*
-     * Runs when the Flappy Goobert screen first appears.
-     * Loads the required game files and starts the game.
-     */
-    function componentDidMount() {
-        loadScript("games/games-global.js", "games-global-script", () => {
-            loadScript("games/flappy-goobert.js", "flappy-goobert-script", () => {
-
-                // Show the Play Again button when the game ends.
-                // window.onFlappyGameOver = () => {
-                //     setShowPlayAgain(true);
-                // };
-
-                // Start Flappy Goobert if the function is available.
-                if (typeof initFlappyGoobert === "function") {
-                    initFlappyGoobert();
-                }
-            });
-        });
-    }
+    setPlayAgain = setShowPlayAgain;
+    gameOver = showPlayAgain;
 
     /*
      * Runs when the player leaves the Flappy Goobert screen.
      * Stops the game and clears its game-over callback.
      */
     function componentWillUnmount() {
-        // TODO: add onFlappyGameOver-like global event
-        // window.onFlappyGameOver = null;
+        setPlayAgain = null;
 
         if (typeof stopGame === "function") {
             stopGame();
@@ -94,7 +38,7 @@ export default function FlappyGoobert(): React.JSX.Element {
      * Hides the Play Again button and starts a new game.
      */
     function playAgain() {
-        setShowPlayAgain(true);
+        setShowPlayAgain(false);
         if (typeof initFlappyGoobert === "function") {
             initFlappyGoobert();
         }
@@ -133,7 +77,7 @@ export default function FlappyGoobert(): React.JSX.Element {
             <button
                 type="button"
                 className="btn game-return-btn"
-                onClick={() => load(rooms.gameRoom)}
+                onClick={() => {componentWillUnmount(); load(rooms.gameRoom)}}
             >
                 Back to Game Room
             </button>
@@ -188,7 +132,6 @@ export default function FlappyGoobert(): React.JSX.Element {
                     </button>
                 </div>
             )}
-
         </main>
     );
 }

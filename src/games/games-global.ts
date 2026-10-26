@@ -1,7 +1,10 @@
 import { load, rooms } from "../App";
 
 export let game: any;
-export let body: any = null;
+export let body: HTMLElement | null = null;
+export function setBody(element: HTMLElement) {
+    body = element;
+}
 
 export function refreshGameBody() {
     body = document.getElementById("main");

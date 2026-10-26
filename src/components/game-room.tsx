@@ -4,6 +4,7 @@ import React from "react";
 import { arcadeClickSound, arcadeHoverSound, doorOpenSound } from "./audio";
 import { gooberts, load, rooms, type Goobert } from "../App";
 import "../styles/game-room.css";
+import { initFlappyGoobert } from "../games/flappy-goobert";
 
 /*
  * Game Room
@@ -89,6 +90,7 @@ export default class GameRoom extends React.Component {
 
                             // Open Flappy Goobert.
                             load(rooms.flappyGoobert);
+                            initFlappyGoobert();
                         }}
                     >
                         <img

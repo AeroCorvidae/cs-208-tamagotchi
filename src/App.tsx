@@ -1,5 +1,5 @@
 "use strict";
-console.log("Hello World!");
+import "./styles/ui.css";
 
 import React, { useState, useEffect } from "react";
 import { createRoot } from 'react-dom/client';
@@ -59,8 +59,16 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 	useEffect(() => {
 		// Define the load function to create a goobert and re-render the page
 		renderGoobert = (goobert: Goobert) => {
-			setGoobertList([...goobertList, goobert]);
+			goobertList.push(goobert);
+			gooberts = goobertList; // Make gooberts public globally
+			setGoobertList(goobertList);
 		}
+
+		// Allow developer to create a goobert from console
+		(window as any).createGoobert = (
+			name: string,
+			room: React.JSX.Element = rooms.hub
+		) => renderGoobert(createGoobert(name, room)); 
 	});
 
 	
@@ -92,7 +100,7 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 			}
 
 			{
-				uiGoobert && <UIGoobertCard goobert={uiGoobert} />
+				uiGoobert && uiGoobert.room === room && <UIGoobertCard goobert={uiGoobert} />
 			}
 		</>
 	);
@@ -119,8 +127,9 @@ export let load: Load;
 export function createGoobert(
 	name: string, 
 	location = rooms.hub, 
-	x = (Math.random() * (window.innerWidth - 64) + "px" /* goobert width */), 
-	y = ((Math.random() * (window.innerHeight - 550 - 64) /* goobert height */)) + 550 + "px") 
+	x = (Math.random() * (window.innerWidth - 64) /* goobert width */), 
+	y = ((Math.random() * (window.innerHeight - 550 - 64) /* goobert height */)) + 550
+) 
 {
 	return (
 		{
@@ -188,3 +197,7 @@ export type Goobert = {
 // used to render TopElement gooberts
 type RenderGoobert = ((goobert: Goobert) => void);
 export let renderGoobert: Function;
+
+// Make variables accessible to console
+(window as any).rooms = rooms;
+(window as any).gooberts = gooberts;

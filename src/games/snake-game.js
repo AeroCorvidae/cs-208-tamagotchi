@@ -1,4 +1,6 @@
 import { body, refreshGameBody, setBodySize, stopGame } from "./games-global.ts";
+import { gameGoobert } from "../components/game-room.tsx";
+
 import "./snake-stylesheet.css";
 
 
