@@ -68,6 +68,7 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 		renderGoobert = (goobert: Goobert) => {
 			setGoobertList([...goobertList, goobert]);
 			gooberts = goobertList; // Make gooberts public globally
+			(window as any).gooberts = gooberts;
 		}
 
 		// Allow developer to create a goobert from console
@@ -209,4 +210,3 @@ export let renderGoobert: Function;
 
 // Make variables accessible to console
 (window as any).rooms = rooms;
-(window as any).gooberts = gooberts;
