@@ -12,7 +12,6 @@ export default class Shop extends React.Component {
         link.href = '../shop-style.css';
         
         document.head.appendChild(link);
-        console.log(link);
     }
 
     render() {

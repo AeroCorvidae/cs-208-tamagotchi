@@ -90,7 +90,6 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 							{...goobert}
 							onGoobertSelected={
 								() => {
-									console.log("Ui goobert selected!");
 									setUiGoobert(goobert);
 								}
 							} 

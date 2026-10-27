@@ -151,7 +151,6 @@ const randomizeFeatures = () => {
     setLegsColor(hubAssets.legColor);
     setEyes(hubAssets.eyeType);
     setMouth(hubAssets.mouthType);
-    console.log("Features randomized.");
 };
 
 // Switches to the next body type when the player clicks tree
@@ -205,47 +204,39 @@ const setBodyType = (assetIndex: number) => {
     const element = document.getElementById('goobert-body')!;
     // Move the background image vertically to display the selected body.
     element.style.backgroundPositionY = (hubAssets.bodyType*(-64)) + 'px';
-    console.log("Body type set.");
 };
 
 const setBodyColor = (assetIndex: number) => {
     const element = document.getElementById('goobert-body')!;
     element.style.backgroundPositionX = (assetIndex*(-64)) + 'px';
-    console.log("Body color set.");
 };
 
 const setLegsType = (assetIndex: number) => {
     const element = document.getElementById('goobert-legs')!;
     element.style.backgroundPositionY = (assetIndex*(-64)) + 'px';
-    console.log("Leg type set.");
 };
 
 const setLegsColor = (assetIndex: number) => {
     const element = document.getElementById('goobert-legs')!;
     element.style.backgroundPositionX = (assetIndex*(-64)) + 'px';
-    console.log("Leg color set.");
 };
 
 const setEyes = (assetIndex: number) => {
     const element = document.getElementById('goobert-eyes')!;
     element.style.backgroundPositionY = (assetIndex*(-64)) + 'px';
-    console.log("Eye type set.");
 };
 
 const setEyeExpression = (assetIndex: number) => {
     const element = document.getElementById('goobert-eyes')!;
     element.style.backgroundPositionX = (assetIndex*(-64)) + 'px';
-    console.log("Eye expression set.");
 };
 
 const setMouth = (assetIndex: number) => {
     const element = document.getElementById('goobert-mouth')!;
     element.style.backgroundPositionY = (assetIndex*(-64)) + 'px';
-    console.log("Mouth type set.");
 };
 
 const setMouthExpression = (assetIndex: number) => {
     const element = document.getElementById('goobert-mouth')!;
     element.style.backgroundPositionX = (assetIndex*(-64)) + 'px';
-    console.log("Mouth expression set.");
 };

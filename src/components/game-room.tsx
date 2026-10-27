@@ -90,7 +90,6 @@ export default class GameRoom extends React.Component {
 
                             // Open Flappy Goobert.
                             load(rooms.flappyGoobert);
-                            initFlappyGoobert();
                         }}
                     >
                         <img
