@@ -37,8 +37,6 @@ export function initFlappyGoobert() {
     bird.div.appendChild(bird.eyes);
     updateScoreDisplay();
 
-    console.log(width, height, body);
-
     start(30, flappyGameloop);
 }
 
@@ -75,7 +73,7 @@ class Pipe {
 }
 
 function flappyGameloop() {
-    setFlappyPosition(bird.div, bird.x, bird.y);
+    renderFlappy(bird.div, bird.x, bird.y);
     bird.eyes.style.top = 
         Math.max(Math.min((bird.velocity) * (gridSize / 64), gridSize * 0.5), -(gridSize * 0.5)) 
         + "px";
@@ -176,9 +174,10 @@ function checkPipeIntersection() {
 }
 
 function endFlappyRound() {
-    if (typeof stopGame === "function") {
-        stopGame();
-    }
+    stopGame();
+
+    for(let pipe of pipes) renderPipe(pipe);
+    if(bird.div) renderFlappy(bird.div, bird.x, bird.y);
 
     if (setPlayAgain) {
         setPlayAgain(true);
@@ -194,7 +193,7 @@ function createBirdDiv() {
         gridSize + "px";
     cell.style.backgroundPosition = "0 0";
 
-    setFlappyPosition(cell, bird.x, bird.y);
+    renderFlappy(cell, bird.x, bird.y);
     cell.id = "bird";
     cell.classList.add("bird");
     cell.style.width = gridSize + "px";
@@ -296,10 +295,11 @@ function updateScoreDisplay() {
     }
 }
 
-function setFlappyPosition(div, x, y) {
+function renderFlappy(div, x, y) {
     div.style.left = x  + "px";
     div.style.top = y + "px";
 }
+window.renderFlappy = () => renderFlappy(bird.div, bird.x, bird.y)
 
 function handleKeyPress() {
     if(keys["w"] || keys[" "] || keys["arrowup"]) {

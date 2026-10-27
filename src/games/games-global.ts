@@ -55,7 +55,7 @@ export function getGridSize() {
 export function setBodySize() {
     refreshGameBody();
     if (!body) return;
-
+    
     // Update grid size
     gridSize = getGridSize();
 
@@ -65,7 +65,6 @@ export function setBodySize() {
 
 }
 export let gridSize = getGridSize();
-
 
 export function resetGame() {
     stopGame();

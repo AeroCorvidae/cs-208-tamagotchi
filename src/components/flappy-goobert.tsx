@@ -1,6 +1,6 @@
 
 "use strict";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { stopGame } from "../games/games-global";
 import { initFlappyGoobert, jump } from "../games/flappy-goobert";
 import { load, rooms } from "../App";
@@ -18,8 +18,16 @@ export let gameOver: boolean;
 export default function FlappyGoobert(): React.JSX.Element {
     let [showPlayAgain, setShowPlayAgain] = useState(false); 
 
+    useEffect(() => {
+        if (!showPlayAgain) {
+            initFlappyGoobert();
+        }
+    }, [showPlayAgain]);
+
+
     setPlayAgain = setShowPlayAgain;
     gameOver = showPlayAgain;
+
 
     /*
      * Runs when the player leaves the Flappy Goobert screen.
