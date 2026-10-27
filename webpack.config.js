@@ -47,8 +47,8 @@ const config = {
             ]
         }),
         new HtmlWebpackPlugin({
-            template: "./src/hub.html",
-            filename: "hub.html",
+            template: "./src/index.html",
+            filename: "index.html",
             
         })
     ]
@@ -65,8 +65,8 @@ if (production) {
             ]
         }),
         new HtmlWebpackPlugin({
-            template: "./src/hub.html",
-            filename: "hub.html"
+            template: "./src/index.html",
+            filename: "index.html"
         })
     ];
 }

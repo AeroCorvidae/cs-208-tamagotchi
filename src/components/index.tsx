@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { indexClickSound, indexHoverSound } from "./audio";
 import Credits from "./credits";
 import { createRoot } from "react-dom/client";
+import { load, rooms } from "../App";
 
 
 /*
@@ -69,7 +70,7 @@ export default function MainMenu(): React.JSX.Element {
                                 onMouseEnter={() => indexHoverSound.play()}
                                 onClick={() => {
                                     indexClickSound.play();
-                                    window.location.href = "hub.html";
+                                    load(rooms.hub)
                                 }}
                             >
                                 New Game

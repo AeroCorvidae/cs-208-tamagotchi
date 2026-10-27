@@ -10,6 +10,7 @@ import Shop from "./components/shop";
 import GameRoom from "./components/game-room";
 import Bedroom from "./components/bedroom";
 import Dungeon from "./components/dungeon";
+import MainMenu from "./components/index";
 
 import UIGoobertCard from "./components/ui-script";
 
@@ -29,6 +30,8 @@ export type Room = {
 	room: React.JSX.Element
 }
 export const rooms = {
+	menu: <MainMenu />,
+
 	hub: <Hub />,
 	gameRoom: <GameRoom />,
 	shop: <Shop />,
@@ -81,7 +84,8 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 			{/* Display the currently selected room (Hub, Bedroom, etc...) */}
 			{room}
 
-			{
+			<div id="gooberts">
+				{
 				// Filter gooberts to only display the ones on the current room
 				gooberts.filter((goobert, i) => {
 					return goobert.room == room
@@ -100,10 +104,13 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 						/>
 					);
 				})
-			}
+				}
+			</div>
 
-			{
-				uiGoobert && uiGoobert.room === room && <UIGoobertCard goobert={uiGoobert} onUiClose={handleUiCloseButton} />
+			{ 
+				// A goobert card will be rendered if a ui goobert exists and if it is in the current room
+				uiGoobert && uiGoobert.room === room && 
+				<UIGoobertCard goobert={uiGoobert} onUiClose={handleUiCloseButton} />
 			}
 		</>
 	);
@@ -116,7 +123,7 @@ const root = createRoot(
 function init() {
     topElement = React.createRef();
     root.render(
-		<TopElement room={rooms.hub} />
+		<TopElement room={rooms.menu} />
 	);
 }
 
