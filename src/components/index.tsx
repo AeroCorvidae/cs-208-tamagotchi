@@ -97,7 +97,3 @@ export default function MainMenu(): React.JSX.Element {
         </main>
     );
 }
-
-createRoot(document.getElementById('content')!).render(
-    <MainMenu />
-);

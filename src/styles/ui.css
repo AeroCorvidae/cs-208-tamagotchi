@@ -127,7 +127,7 @@ of each other.*/
 }
 #ui-statbar-cleanliness {
     top: 140px;
-    background-image: url(../images/goobert-parts/Transparent-BG.png);
+    background-position-x: -138px;
 }
 
 /* ----------------------------------------
