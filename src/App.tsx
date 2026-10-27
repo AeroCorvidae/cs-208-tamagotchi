@@ -50,6 +50,10 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 	const [uiGoobert, setUiGoobert] = useState(props.uiGoobert);
 	const [goobertList, setGoobertList] = useState(gooberts);
 
+	const handleUiCloseButton = () => {
+		setUiGoobert(undefined);
+	}
+
 	useEffect(() => {
 		// Define the load function to load a room and re-render the page
 		load = (component: React.JSX.Element) => {
@@ -99,7 +103,7 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 			}
 
 			{
-				uiGoobert && uiGoobert.room === room && <UIGoobertCard goobert={uiGoobert} />
+				uiGoobert && uiGoobert.room === room && <UIGoobertCard goobert={uiGoobert} onUiClose={handleUiCloseButton} />
 			}
 		</>
 	);
