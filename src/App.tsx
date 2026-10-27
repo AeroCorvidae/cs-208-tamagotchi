@@ -66,9 +66,8 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 	useEffect(() => {
 		// Define the load function to create a goobert and re-render the page
 		renderGoobert = (goobert: Goobert) => {
-			goobertList.push(goobert);
+			setGoobertList([...goobertList, goobert]);
 			gooberts = goobertList; // Make gooberts public globally
-			setGoobertList(goobertList);
 		}
 
 		// Allow developer to create a goobert from console
@@ -87,7 +86,7 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 			<div id="gooberts">
 				{
 				// Filter gooberts to only display the ones on the current room
-				gooberts.filter((goobert, i) => {
+				goobertList.filter((goobert, i) => {
 					return goobert.room == room
 				}).map((goobert, i) => {
 					// Create a goobert for each object stored in this room
