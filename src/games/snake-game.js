@@ -1,4 +1,4 @@
-import { body, refreshGameBody, setBodySize, stopGame } from "./games-global.ts";
+import { body, gridSize, height, keys, refreshGameBody, resetGame, setBodySize, setHeight, setWidth, start, stopGame, width } from "./games-global.ts";
 import { gameGoobert } from "../components/game-room.tsx";
 
 import "./snake-stylesheet.css";
@@ -123,7 +123,7 @@ function moveSnake() {
     
         setObjPosition(snake.head);
     
-        for (position of snake.positions) {
+        for (let position of snake.positions) {
             // Kill snake if it is touching itself
             if (position.x == snake.head.x && position.y == snake.head.y && position != snake.head) {
                 resetGame();

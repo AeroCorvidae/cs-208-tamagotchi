@@ -18,57 +18,6 @@ export default function SnakeGame(): React.JSX.Element {
     let [fullness, setFullness] = useState(gameGoobert ? gameGoobert.fullness : 0)
 
     /*
-    Loads a js file needed by the Snake game.
-    If the script already exists, it will not add a duplicate.
-    */
-    function loadScript(src: string, id: string, onReady: Function) {
-        // Check whether this script has already been added to page.
-        const existing = document.getElementById(id);
-
-        if (existing) {
-
-            // If the script finished loading, continue immediately.
-            if (existing.dataset.loaded === "true") {
-                onReady();
-                return;
-            }
-
-            // Otherwise, wait for the existing script to finish loading.
-            existing.addEventListener("load", onReady as (this: HTMLElement, ev: Event) => any, { once: true });
-            return;
-        }
-
-        // Create a new script element.
-        const script = document.createElement("script");
-        script.id = id;
-        script.src = src;
-        script.defer = true;
-
-        // Once loaded, mark the script as ready.
-        script.onload = () => {
-            script.dataset.loaded = "true";
-            onReady();
-        };
-
-        // Add the script to the webpage.
-        document.body.appendChild(script);
-    }
-
-    /*
-    React calls this method when the Snake component appears.
-    Loads the shared game script first, then the Sname game script.
-    */
-    function componentDidMount() {
-        loadScript("games/games-global.js", "games-global-script", () => {
-            loadScript("games/snake-game.js", "snake-game-script", () => {
-
-                // Enable difficulty selection once both scripts are ready.
-                setScriptsReady(true);
-            });
-        });
-    }
-
-    /*
     React calls this method when the player leaves Snake.
     Stops the game so it does not continue running in another room/game.
     */
@@ -84,12 +33,6 @@ export default function SnakeGame(): React.JSX.Element {
     The game can only start after its scripts finish loading.
     */
     function startSnake(width: number, height: number, difficulty: string) {
-
-        // Do not start if the game is not ready.
-        if (!scriptsReady || 
-            typeof initSnakeGame !== "function") {
-            return;
-        }
 
         // Save the selected difficulty, then initialize the game board.
         setSelectedDifficulty(difficulty);
@@ -137,7 +80,7 @@ export default function SnakeGame(): React.JSX.Element {
                             type="button"
                             className="btn btn-success"
                             onClick={() => startSnake(25, 25, "Easy")}
-                            disabled={!scriptsReady}>
+                        >
                             Easy
                         </button>
 
@@ -146,7 +89,7 @@ export default function SnakeGame(): React.JSX.Element {
                             type="button"
                             className="btn btn-warning"
                             onClick={() => startSnake(17, 17, "Medium")}
-                            disabled={!scriptsReady}>
+                        >
                             Medium
                         </button>
 
@@ -155,7 +98,7 @@ export default function SnakeGame(): React.JSX.Element {
                             type="button"
                             className="btn btn-danger"
                             onClick={() => startSnake(10, 10, "Hard")}
-                            disabled={!scriptsReady}>
+                        >
                             Hard
                         </button>
                     </div>
