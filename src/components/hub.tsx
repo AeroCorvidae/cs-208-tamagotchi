@@ -1,6 +1,6 @@
 "use strict";
 import React from "react";
-import { load, rooms } from "../App";
+import { load, rooms, type Goobert, type createGoobert } from "../App";
 import { doorHoverSound, doorOpenSound, dungeonClickSound, dungeonHoverSound } from "./audio";
 import "../styles/hub.css";
 

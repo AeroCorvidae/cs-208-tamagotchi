@@ -4,7 +4,7 @@ import "./styles/ui.css";
 import React, { useState, useEffect } from "react";
 import { createRoot } from 'react-dom/client';
 
-import GoobertElement, { type Goobert } from "./Goobert";
+import GoobertElement from "./Goobert";
 import Hub from "./components/hub";
 import Shop from "./components/shop";
 import GameRoom from "./components/game-room";
@@ -53,9 +53,6 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 	const [uiGoobert, setUiGoobert] = useState(props.uiGoobert);
 	const [goobertList, setGoobertList] = useState(gooberts);
 
-	gooberts = goobertList; // Make gooberts public globally
-	(window as any).gooberts = gooberts;
-
 	const handleUiCloseButton = () => {
 		setUiGoobert(undefined);
 	}
@@ -70,6 +67,8 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 		// Define the load function to create a goobert and re-render the page
 		renderGoobert = (goobert: Goobert) => {
 			setGoobertList([...goobertList, goobert]);
+			gooberts = goobertList; // Make gooberts public globally
+			(window as any).gooberts = gooberts;
 		}
 
 		// Allow developer to create a goobert from console
@@ -139,7 +138,7 @@ export function createGoobert(
 	name: string, 
 	location = rooms.hub, 
 	x = (Math.random() * (window.innerWidth - 64) /* goobert width */), 
-	y = ((Math.random() * (window.innerHeight - 550 + 64) /* goobert height - measured in distance from the bottom of the screen */)),
+	y = ((Math.random() * (window.innerHeight - 550 - 64) /* goobert height */)) + 550
 ) 
 {
 	return (
@@ -175,6 +174,35 @@ export function createGoobert(
 		}
 	);
 }
+export type Goobert = {
+	name: string, 
+	x: string, 
+	y: string, 
+	room: React.JSX.Element, 
+	id: string,
+
+	fullness: number, // Eating, catch the food game
+	swagosity: number, // Boredom, Snake
+	awakeness: number, // Sleeping
+	cleanliness: number, // Bathing, Flappy Goobert
+
+	bodyType: number,
+	bodyColor: number,
+	legType: number,
+	legColor: number,
+	eyeType: number,
+	mouthType: number,
+	eyeExpression: number,
+	mouthExpression: number,
+
+	eat: Function,
+	sleep: Function,
+	entertain: Function,
+	bathe: Function,
+
+	onGoobertSelected: Function
+
+} 
 // Defined within TopElement, takes a goobert and adds it to the list 
 // used to render TopElement gooberts
 type RenderGoobert = ((goobert: Goobert) => void);
