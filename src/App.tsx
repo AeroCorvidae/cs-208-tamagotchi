@@ -16,6 +16,8 @@ import UIGoobertCard from "./components/ui-script";
 
 import SnakeGame from "./components/snake";
 import FlappyGoobert from "./components/flappy-goobert";
+import { BrowserRouter, useNavigate } from "react-router";
+import PageController from "./PageController";
 
 // How many of each type of asset exist
 const MAX_EYE_TYPES = 10;
@@ -30,22 +32,22 @@ export type Room = {
 	room: React.JSX.Element
 }
 export const rooms = {
-	menu: <MainMenu />,
+	menu: "",
 
-	hub: <Hub />,
-	gameRoom: <GameRoom />,
-	shop: <Shop />,
-	bedroom: <Bedroom />,
-	dungeon: <Dungeon />,
+	hub: "/hub",
+	gameRoom: "/game-room",
+	shop: "/shop",
+	bedroom: "/bedroom",
+	dungeon: "/dungeon",
 
-	snakeGame: <SnakeGame />,
-	flappyGoobert: <FlappyGoobert />
+	snakeGame: "/snake",
+	flappyGoobert: "/flappy-goobert"
 
 }
 
 
 type TopElementProps = {
-	room: React.JSX.Element,
+	room: string,
 	uiGoobert?: Goobert
 }
 const TopElement = (props: TopElementProps): React.JSX.Element => {
@@ -57,12 +59,13 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 		setUiGoobert(undefined);
 	}
 
-	useEffect(() => {
-		// Define the load function to load a room and re-render the page
-		load = (component: React.JSX.Element) => {
-			setRoom(component);
-		}
-	});
+	// Define the load function to load a room and re-render the page
+	const navigate = useNavigate();
+	load = (url: string) => {
+		navigate(url);
+		setRoom(url); // Let gooberts know which room they're on
+	}
+
 	useEffect(() => {
 		// Define the load function to create a goobert and re-render the page
 		renderGoobert = (goobert: Goobert) => {
@@ -74,7 +77,7 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 		// Allow developer to create a goobert from console
 		(window as any).createGoobert = (
 			name: string,
-			room: React.JSX.Element = rooms.hub
+			room: string = rooms.hub
 		) => renderGoobert(createGoobert(name, room)); 
 	});
 
@@ -82,13 +85,13 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 	return (
 		<>
 			{/* Display the currently selected room (Hub, Bedroom, etc...) */}
-			{room}
+			<PageController />
 
 			<div id="gooberts">
 				{
 				// Filter gooberts to only display the ones on the current room
 				goobertList.filter((goobert, i) => {
-					return goobert.room == room
+					return goobert.room === room
 				}).map((goobert, i) => {
 					// Create a goobert for each object stored in this room
 					return (
@@ -123,7 +126,9 @@ const root = createRoot(
 function init() {
     topElement = React.createRef();
     root.render(
-		<TopElement room={rooms.menu} />
+		<BrowserRouter>
+			<TopElement room={rooms.menu} />
+		</BrowserRouter>
 	);
 }
 
@@ -131,7 +136,7 @@ init();
 
 
 // Implemented by TopElement, loads a room defined within the rooms variable
-type Load = ((component: React.JSX.Element) => void);
+type Load = ((component: string) => void);
 export let load: Load;
 
 export function createGoobert(
@@ -178,7 +183,7 @@ export type Goobert = {
 	name: string, 
 	x: string, 
 	y: string, 
-	room: React.JSX.Element, 
+	room: string, 
 	id: string,
 
 	fullness: number, // Eating, catch the food game

@@ -3,8 +3,8 @@ import "../styles/index.css";
 import React, { useState } from "react";
 import { indexClickSound, indexHoverSound } from "./audio";
 import Credits from "./credits";
-import { createRoot } from "react-dom/client";
 import { load, rooms } from "../App";
+import { Link } from "react-router";
 
 
 /*
@@ -50,31 +50,29 @@ export default function MainMenu(): React.JSX.Element {
                     {/* Save system will be connected later. */}
                     <div className="row justify-content-center my-3">
                         <div className="col-10 col-md-6 col-lg-3">
-                            <button
-                                type="button"
+                            <Link 
+                                to={"/hub"}
                                 className="btn btn-continue menu-button w-100"
                                 onMouseEnter={() => indexHoverSound.play()}
                                 onClick={() => indexClickSound.play()}
                             >
                                 Continue Game
-                            </button>
+                            </Link>
+                                
                         </div>
                     </div>
 
                     {/* New Game opens the Hub. */}
                     <div className="row justify-content-center my-3">
                         <div className="col-10 col-md-6 col-lg-3">
-                            <button
-                                type="button"
+                            <Link 
+                                to={"/hub"}
                                 className="btn btn-new-game menu-button w-100"
                                 onMouseEnter={() => indexHoverSound.play()}
-                                onClick={() => {
-                                    indexClickSound.play();
-                                    load(rooms.hub)
-                                }}
+                                onClick={() => indexClickSound.play()}
                             >
                                 New Game
-                            </button>
+                            </Link>
                         </div>
                     </div>
 
