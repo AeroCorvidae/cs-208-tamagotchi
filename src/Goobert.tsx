@@ -1,5 +1,5 @@
 'use strict';
-import React from "react";
+import React, { useState, type MouseEvent as RMouseEvent } from "react";
 
 const BODY_SPRITE_SHEET = 'images/goobert-parts/208-tamagotchi-bodies.png';
 const LEG_SPRITE_SHEET = 'images/goobert-parts/208-tamagotchi-legs.png';
@@ -8,8 +8,8 @@ const MOUTH_SPRITE_SHEET = 'images/goobert-parts/208-tamagotchi-mouths.png';
 type GoobertProps = {
     room: any,
     name: any,
-    x: string,
-    y: string,
+    x: number,
+    y: number,
 
     bodyType: number,
     bodyColor: number,
@@ -23,27 +23,110 @@ type GoobertProps = {
     className: string,
     onGoobertSelected: Function
 }
+export type Goobert = {
+    name: string, 
+    x: number, 
+    y: number, 
+    room: React.JSX.Element, 
+    id: string,
+
+    fullness: number, // Eating, catch the food game
+    swagosity: number, // Boredom, Snake
+    awakeness: number, // Sleeping
+    cleanliness: number, // Bathing, Flappy Goobert
+
+    bodyType: number,
+    bodyColor: number,
+    legType: number,
+    legColor: number,
+    eyeType: number,
+    mouthType: number,
+    eyeExpression: number,
+    mouthExpression: number,
+
+    eat: Function,
+    sleep: Function,
+    entertain: Function,
+    bathe: Function,
+
+    onGoobertSelected: Function
+
+} 
 export default function Goobert(props: GoobertProps): React.JSX.Element {
+    let [x, setX] = useState(props.x);
+    let [y, setY] = useState(props.y);
+    let [isDragged, setIsDragged] = useState(false);
+
+    // Used for identifying mouse movement on goobert click
+    let [startPos, initStartPos] = useState(
+        {
+            x: x, 
+            y: y,
+            mouseDX: 0,
+            mouseDY: 0
+        }
+    );
+
+
     /* Will trigger only for a particular instance of a goobert when the sprite is clicked */
+    let handleMouseStart = (mouse: RMouseEvent) => {
+        initStartPos(
+            {
+                x: x, 
+                y: y,
+                mouseDX: mouse.clientX - x,
+                mouseDY:  (window.innerHeight - mouse.clientY) - y - 64
+            }
+        );
+        setIsDragged(true);
+
+        window.addEventListener("mousemove", handleMouseOver);
+        window.addEventListener("mouseup", handleMouseEnd);
+    }
+    // Drags gooberts as the mouse moves
+    let handleMouseOver = (mouse: MouseEvent) => {
+        setX(mouse.clientX - startPos.mouseDX);
+        setY(window.innerHeight - (mouse.clientY - startPos.mouseDY));
+    }
+    // Stop goobert from being dragged and open ui card if not dragged
+    let handleMouseEnd = (mouse: MouseEvent) => {
+        mouse.preventDefault();
+
+        if(x == startPos.x && y == startPos.y) {
+            // Did not move goobert; interpret as click
+            click(props.name);
+        }
+        
+        window.removeEventListener("mousemove", handleMouseOver);
+        window.removeEventListener("mouseup", handleMouseEnd);
+        setIsDragged(false);
+    }
+
     let click = (name: string) => {
         console.log(`${name} says, "I've been poked!"`);
         props.onGoobertSelected();
     }
     return (
-        <div className="goobert-container" onClick={() => click(props.name)} style={{left: `${props.x}px`, top: `${props.y}px`}}>
-            <img src={LEG_SPRITE_SHEET} style={{
+        <div className="goobert-container" 
+            onMouseDown={(mouse: RMouseEvent<HTMLDivElement>) => handleMouseStart(mouse)} 
+            // Mouseover and mousend handled on the window level because if the mouse is moving quickly,
+            // it may leave the goobert div before onmouseover is caled.
+
+            style={{left: `${x}px`, bottom: `${y}px`}}
+        >
+            <img src={LEG_SPRITE_SHEET} draggable={false} style={{
                 left: `${props.legColor*(-64)}px`,
                 top: `${props.legType * -64}px`,
             }}/>
-            <img src={BODY_SPRITE_SHEET} style={{
+            <img src={BODY_SPRITE_SHEET} draggable={false} style={{
                 left: `${props.bodyColor*(-64)}px`,
                 top: `${props.bodyType * -64}px`,
             }}/>
-            <img src={MOUTH_SPRITE_SHEET} style={{
+            <img src={MOUTH_SPRITE_SHEET} draggable={false} style={{
                 left: `${props.mouthExpression*(-64)}px`,
                 top: `${props.mouthType * -64}px`,
             }}/>
-            <img src={EYES_SPRITE_SHEET} style={{
+            <img src={EYES_SPRITE_SHEET} draggable={false} style={{
                 left: `${props.eyeExpression*(-64)}px`,
                 top: `${props.eyeType * -64}px`,
             }}/>

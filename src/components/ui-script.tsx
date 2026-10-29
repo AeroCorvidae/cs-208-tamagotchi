@@ -1,7 +1,7 @@
 "use strict";
 import React, { useState, type MouseEventHandler } from "react";
 import GoobertElement from "../Goobert";
-import type { Goobert } from "../App";
+import type { Goobert } from "../Goobert";
 
 /* TODO: 
  - change the goobert to match the appearance of the clicked goobert
@@ -34,8 +34,8 @@ export default function UIGoobertCard({goobert, onUiClose}: UIProps): React.JSX.
             <img id="card-frame-back" src="images/goobert-parts/Transparent-BG.png" />
             <GoobertElement
                 {...goobert}
-                x={"0.6em"} 
-                y={"0.6em"} 
+                x={11} 
+                y={11} 
                 className="goobert-container icon"
             />
             <div className="ui-statbar-container">
