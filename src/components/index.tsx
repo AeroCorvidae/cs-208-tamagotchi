@@ -4,8 +4,6 @@ import React, { useState } from "react";
 import { indexClickSound, indexHoverSound } from "./audio";
 import Credits from "./credits";
 import { load, rooms } from "../App";
-import { Link } from "react-router";
-
 
 /*
  * Goobies Main Menu
@@ -50,14 +48,13 @@ export default function MainMenu(): React.JSX.Element {
                     {/* Save system will be connected later. */}
                     <div className="row justify-content-center my-3">
                         <div className="col-10 col-md-6 col-lg-3">
-                            <Link 
-                                to={"/hub"}
+                            <button 
                                 className="btn btn-continue menu-button w-100"
                                 onMouseEnter={() => indexHoverSound.play()}
                                 onClick={() => indexClickSound.play()}
                             >
                                 Continue Game
-                            </Link>
+                            </button>
                                 
                         </div>
                     </div>
@@ -65,14 +62,16 @@ export default function MainMenu(): React.JSX.Element {
                     {/* New Game opens the Hub. */}
                     <div className="row justify-content-center my-3">
                         <div className="col-10 col-md-6 col-lg-3">
-                            <Link 
-                                to={"/hub"}
+                            <button 
                                 className="btn btn-new-game menu-button w-100"
                                 onMouseEnter={() => indexHoverSound.play()}
-                                onClick={() => indexClickSound.play()}
+                                onClick={() => {
+                                    indexClickSound.play();
+                                    load(rooms.hub);
+                                }}
                             >
                                 New Game
-                            </Link>
+                            </button>
                         </div>
                     </div>
 

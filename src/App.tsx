@@ -55,6 +55,8 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 	const [uiGoobert, setUiGoobert] = useState(props.uiGoobert);
 	const [goobertList, setGoobertList] = useState(gooberts);
 
+	gooberts = goobertList;
+
 	const handleUiCloseButton = () => {
 		setUiGoobert(undefined);
 	}
@@ -62,6 +64,7 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 	// Define the load function to load a room and re-render the page
 	const navigate = useNavigate();
 	load = (url: string) => {
+		console.log(url, room);
 		navigate(url);
 		setRoom(url); // Let gooberts know which room they're on
 	}
@@ -78,10 +81,10 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 		(window as any).createGoobert = (
 			name: string,
 			room: string = rooms.hub
-		) => renderGoobert(createGoobert(name, room)); 
+		) => renderGoobert(createGoobert(name, room));
 	});
 
-	
+
 	return (
 		<>
 			{/* Display the currently selected room (Hub, Bedroom, etc...) */}
@@ -89,30 +92,30 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 
 			<div id="gooberts">
 				{
-				// Filter gooberts to only display the ones on the current room
-				goobertList.filter((goobert, i) => {
-					return goobert.room === room
-				}).map((goobert, i) => {
-					// Create a goobert for each object stored in this room
-					return (
-						<GoobertElement
-							className=""
-							key={goobert.id}
-							{...goobert}
-							onGoobertSelected={
-								() => {
-									setUiGoobert(goobert);
+					// Filter gooberts to only display the ones on the current room
+					goobertList.filter((goobert, i) => {
+						return goobert.room === room
+					}).map((goobert, i) => {
+						// Create a goobert for each object stored in this room
+						return (
+							<GoobertElement
+								className=""
+								key={goobert.id}
+								{...goobert}
+								onGoobertSelected={
+									() => {
+										setUiGoobert(goobert);
+									}
 								}
-							} 
-						/>
-					);
-				})
+							/>
+						);
+					})
 				}
 			</div>
 
-			{ 
+			{
 				// A goobert card will be rendered if a ui goobert exists and if it is in the current room
-				uiGoobert && uiGoobert.room === room && 
+				uiGoobert && uiGoobert.room === room &&
 				<UIGoobertCard goobert={uiGoobert} onUiClose={handleUiCloseButton} />
 			}
 		</>
@@ -121,13 +124,13 @@ const TopElement = (props: TopElementProps): React.JSX.Element => {
 
 let topElement;
 const root = createRoot(
-    document.getElementById("content")!
+	document.getElementById("content")!
 );
 function init() {
-    topElement = React.createRef();
-    root.render(
+	topElement = React.createRef();
+	root.render(
 		<BrowserRouter>
-			<TopElement room={rooms.menu} />
+			<TopElement room={new URL(window.location.href).pathname} />
 		</BrowserRouter>
 	);
 }
@@ -140,25 +143,24 @@ type Load = ((component: string) => void);
 export let load: Load;
 
 export function createGoobert(
-	name: string, 
-	location = rooms.hub, 
-	x = (Math.random() * (window.innerWidth - 64) /* goobert width */), 
+	name: string,
+	location = rooms.hub,
+	x = (Math.random() * (window.innerWidth - 64) /* goobert width */),
 	y = ((Math.random() * (window.innerHeight - 550 - 64) /* goobert height */)) + 550
-) 
-{
+) {
 	return (
 		{
-			name: name, 
-			x:x, 
-			y:y, 
-			room:location, 
-			id: name + gooberts.length,
+			name: name,
+			x: x,
+			y: y,
+			room: location,
+			id: name + (gooberts.length + 1),
 
 			fullness: 0, // Eating, catch the food game
 			swagosity: 50, // Boredom, Snake
 			awakeness: 50, // Sleeping
 			cleanliness: 50, // Bathing, Flappy Goobert
-		
+
 			bodyType: Math.floor(Math.random() * MAX_BODY_TYPES),
 			bodyColor: Math.floor(Math.random() * MAX_COLORS),
 			legType: Math.floor(Math.random() * MAX_LEG_TYPES),
@@ -168,10 +170,10 @@ export function createGoobert(
 			eyeExpression: 0,
 			mouthExpression: 0,
 
-			eat(amt = 10) {this.fullness += amt},
-			sleep() {this.awakeness = 100},
-			entertain(quality: number) {this.swagosity += quality},
-			bathe(amt: number) {this.cleanliness += amt},
+			eat(amt = 10) { this.fullness += amt },
+			sleep() { this.awakeness = 100 },
+			entertain(quality: number) { this.swagosity += quality },
+			bathe(amt: number) { this.cleanliness += amt },
 
 			onGoobertSelected: (goobert: Goobert) => {
 				console.log(goobert.name + " says, \"I've been poked!\"");
@@ -180,10 +182,10 @@ export function createGoobert(
 	);
 }
 export type Goobert = {
-	name: string, 
-	x: string, 
-	y: string, 
-	room: string, 
+	name: string,
+	x: string,
+	y: string,
+	room: string,
 	id: string,
 
 	fullness: number, // Eating, catch the food game
@@ -207,7 +209,7 @@ export type Goobert = {
 
 	onGoobertSelected: Function
 
-} 
+}
 // Defined within TopElement, takes a goobert and adds it to the list 
 // used to render TopElement gooberts
 type RenderGoobert = ((goobert: Goobert) => void);
