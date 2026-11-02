@@ -2,6 +2,7 @@ import React from "react";
 import { ladderClickSound } from "./audio";
 import { load, rooms } from "../App";
 import "../styles/dungeon.css";
+import Mutant, { MutantType } from "../Mutant";
 
 
 export default class Dungeon extends React.Component {
@@ -23,6 +24,12 @@ export default class Dungeon extends React.Component {
                     <div className="dungeonFloor">
                         <div className="col-12">
                         </div>
+                    </div>
+                    <div className="prisoners">
+                            <Mutant type={MutantType.SLEEPLESS} x={"15%"} y={"75%"}/>
+                            <Mutant type={MutantType.DIRTY} x={"35%"} y={"75%"}/>
+                            <Mutant type={MutantType.BORED} x={"55%"} y={"75%"}/>
+                            <Mutant type={MutantType.HUNGRY} x={"75%"} y={"75%"}/>
                     </div>
                 </div>
             </main>
